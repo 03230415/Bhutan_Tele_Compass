@@ -1,0 +1,1053 @@
+       /* ═══════════════════════════════════════════════════════════
+        TeleCompass — Single Page Application
+        Aesthetic: Himalayan Altitude · Teal + Saffron + Glass
+      ═══════════════════════════════════════════════════════════ */
+
+
+  /* this are the color code to be used in later code */
+      :root {
+        --teal:        #0d4f5c;
+        --teal-light: #0c7576;
+        --teal-dark:   #082e36;
+        --gold:        #e8a020;
+        --gold-light:  #f5c050;
+        --cream:       #fdf6ec;
+        --white:       #ffffff;
+        --text-dark:   #0d1f24;
+        --text-mid:    #2a4a52;
+        --text-light:  rgba(255,255,255,0.88);
+        --glass-bg:    rgba(187, 83, 52, 0.74);
+        --glass-border:rgba(15, 224, 182, 0.25);
+        --card-bg:     rgba(255,255,255,0.94);
+        --shadow-sm:   0 2px 12px rgba(13,79,92,0.18);
+        --shadow-md:   0 6px 28px rgba(13,79,92,0.28);
+        --shadow-lg:   0 14px 48px rgba(13,79,92,0.38);
+        --radius:      14px;
+        --radius-sm:   8px;
+        --nav-h:       68px;
+        --t:           0.3s cubic-bezier(0.4,0,0.2,1);
+      }
+  /* pseudo - applying same padding and margin to all normal elements */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; font-size: 16px; }
+      
+
+
+      /* default mood of whole website */
+      body {
+        font-family: 'DM Sans', sans-serif;                    /* if DM Sans not available then sans-serif  */
+        color: var(--text-dark);
+        background: var(--teal-dark);
+        min-height: 100vh;
+      }
+
+
+      /* ── Global BG ── */
+      .page-bg {
+        min-height: 100vh;
+        background:
+          linear-gradient(to bottom, rgba(23, 27, 28, 0.2) 0%, rgba(8, 46, 54, 0.54) 100%),
+          /* url(https://tse2.mm.bing.net/th/id/OIP.MQwV26GDpGXRkEuAFaYj3AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3) */
+          /* url(https://facts.net/wp-content/uploads/2023/09/11-intriguing-facts-about-tashichoedzong-thimphu-dzong-1694995288.jpg) */
+          url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
+
+          center/cover no-repeat fixed;
+                  
+          /* background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center; */
+
+      }
+
+
+      /* ══════════════ NAVIGATION ══════════════ */
+      /* navigation bar at the top corner */
+      nav {
+        position: sticky; 
+        top: 0; 
+        z-index: 1000;
+        height: var(--nav-h);
+        background: #0b2f33;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--glass-border);
+        display: flex; 
+        align-items: center;
+        /* justify-content: space-between; */
+        padding: 0 clamp(1rem,5vw,3rem);   /*padding <top-buttom><left-right>*/
+        gap: 2rem;}
+      .nav-links {
+          display:flex; 
+          gap:0.2rem; 
+          list-style:none; 
+          margin-left:auto; 
+          align-items:center; }
+      .nav-links li button:hover,
+      .nav-links li button.active { 
+          color:rgb(198, 248, 237); 
+          background:rgba(140, 122, 122, 0.35); 
+  }
+      .nav-links li button {
+        display:block; 
+        padding:0.45rem 0.9rem; 
+        color:var(--text-light);
+        background:none;                                    /* background color showing up if not used*/
+        border:none;                                        /* if you dont want border around button*/
+        font-family:'DM Sans',sans-serif;
+        font-size:0.9rem; 
+        font-weight:500;
+        border-radius:var(--radius-sm);                     /* border of button  */
+        transition:color var(--t),background var(--t);      /* the duration where the prev button color disappears - transition*/
+        cursor:pointer; 
+        letter-spacing:0.02em;           
+      }
+      /* phone navigation  */
+      .nav-toggle {
+        display:none; 
+        flex-direction:column; 
+        gap:5px; 
+        cursor:pointer;
+        margin-left:auto; 
+        padding:6px; 
+        background:none; 
+        border:none;}
+      .nav-toggle span {      
+          display:block; 
+          width:24px; 
+          height:2px; 
+          background:var(--white); 
+          border-radius:2px; 
+          transition:all var(--t); 
+      }
+  /* .ci - ci i labeled */
+      .nav-brand .ci {
+      /* the thing around the compass logo */
+        width: 36px; 
+        height: 36px; 
+        background: linear-gradient(90deg, #72ddc9ab, #034637a5);
+
+        /* background: var(--teal-light); */
+        border-radius: 50%;
+      /*this is for the logo design*/
+        display: flex;   
+        align-items: center; 
+        justify-content: center;
+        font-size: 1.5rem; 
+        box-shadow: 0 0 12px rgba(15, 8, 212, 0.45);
+        transition: transform var(--t), 
+        box-shadow var(--t);}
+      .nav-brand:hover .ci { 
+          transform: rotate(45deg); 
+          box-shadow: 0 0 22px rgba(2, 168, 168, 0.7); 
+      }
+
+      /* logo design */
+      .nav-brand span { 
+          font-family:'Playfair Display',serif; 
+          font-size:1.35rem; 
+          font-weight:700; 
+          color:var(--white);}
+      .nav-brand span em { 
+          color:var(--teal-light); 
+          font-style:normal; }
+      .nav-brand {
+        display: flex; 
+        align-items: center; 
+        gap: 0.6rem;
+        text-decoration: none; 
+        flex-shrink: 0; 
+        cursor: pointer;
+      }
+
+
+      /* ══════════════ PAGE SECTIONS ══════════════ */
+  /* display page - each section is given to their respective section */
+      .page { 
+          display:none; 
+          animation: fadeUp 0.55s ease both;} 
+      .page.active { 
+          display:block;}
+      @keyframes fadeUp {                                        /*adding animation transition - fadeUp */
+        from { opacity:0; 
+          transform:translateY(22px);}
+        to   { 
+          opacity:1; 
+          transform:translateY(0);}
+      }
+
+      .section {
+        padding: clamp(3rem,7vw,5rem) clamp(1rem,5vw,3rem);  /*top&buttom left&right - Min, Ideal, Max*/
+        max-width: 1160px;                                   /* max width- the space the items takes*/
+        margin: 0 auto;                                      /* to bring items in center*/
+        width: 100%;
+      }
+      
+      /* ══════════════ STORY ══════════════ */
+      /* homepage screen overall*/
+      /* intro overlay */
+    #intro{
+    position: fixed;
+    inset: 0;
+    background:url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
+    center/cover no-repeat fixed;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    color: var(--cream);
+    z-index: 2000;
+    overflow-y: auto; 
+  }
+  /* centers and caps the width */
+  .intro-box {
+    padding: 30px;
+    border-radius: 16px;
+  }
+
+  .btn-skip {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 3000;
+
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+
+    color: rgb(247, 232, 242);
+
+    border: 2px solid rgb(69, 47, 47);
+    border-radius: 20px;
+    background: rgba(78, 60, 71, 0.564);
+
+    padding: 0.4rem 0.8rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  .btn-skip:hover {
+    /* background: rgba(33, 30, 37, 0.422); */
+    /* text-decoration:underline;
+    text-decoration-thickness: 1.5px; */
+    transform: translateY(-2px);
+  }
+  /* story card */
+      .story {
+        max-width: 1200px;
+        margin: 0 auto;
+        /* display:flex; */
+        margin-top:0.1rem;
+        padding: 50px 45px;
+        font-family: arial;
+        font-weight:400;
+        letter-spacing:0.12rem;
+        background:rgba(48, 56, 55, 0.7);
+        border-radius:2rem;
+        color:var(--white);
+        /* block - pushes other elements below it */
+        display:block;
+      }
+      .story-title{
+        text-align: center; 
+        background: linear-gradient(90deg, #ebd846, #f26118);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height:2;
+        letter-spacing:0.03rem;
+        font-weight:800;
+      }
+      
+      .story h4{
+        margin-top:1.2rem;
+      }
+      .story p {
+        text-align:justify;
+        margin-top: 1.5rem;
+        font-size: 18px;
+        font-family:Comic Sans MS;
+        line-height: 1.8;           
+      }
+
+      .story-intro{
+        font-family:Arial, sans-serif; 
+        letter-spacing:0.1rem;
+        font-weight: normal;
+        line-height: 1.6; 
+        font-size:20px;
+        padding: 1.75rem 0 0.6rem 1rem;
+         /* border left to topic  */
+        border-left: 4px solid rgb(88, 64, 78);
+        margin-left: -1rem;
+      }  
+    
+      /* MOBILE */
+      @media (max-width: 700px) {
+        .story { padding: 2rem 1.25rem; }
+        .story p { font-size: 0.92rem; }
+      }
+      .btn-go{
+        display: block;
+        margin: 3rem auto;
+        border: 2px solid #848d9f;
+        border-radius: 20px;
+        background:rgba(92, 80, 82, 0.5);
+        padding:11px;
+        color:var(--cream);
+        font-size:15px;
+        font-weight:bold;
+        cursor: pointer;
+        transition: all var(--t);
+        letter-spacing: 0.04em;
+      }
+
+      .btn-go:hover {
+        background: var(--sage-light);
+        border-color: var(--sage-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+
+        #greeting {
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 0.98rem;
+          font-weight: 800;
+          color: rgb(236, 230, 234);
+          display: inline-block;
+          border-radius: 100px;
+          padding: 0.35rem 0.9rem;
+          background: rgba(50, 38, 45, 0.564);
+          letter-spacing: 0.05em;
+          margin-bottom: 1.25rem;
+        }
+
+        .returnback{
+          display: inline-block;
+          display:flex;
+          justify-content:flex-end;
+          border: 2px solid #848d9f;
+          border-radius: 10px;
+          color:var(--cream);
+          font-size:15px;
+          background:rgb(209, 184, 188, 0.5);
+          padding:11px;
+          font-weight:bold;
+          transition: 0.3s ease;
+          padding: 0.5rem 1.1rem;
+          cursor: pointer;
+          transition: all var(--t);
+        }
+  
+        .returnback:hover {
+          transform:translateY(-2px); 
+          box-shadow:var(--shadow-lg);
+          background: var(--sage-mist);
+          border-color: var(--sage-light);
+        }
+        #main {
+          padding: 1rem 5rem;
+        }
+
+      .clearForm {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background: #cbeae6;
+        cursor: pointer;
+      }
+
+    .hero {
+      min-height: calc(100vh - var(--nav-h));  /* height of home screen is vh - navbar height*/
+      display:flex; 
+      align-items:center;
+      padding: clamp(3rem,8vw,6rem) clamp(1rem,5vw,3rem);
+    }
+    
+      /* centers text + image with each other */
+      .hero-inner {
+        max-width:1160px; 
+        margin:0 auto; 
+        width:100%;
+        display:grid; 
+        grid-template-columns:1fr 1fr; 
+        gap:4rem; 
+        align-items:center;
+      }
+      .hero-text h1 {
+        font-family:'Playfair Display',serif;
+        font-size:clamp(2.5rem,6vw,4rem); 
+        font-weight:900;
+        color:var(--cream); 
+        line-height:1.1; 
+        margin-bottom:0.5rem;
+      }
+      .hero-text h1 em { 
+        color:rgb(151, 203, 203); 
+        font-style:normal; 
+        display:block; 
+      }
+      .hero-text .subtitle { 
+        font-size:clamp(1rem,2vw,1.15rem); 
+        color:var(--text-light); 
+        margin-bottom:2rem; 
+        line-height:1.7; 
+        max-width:460px; 
+      }
+
+      /* image size and ratio */
+      .hero-image img { 
+        width:100%; 
+        border-radius:var(--radius); 
+        box-shadow:var(--shadow-lg); 
+        aspect-ratio:auto; 
+        border:2px solid var(--glass-border); 
+      }
+      /* 📍 Thimphu, Bhutan */
+      .hero-image { 
+        position:relative; 
+      }
+      .hero-image .img-caption {
+        position:absolute; 
+        bottom:-1rem; 
+        right:-1rem;
+        background:var(--teal-light); 
+        color:rgb(243, 236, 231);
+        padding:0.5rem 1rem; 
+        border-radius:50px; 
+        font-size:0.78rem;
+        font-weight:700; 
+        letter-spacing:0.04em; 
+        box-shadow:var(--shadow-sm);
+      }
+
+
+
+
+      /* ══════════════ QUICK-LINKS GRID ══════════════ */
+      /* the navbar below */
+      .qlinks { 
+        display:grid; 
+        grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); 
+        gap:1.25rem; 
+      }
+      /* background of navebar below*/
+      .qlink-card {
+        padding:1.75rem 1.5rem; 
+        text-align:center; 
+        cursor:pointer;
+        box-shadow:var(--shadow-sm);
+        background:rgba(20, 96, 96, 0.75);
+        border:1px solid var(--glass-border);
+        border-radius:var(--radius); 
+        backdrop-filter:blur(12px);
+        transition:transform var(--t),box-shadow var(--t),background var(--t);
+        color:var(--text-light); 
+        text-decoration:none; 
+        display:block;
+      }
+      .qlink-card:hover { 
+        transform:translateY(-5px); 
+        box-shadow:var(--shadow-lg); 
+        background:rgba(95, 125, 125, 0.88);            
+      }
+      .qlink-card .q-icon { 
+        font-size:2rem; 
+        margin-bottom:0.6rem; 
+      }
+      .qlink-card .q-title { 
+        font-family:'Playfair Display',serif; 
+        font-size:1.05rem; 
+        font-weight:700; 
+        color:var(--white); 
+        margin-bottom:0.3rem; 
+      }
+      .qlink-card .q-sub { 
+        font-size:0.83rem; 
+        color:var(--cream); 
+        font-width: 800;
+        letter-spacing: 1px;
+      }
+
+    /* ══════════════ STATS ══════════════ */
+      /* information bar in homepage */
+      .stat-row { 
+        display:flex; 
+        gap:1.25rem; 
+        flex-wrap:wrap; 
+        margin:1.5rem 0; 
+      }
+      .stat-box {
+        flex:1;                                         /* changes shape equally*/
+        min-width:110px; 
+        background:rgba(34, 70, 47, 0.75);
+        border:1px solid rgba(17, 155, 100, 0.25); 
+        border-radius:var(--radius-sm);
+        padding:0.9rem 1rem; 
+        text-align:center;
+      }
+      /* upper info */
+      .stat-box .num { 
+        font-family:'Playfair Display',serif; 
+        font-size:1.8rem; 
+        font-weight:900; 
+        color:var(--teal-light);
+        display:block; 
+      }
+      /* lower letter */
+      .stat-box .lbl { 
+        font-size:0.76rem; 
+        color:var(--cream); 
+        text-transform:uppercase; 
+        letter-spacing:0.06em; 
+      }
+      .stat-box:hover{
+         transform:translateY(-2px); 
+       
+      }
+
+          /* ══════════════ BUTTONS ══════════════ */
+      /* shape of view dashboard and learn more buttons */
+      .btn {
+        border-radius:50px;   
+        cursor:pointer;   
+        padding:0.5rem 1.5rem; 
+        font-size:1rem; 
+        font-family:'DM Sans',sans-serif;
+        font-weight:600;
+        transition:all var(--t); 
+        letter-spacing:0.05rem;
+        text-decoration:none;
+        border:2px solid transparent;
+      }
+      /* view dashboard in homepage - all the floating buttons with btn-gold class*/
+      .btn-gold { 
+        background:var(--teal-light); 
+        border-color:var(--teal); 
+        }    
+      .btn-gold:hover { 
+        background:var(--teal); 
+        border-color:var(--teal-light); 
+        transform:translateY(-2px); 
+      }
+  /* learn more button */
+      .btn-outline { 
+        background:transparent; 
+        color:var(--white); 
+        border-color:rgba(255,255,255,0.5); 
+      }
+      .btn-outline:hover { 
+        background:rgba(255,255,255,0.1); 
+        transform:translateY(-2px); }
+
+        /* return home button in companies section */
+      .btn-teal { 
+        background:var(--teal-light); 
+        color:var(--white); 
+        border-color:var(--teal-light); 
+      }
+      .btn-teal:hover { 
+        background:var(--teal); 
+        border-color:var(--teal); 
+        transform:translateY(-2px); 
+      }
+
+      /* ══════════════ About Us SECTIONS ══════════════ */
+      /* about us heading and divider*/
+      .page-hero {                                           
+        padding: clamp(3rem,6vw,4.5rem) clamp(1rem,5vw,3rem) 2rem;
+        max-width: 1160px; 
+        margin: 0 auto;}
+      .section-title {
+        background: linear-gradient(90deg, #25d997, #095bd4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family:'Playfair Display',serif;
+        font-size: clamp(1.8rem,4vw,2.8rem);
+        font-weight:700; 
+        color:var(--white); 
+        margin-bottom:0.5rem; 
+        line-height:1.2;  }
+      .divider { 
+        height:3px; 
+        background:linear-gradient(90deg,var(--teal),var(--teal-light)); 
+        border-radius:2px; 
+        margin-bottom:2rem; }
+
+      /* ══════════════ CARDS From About Us══════════════ */
+      /*background of the information */
+      .glass-card {
+        background: rgb(23, 90, 68);   
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        backdrop-filter: blur(12px); 
+        -webkit-backdrop-filter: blur(12px);
+        padding: clamp(1.5rem,4vw,2.5rem);
+        box-shadow: var(--shadow-md); 
+        color: var(--text-light);
+        transition: transform var(--t), box-shadow var(--t);
+      }
+      .glass-card:hover { 
+        transform:translateY(-4px); 
+        box-shadow:var(--shadow-lg); 
+      }
+       /* this is for the link for companies */
+      .glass-card a {
+        color:var(--text-light);
+        text-decoration: none;
+      }
+      .glass-card a:hover{
+        text-decoration:underline;
+        text-decoration-thickness: 1.5px;
+      }
+      /* project highlight card */
+      .white-card {
+        background: var(--card-bg); 
+        border-radius: var(--radius);
+        padding: clamp(1.5rem,4vw,2.5rem); 
+        box-shadow: var(--shadow-md); 
+        color:var(--text-dark);
+        transition: transform var(--t), box-shadow var(--t);
+      }
+      .white-card:hover { 
+        transform:translateY(-4px); 
+        box-shadow:var(--shadow-lg); 
+      }
+
+      /* ══════════════ HIGHLIGHT LIST ══════════════ */
+      .highlight-list { 
+        list-style:none; 
+        display:flex; 
+        flex-direction:column;  
+        gap:0.85rem; 
+      }
+      .highlight-list li { 
+        display:flex;  /*align text with bulletin*/
+        align-items:flex-start; 
+        gap:0.75rem; 
+        font-size:0.97rem; 
+        line-height:1.5; 
+        color:var(--text-mid); 
+      }
+      .highlight-list li::before { 
+        content:'◆'; 
+        color:var(--teal); 
+        font-size:0.75rem; 
+        margin-top:0.25rem; 
+        flex-shrink:0; 
+      }
+
+      /* ══════════════ TWO-COL ══════════════ */
+      /* about us and contact section */
+      .two-col { 
+        display:grid; 
+        grid-template-columns:1fr 1fr;   /* one faction of the space*/
+        gap:2rem; 
+      }
+
+      @keyframes pop {
+        from { transform: translateX(-50%) scale(0.8); opacity: 0; }
+        to { transform: translateX(-50%) scale(1); opacity: 1; }
+      }
+
+      @keyframes pop {
+        from { transform: translateX(-50%) scale(0.8); opacity: 0; }
+        to   { transform: translateX(-50%) scale(1); opacity: 1; }
+      }
+
+      /* ══════════════ COMPANY SECTION ══════════════ */
+      /* ══════════════ BADGE ══════════════ */ 
+      /* Bhutan Connectivity - homepage and information badge - companies  */
+      .badge {
+        /* display:inline-block;      */
+        padding:0.2rem 0.65rem;
+        background:rgba(70, 94, 94, 0.15);
+        color:var(--teal-light);
+        border:0.1px solid var(--teal);
+        border-radius:50px;
+        font-size:0.75rem;
+        font-weight:700;  
+        letter-spacing:0.04em; 
+        text-transform:uppercase;
+      }
+
+      /* companies section */
+      .company-grid { 
+        display:grid; 
+        grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); 
+        gap:1.5rem; 
+        margin-bottom:2.5rem; 
+      }
+
+      .company-card {
+        background: rgb(255, 248, 248); 
+        border-radius:var(--radius);                      /* 14px*/
+        padding:1.75rem; 
+        box-shadow:var(--shadow-sm); 
+        border-top:4px solid var(--teal);
+        transition:transform var(--t),box-shadow var(--t);
+      }
+      .company-card:hover { 
+        transform:translateY(-5px); 
+        box-shadow:var(--shadow-md); 
+      }
+      /* icon emoji */
+      .company-card .co-icon {
+        width:52px; 
+        height:52px;
+        /* background:linear-gradient(135deg,var(--teal),var(--teal-light)); */
+        border-radius:12px; 
+        display:flex; 
+        align-items:center; 
+        justify-content:center;
+        font-size:1.5rem; 
+        margin-bottom:1rem; 
+        box-shadow:var(--shadow-sm);
+      }
+      .co-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;   /* keeps proportions */
+      }
+      .co-icon:hover{
+        /* (-) - hovers up and vice versa */
+        transform:translateY(-1px); 
+        box-shadow:var(--shadow-md); 
+      }
+      .company-card h3 { 
+        font-family:'Playfair Display',serif; 
+        font-size:1.1rem; 
+        font-weight:700; 
+        color:var(--teal-dark); 
+        margin-bottom:0.4rem; 
+      }
+      .company-card p { 
+        font-size:0.91rem; 
+        color:var(--text-mid); 
+        line-height:1.55; 
+      }
+      .tag-row { 
+        display:flex; 
+        gap:0.45rem; 
+        flex-wrap:wrap; 
+        margin-top:1rem; 
+        padding-top:1rem; 
+        border-top:1px solid rgba(13,79,92,0.1); 
+      }
+
+      /* ══════════════ TABLEAU ══════════════ */
+      .tableau-wrapper {
+        width:100%; 
+        border-radius:var(--radius); 
+        overflow:hidden;
+        box-shadow:var(--shadow-lg); 
+        border:1px solid var(--glass-border);
+        background:var(--white); 
+        min-height:600px;
+      }
+      .tableau-wrapper iframe { 
+        width:100%; 
+        height:600px; 
+        border:none; 
+        display:block; 
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* ══════════════ FORMS ══════════════ */
+      /* the form from both companies and contact section */
+      .form-group { 
+        display:flex; 
+        flex-direction:column; 
+        gap:0.4rem; 
+        margin-bottom:1.2rem; 
+      }
+      /* your location and purpose head */
+      .form-group h3 { 
+        font-size:0.82rem; 
+        font-weight:600; 
+        color:var(--teal); 
+        text-transform:uppercase; 
+        letter-spacing:0.06em; 
+      }
+      /* occupation box */
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding:0.75rem 1rem; 
+        border:2.5px solid rgba(13,79,92,0.2);
+        border-radius:var(--radius-sm); 
+        font-family:'DM Sans',sans-serif;
+        font-size:0.95rem; 
+        color:var(--text-dark); 
+        background:rgba(255,255,255,0.85);
+        outline:none; 
+        transition:border-color var(--t),box-shadow var(--t);
+      }
+      /* focus on option dropdown box*/
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color:var(--teal-light);       
+        box-shadow:0 0 0 3px rgba(26,122,138,0.15); 
+        background:var(--white);
+      }
+      .form-group textarea { 
+        resize:vertical; 
+        min-height:120px;
+      }
+      /* options for purpose and location arrangement */
+      .radio-group { 
+        display:flex; 
+        flex-direction:column; 
+        gap:0.5rem;                                     /* the gap between each item*/
+      }
+      /* location and purpose options */
+      .radio-group label { 
+        display:flex; 
+        align-items:center; 
+        letter-spacing:0rem;
+        text-transform:none; 
+        gap:0.6rem; 
+        font-size:0.93rem; 
+        color:var(--text-dark); 
+        font-weight:400;      
+        cursor:pointer; 
+      }
+
+      .radio-group input { 
+        accent-color:var(--teal-light); 
+      } 
+
+  /* recommendation dialog box */
+      .success-msg {
+        display:none; 
+        background:rgba(13,79,92,0.15); 
+        border:1.5px solid var(--teal-light);
+        border-radius:var(--radius-sm); 
+        padding:0.9rem 1.2rem; 
+        color:var(--teal);
+        font-weight:500; 
+        font-size:0.95rem; 
+        margin-top:1rem;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      /* ══════════════ TABLE ══════════════ */
+      /* main wording */
+      .comp-table { 
+        gap:1rem; 
+        margin-bottom:2rem; 
+        width:100%; 
+        border-collapse:collapse; 
+        font-size:0.95rem; 
+        color:var(--cream); 
+        min-width:520px; 
+      }
+      /* heading underline */
+      .comp-table thead tr { 
+        border-bottom:1px solid var(--cream); 
+      }
+      /* provider | type | coverage | */
+      .comp-table th { 
+        text-align:left; 
+        padding:0.65rem 1rem; 
+        color:var(--cream); 
+        font-weight:600; 
+        text-transform:uppercase; 
+        font-size:1rem; 
+        letter-spacing:0.06em; 
+      }
+      /* sub-underlines */
+      .comp-table td { 
+        padding:0.65rem 1rem;  
+        border-bottom:1px solid rgba(255,255,255,0.12); 
+      }
+
+      /* ══════════════ VIZ STAT CARDS ══════════════ */
+      .viz-grid { 
+        display:grid; 
+        grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); 
+        gap:1rem; 
+        margin-bottom:2rem; 
+      }
+        /* stat box */
+      .viz-card { 
+        background:rgb(255, 255, 255,0.82); 
+        border-radius:var(--radius-sm); 
+        padding:1.25rem; 
+        text-align:center; 
+        border-top:3.5px solid var(--teal-dark); 
+      }
+      .viz-card .vnum { 
+        font-family:'Playfair Display',serif; 
+        font-size:1.25rem; 
+        font-weight:900; 
+        color:var(--teal-dark); 
+      }
+      .viz-card .vlbl { 
+        font-size:0.8rem; 
+        color:var(--text-mid); 
+        font-weight:900;
+        text-transform:uppercase; 
+        letter-spacing:0.05em; 
+        margin-top:0.5rem; 
+      }
+
+      /* ══════════════ FOOTER ══════════════ */
+      footer {
+        background:rgba(5,26,30,0.96); 
+        border-top:1px solid var(--glass-border);
+        padding:1.5rem clamp(1rem,5vw,3rem); 
+        text-align:center;
+        color:rgba(255,255,255,0.45); 
+        font-size:0.85rem; 
+        letter-spacing:0.03em;
+      }
+
+      /* ══════════════ RESPONSIVE ══════════════ */
+      /*///// for phone ////////*/
+      /* nav bar remains hidden unless javascript for nav opens 
+      rest are for styling the nav link on phone which remains hidden behind the bar */
+      @media(max-width:700px){
+        .hero-inner { 
+          grid-template-columns:1fr; 
+          gap:2.5rem; 
+        }
+        .two-col { 
+          grid-template-columns:1fr; 
+        }
+      }
+      @media(max-width:700px){
+        .nav-links {
+          display:none; 
+          flex-direction:column;
+          position:absolute; 
+          /* places menu right below navbar */
+          top:var(--nav-h); 
+          left:0; right:0;
+          background:rgba(8,46,54,0.97); 
+          padding:1rem;
+          border-bottom:1px solid var(--glass-border); 
+          gap:0.15rem;
+        }
+        .nav-links.open { 
+          display:flex; 
+        }
+        .nav-links li button { 
+          padding:0.75rem 1rem; 
+          font-size:1rem; 
+          width:100%; 
+          text-align:left; 
+        }
+        /* hamburger menu button (☰ icon) on mobile. */
+        .nav-toggle { display:flex;}
+        /* tells the browser: “Use this nav as the anchor for positioning dropdown menu” */
+        nav {position:relative;}
+      }
+  /* IMPORTANT: prevents anchor links (#section) from hiding under fixed navbar */
+  /* scroll padding for sticky nav */    
