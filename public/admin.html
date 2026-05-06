@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleCompass — Admin Inbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --teal:       #0d4f5c;
+      --teal-light: #0c7576;
+      --teal-dark:  #082e36;
+      --cream:      #fdf6ec;
+      --white:      #ffffff;
+      --radius:     14px;
+      --shadow-md:  0 6px 28px rgba(13,79,92,0.28);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--teal-dark);
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(8,46,54,0.95) 0%, rgba(8,46,54,0.98) 100%),
+        url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
+        center/cover no-repeat fixed;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .login-box {
+      background: rgba(13, 79, 92, 0.6);
+      border: 1.5px solid rgba(15,224,182,0.25);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .login-box .icon  { font-size: 3rem; margin-bottom: 1rem; }
+    .login-box h1     { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .login-box p      { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-bottom: 2rem; }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 2px solid rgba(15,224,182,0.25);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 1rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    .login-box input:focus { border-color: var(--teal-light); background: rgba(255,255,255,0.12); }
+    .login-box input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
+
+    .login-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--teal-light);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .login-btn:hover { background: var(--teal); transform: translateY(-2px); }
+
+    .login-error {
+      display: none;
+      color: #ff8080;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ── ADMIN DASHBOARD ── */
+    #adminScreen { display: none; padding: 2rem; }
+
+    .admin-header {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cream);
+      font-size: 1.8rem;
+    }
+
+    .admin-header h1 span { color: #0fe0b6; }
+
+    .logout-btn {
+      padding: 0.5rem 1.2rem;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-align: center;
+      border-top: 4px solid var(--teal-light);
+    }
+
+    .stat-card .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--teal); display: block; }
+    .stat-card .lbl { font-size: 0.75rem; color: #2a4a52; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+
+    /* ── CONTROLS ── */
+    .controls {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.7rem 1rem;
+      border: 2px solid rgba(15,224,182,0.25);
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-input::placeholder { color: rgba(255,255,255,0.4); }
+    .search-input:focus { border-color: var(--teal-light); }
+
+    .filter-select {
+      padding: 0.7rem 1rem;
+      border: 2px solid rgba(15,224,182,0.25);
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-select option { background: #082e36; color: white; }
+
+    .refresh-btn {
+      padding: 0.7rem 1.2rem;
+      background: var(--teal-light);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .refresh-btn:hover { background: var(--teal); }
+
+    /* ── MESSAGE CARDS ── */
+    .messages-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .msg-card {
+      background: rgba(255,255,255,0.93);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border-left: 5px solid var(--teal-light);
+      transition: transform 0.2s;
+    }
+    .msg-card:hover { transform: translateY(-2px); }
+
+    .msg-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .msg-name  { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--teal); }
+    .msg-email { font-size: 0.85rem; color: #2a4a52; margin-top: 0.15rem; }
+
+    .msg-topic {
+      padding: 0.2rem 0.75rem;
+      background: rgba(13,79,92,0.1);
+      border: 1px solid var(--teal);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .msg-body  { font-size: 0.95rem; color: #1a3a42; line-height: 1.6; margin-bottom: 0.75rem; }
+    .msg-time  { font-size: 0.75rem; color: #6a8a92; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-state p { font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ══ LOGIN SCREEN ══ -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="icon">🔐</div>
+      <h1>Admin Access</h1>
+      <p>TeleCompass — Message Inbox</p>
+      <input type="password" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter') login()" />
+      <button class="login-btn" onclick="login()">🔓 Login</button>
+      <p class="login-error" id="loginError">❌ Wrong password. Try again.</p>
+    </div>
+  </div>
+
+  <!-- ══ ADMIN DASHBOARD ══ -->
+  <div id="adminScreen">
+
+    <div class="admin-header">
+      <h1>📬 Tele<span>Compass</span> Inbox</h1>
+      <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="num" id="totalCount">0</span>
+        <span class="lbl">Total Messages</span>
+      </div>
+      <div class="stat-card">
+        <span class="num" id="todayCount">0</span>
+        <span class="lbl">Today</span>
+      </div>
+      <div class="stat-card">
+        <span class="num" id="topicCount">0</span>
+        <span class="lbl">Topics</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <input class="search-input" id="searchInput" placeholder="🔍 Search by name or message..." oninput="renderMessages()" />
+      <select class="filter-select" id="topicFilter" onchange="renderMessages()">
+        <option value="">All Topics</option>
+        <option value="general">General Inquiry</option>
+        <option value="research">Research Collaboration</option>
+        <option value="telecom">Telecom Feedback</option>
+        <option value="other">Other</option>
+      </select>
+      <button class="refresh-btn" onclick="loadMessages()">🔄 Refresh</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages-grid" id="messagesGrid"></div>
+
+  </div>
+
+  <script>
+    // ── Change this password to whatever you want ──
+    const ADMIN_PASSWORD = 'telecompass2026';
+
+    let allMessages = [];
+
+    function login() {
+      const input = document.getElementById('passwordInput').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('loginScreen').style.display  = 'none';
+        document.getElementById('adminScreen').style.display  = 'block';
+        document.getElementById('loginError').style.display   = 'none';
+        loadMessages();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+      }
+    }
+
+    function logout() {
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('adminScreen').style.display = 'none';
+      document.getElementById('passwordInput').value = '';
+    }
+
+    async function loadMessages() {
+      try {
+        const res  = await fetch('/messages');
+        const data = await res.json();
+        allMessages = data.messages || [];
+
+        // Stats
+        document.getElementById('totalCount').textContent = allMessages.length;
+        const today = new Date().toLocaleDateString();
+        const todayMsgs = allMessages.filter(m => new Date(m.receivedAt).toLocaleDateString() === today);
+        document.getElementById('todayCount').textContent = todayMsgs.length;
+        const topics = [...new Set(allMessages.map(m => m.topic))];
+        document.getElementById('topicCount').textContent = topics.length;
+
+        renderMessages();
+      } catch (err) {
+        console.error('Failed to load messages:', err);
+      }
+    }
+
+    function renderMessages() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const topic  = document.getElementById('topicFilter').value.toLowerCase();
+      const grid   = document.getElementById('messagesGrid');
+
+      let filtered = allMessages.filter(m => {
+        const matchSearch = !search ||
+          m.name.toLowerCase().includes(search) ||
+          m.message.toLowerCase().includes(search) ||
+          m.email.toLowerCase().includes(search);
+        const matchTopic = !topic || m.topic.toLowerCase().includes(topic);
+        return matchSearch && matchTopic;
+      });
+
+      // newest first
+      filtered = filtered.reverse();
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>No messages found.</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(m => `
+        <div class="msg-card">
+          <div class="msg-top">
+            <div>
+              <div class="msg-name">${m.name}</div>
+              <div class="msg-email">✉️ ${m.email}</div>
+            </div>
+            <span class="msg-topic">${m.topic}</span>
+          </div>
+          <div class="msg-body">${m.message}</div>
+          <div class="msg-time">🕐 ${m.receivedAt}</div>
+        </div>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>
