@@ -1,6 +1,7 @@
 const express = require("express");
 const cors    = require("cors");
 const path    = require("path");
+const fs      = require("fs");
 
 const app = express();
 
@@ -8,38 +9,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// ── Supabase config ───────────────────────────────
-const SUPABASE_URL = process.env.SUPABASE_URL || "https://cdlimimarqcyvngnhuaw.supabase.co";
-const SUPABASE_KEY = process.env.SUPABASE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkbGltaW1hcnFjeXZuZ2hudWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNTUwMTIsImV4cCI6MjA5MzYzMTAxMn0.EChGAPwRF28ecxUMLauTVtedcIE8JBeUwyMQIIopw6U";
+const MESSAGES_FILE = path.join(__dirname, "messages.json");
 
-// Helper: save message to Supabase
-async function saveToSupabase(data) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
-    method:  "POST",
-    headers: {
-      "Content-Type":  "application/json",
-      "apikey":        SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`,
-      "Prefer":        "return=minimal"
-    },
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(err);
-  }
+function readMessages() {
+  if (!fs.existsSync(MESSAGES_FILE)) return [];
+  return JSON.parse(fs.readFileSync(MESSAGES_FILE, "utf-8"));
 }
 
-// Helper: read all messages from Supabase
-async function getFromSupabase() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/messages?order=received_at.desc`, {
-    headers: {
-      "apikey":        SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`
-    }
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return await res.json();
+function saveMessages(messages) {
+  fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
 }
 
 // ── HOME ─────────────────────────────────────────
@@ -47,49 +25,40 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// ── ADMIN PAGE ────────────────────────────────────
+// ── ADMIN PAGE ───────────────────────────────────
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
 // ── POST /message ─────────────────────────────────
-app.post("/message", async (req, res) => {
+app.post("/message", (req, res) => {
   const { name, email, topic, message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ success: false, error: "Name, email and message are required." });
   }
 
-  try {
-    await saveToSupabase({
-      name:    name.trim(),
-      email:   email.trim(),
-      topic:   topic || "General",
-      message: message.trim()
-      // received_at is set automatically by Supabase
-    });
+  const newMessage = {
+    id:         Date.now(),
+    name:       name.trim(),
+    email:      email.trim(),
+    topic:      topic || "General",
+    message:    message.trim(),
+    receivedAt: new Date().toLocaleString("en-BT", { timeZone: "Asia/Thimphu" })
+  };
 
-    console.log("📬 Saved to Supabase:", name, email);
+  const all = readMessages();
+  all.push(newMessage);
+  saveMessages(all);
 
-    res.status(200).json({
-      success: true,
-      message: "✅ Thank you! Your message has been received. We will reply within 2 business days."
-    });
+  console.log("📬 Saved:", newMessage);
 
-  } catch (err) {
-    console.error("Supabase save error:", err.message);
-    res.status(500).json({ success: false, error: "Failed to save message. Please try again." });
-  }
+  res.status(200).json({ success: true, message: "✅ Thank you! Your message has been received. We will reply within 2 business days." });
 });
 
 // ── GET /messages ─────────────────────────────────
-app.get("/messages", async (req, res) => {
-  try {
-    const messages = await getFromSupabase();
-    res.json({ total: messages.length, messages });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch messages." });
-  }
+app.get("/messages", (req, res) => {
+  res.json({ total: readMessages().length, messages: readMessages() });
 });
 
 // ── Fallback ──────────────────────────────────────
