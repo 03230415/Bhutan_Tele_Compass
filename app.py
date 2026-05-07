@@ -8,8 +8,8 @@ app = Flask(__name__, static_folder="public")
 app.secret_key = "telecompass_bhutan_2026"
 
 # ── Admin credentials (change these) ──────────────
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "bhutan123"
+ADMIN_USERNAME = "yang"
+ADMIN_PASSWORD = "dream"
 
 MESSAGES_FILE = "messages.json"
 
@@ -140,4 +140,3 @@ def clear_messages():
 # ══════════════════════════════════════════════════
 if __name__ == "__main__":
     app.run(debug=True)
-    
