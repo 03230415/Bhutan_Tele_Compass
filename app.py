@@ -9,19 +9,9 @@ ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
 MESSAGES_FILE  = "messages.json"
 
-# ── Use Supabase on Render, JSON locally ───────────
-USE_SUPABASE = os.environ.get("RENDER") is not None
-
-if USE_SUPABASE:
-    from supabase import create_client
-    SUPABASE_URL = "https://cdlimimarqcyvngnhuaw.supabase.co"
-    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkbGltaW1hcnFjeXZuZ2hudWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNTUwMTIsImV4cCI6MjA5MzYzMTAxMn0.EChGAPwRF28ecxUMLauTVtedcIE8JBeUwyMQIIopw6U"
-    db = create_client(SUPABASE_URL, SUPABASE_KEY)
-
 def is_logged_in():
     return session.get("logged_in") == True
 
-# ── JSON helpers (local only) ──────────────────────
 def read_messages():
     if not os.path.exists(MESSAGES_FILE):
         return []
@@ -32,9 +22,7 @@ def save_messages(messages):
     with open(MESSAGES_FILE, "w") as f:
         json.dump(messages, f, indent=2)
 
-# ══════════════════════════════════════════════════
-# PAGES
-# ══════════════════════════════════════════════════
+# ── Pages ──────────────────────────────────────────
 
 @app.route("/")
 def home():
@@ -54,16 +42,12 @@ def admin_page():
 def static_files(filename):
     return send_from_directory(".", filename)
 
-# ══════════════════════════════════════════════════
-# AUTH
-# ══════════════════════════════════════════════════
+# ── Auth ───────────────────────────────────────────
 
 @app.route("/auth/login", methods=["POST"])
 def login():
-    data     = request.get_json()
-    username = data.get("username", "")
-    password = data.get("password", "")
-    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+    data = request.get_json()
+    if data.get("username") == ADMIN_USERNAME and data.get("password") == ADMIN_PASSWORD:
         session["logged_in"] = True
         return jsonify({"success": True})
     return jsonify({"success": False, "error": "Wrong username or password."}), 401
@@ -73,9 +57,7 @@ def logout():
     session.clear()
     return jsonify({"success": True})
 
-# ══════════════════════════════════════════════════
-# MESSAGES
-# ══════════════════════════════════════════════════
+# ── Messages ───────────────────────────────────────
 
 @app.route("/message", methods=["POST"])
 def save_message():
@@ -89,66 +71,45 @@ def save_message():
         if not name or not email or not message:
             return jsonify({"success": False, "error": "Name, email and message are required."}), 400
 
-        if USE_SUPABASE:
-            db.table("messages").insert({
-                "name": name, "email": email,
-                "topic": topic, "message": message
-            }).execute()
-        else:
-            all_messages = read_messages()
-            all_messages.append({
-                "id":         int(datetime.now().timestamp() * 1000),
-                "name":       name,
-                "email":      email,
-                "topic":      topic,
-                "message":    message,
-                "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            })
-            save_messages(all_messages)
-
-        return jsonify({
-            "success": True,
-            "message": "✅ Thank you! Your message has been received. We will reply within 2 business days."
+        all_messages = read_messages()
+        all_messages.append({
+            "id":         int(datetime.now().timestamp() * 1000),
+            "name":       name,
+            "email":      email,
+            "topic":      topic,
+            "message":    message,
+            "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
+        save_messages(all_messages)
+
+        return jsonify({"success": True, "message": "✅ Thank you! Your message has been received. We will reply within 2 business days."})
 
     except Exception as e:
-        print("Error saving message:", e)
+        print("Error:", e)
         return jsonify({"success": False, "error": str(e)}), 500
-
 
 @app.route("/messages", methods=["GET"])
 def get_messages():
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    if USE_SUPABASE:
-        result = db.table("messages").select("*").order("id", desc=True).execute()
-        return jsonify({"total": len(result.data), "messages": result.data})
-    else:
-        messages = read_messages()
-        return jsonify({"total": len(messages), "messages": messages})
+    messages = read_messages()
+    return jsonify({"total": len(messages), "messages": messages})
 
 @app.route("/messages/<int:msg_id>", methods=["DELETE"])
 def delete_message(msg_id):
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    if USE_SUPABASE:
-        db.table("messages").delete().eq("id", msg_id).execute()
-    else:
-        messages = read_messages()
-        save_messages([m for m in messages if m["id"] != msg_id])
-    return jsonify({"success": True, "message": "Deleted."})
+    save_messages([m for m in read_messages() if m["id"] != msg_id])
+    return jsonify({"success": True})
 
 @app.route("/messages/clear", methods=["DELETE"])
 def clear_messages():
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    if USE_SUPABASE:
-        db.table("messages").delete().neq("id", 0).execute()
-    else:
-        save_messages([])
-    return jsonify({"success": True, "message": "All messages cleared."})
+    save_messages([])
+    return jsonify({"success": True})
 
-# ══════════════════════════════════════════════════
+# ──────────────────────────────────────────────────
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
