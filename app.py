@@ -79,36 +79,42 @@ def logout():
 
 @app.route("/message", methods=["POST"])
 def save_message():
-    data    = request.get_json()
-    name    = data.get("name", "").strip()
-    email   = data.get("email", "").strip()
-    topic   = data.get("topic", "General")
-    message = data.get("message", "").strip()
+    try:
+        data    = request.get_json()
+        name    = data.get("name", "").strip()
+        email   = data.get("email", "").strip()
+        topic   = data.get("topic", "General")
+        message = data.get("message", "").strip()
 
-    if not name or not email or not message:
-        return jsonify({"success": False, "error": "Name, email and message are required."}), 400
+        if not name or not email or not message:
+            return jsonify({"success": False, "error": "Name, email and message are required."}), 400
 
-    if USE_SUPABASE:
-        db.table("messages").insert({
-            "name": name, "email": email,
-            "topic": topic, "message": message
-        }).execute()
-    else:
-        all_messages = read_messages()
-        all_messages.append({
-            "id":         int(datetime.now().timestamp() * 1000),
-            "name":       name,
-            "email":      email,
-            "topic":      topic,
-            "message":    message,
-            "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if USE_SUPABASE:
+            db.table("messages").insert({
+                "name": name, "email": email,
+                "topic": topic, "message": message
+            }).execute()
+        else:
+            all_messages = read_messages()
+            all_messages.append({
+                "id":         int(datetime.now().timestamp() * 1000),
+                "name":       name,
+                "email":      email,
+                "topic":      topic,
+                "message":    message,
+                "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            })
+            save_messages(all_messages)
+
+        return jsonify({
+            "success": True,
+            "message": "✅ Thank you! Your message has been received. We will reply within 2 business days."
         })
-        save_messages(all_messages)
 
-    return jsonify({
-        "success": True,
-        "message": "✅ Thank you! Your message has been received. We will reply within 2 business days."
-    })
+    except Exception as e:
+        print("Error saving message:", e)
+        return jsonify({"success": False, "error": str(e)}), 500
+
 
 @app.route("/messages", methods=["GET"])
 def get_messages():
