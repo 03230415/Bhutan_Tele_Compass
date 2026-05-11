@@ -1,22 +1,36 @@
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
-from supabase import create_client
-import os
+import os, json
 from datetime import datetime
 
 app = Flask(__name__, static_folder=".")
-
 app.secret_key = "telecompass_bhutan_2026"
 
 ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
+MESSAGES_FILE  = "messages.json"
 
-# ── Supabase ───────────────────────────────────────
-SUPABASE_URL = "https://cdlimimarqcyvngnhuaw.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkbGltaW1hcnFjeXZuZ2hudWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNTUwMTIsImV4cCI6MjA5MzYzMTAxMn0.EChGAPwRF28ecxUMLauTVtedcIE8JBeUwyMQIIopw6U"
-db = create_client(SUPABASE_URL, SUPABASE_KEY)
+# ── Use Supabase on Render, JSON locally ───────────
+USE_SUPABASE = os.environ.get("RENDER") is not None
+
+if USE_SUPABASE:
+    from supabase import create_client
+    SUPABASE_URL = "https://cdlimimarqcyvngnhuaw.supabase.co"
+    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkbGltaW1hcnFjeXZuZ2hudWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNTUwMTIsImV4cCI6MjA5MzYzMTAxMn0.EChGAPwRF28ecxUMLauTVtedcIE8JBeUwyMQIIopw6U"
+    db = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def is_logged_in():
     return session.get("logged_in") == True
+
+# ── JSON helpers (local only) ──────────────────────
+def read_messages():
+    if not os.path.exists(MESSAGES_FILE):
+        return []
+    with open(MESSAGES_FILE, "r") as f:
+        return json.load(f)
+
+def save_messages(messages):
+    with open(MESSAGES_FILE, "w") as f:
+        json.dump(messages, f, indent=2)
 
 # ══════════════════════════════════════════════════
 # PAGES
@@ -74,12 +88,22 @@ def save_message():
     if not name or not email or not message:
         return jsonify({"success": False, "error": "Name, email and message are required."}), 400
 
-    db.table("messages").insert({
-        "name":    name,
-        "email":   email,
-        "topic":   topic,
-        "message": message
-    }).execute()
+    if USE_SUPABASE:
+        db.table("messages").insert({
+            "name": name, "email": email,
+            "topic": topic, "message": message
+        }).execute()
+    else:
+        all_messages = read_messages()
+        all_messages.append({
+            "id":         int(datetime.now().timestamp() * 1000),
+            "name":       name,
+            "email":      email,
+            "topic":      topic,
+            "message":    message,
+            "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        })
+        save_messages(all_messages)
 
     return jsonify({
         "success": True,
@@ -90,21 +114,32 @@ def save_message():
 def get_messages():
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    result = db.table("messages").select("*").order("id", desc=True).execute()
-    return jsonify({"total": len(result.data), "messages": result.data})
+    if USE_SUPABASE:
+        result = db.table("messages").select("*").order("id", desc=True).execute()
+        return jsonify({"total": len(result.data), "messages": result.data})
+    else:
+        messages = read_messages()
+        return jsonify({"total": len(messages), "messages": messages})
 
 @app.route("/messages/<int:msg_id>", methods=["DELETE"])
 def delete_message(msg_id):
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    db.table("messages").delete().eq("id", msg_id).execute()
+    if USE_SUPABASE:
+        db.table("messages").delete().eq("id", msg_id).execute()
+    else:
+        messages = read_messages()
+        save_messages([m for m in messages if m["id"] != msg_id])
     return jsonify({"success": True, "message": "Deleted."})
 
 @app.route("/messages/clear", methods=["DELETE"])
 def clear_messages():
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
-    db.table("messages").delete().neq("id", 0).execute()
+    if USE_SUPABASE:
+        db.table("messages").delete().neq("id", 0).execute()
+    else:
+        save_messages([])
     return jsonify({"success": True, "message": "All messages cleared."})
 
 # ══════════════════════════════════════════════════
