@@ -253,11 +253,11 @@ async function handleContact() {
 
   // ── Loading state on button ──
 // ── GitHub Pages fallback ──
-  if (window.location.hostname.includes('github.io')) {
-    showModal('success', '✅ Thank you! Message received. Note: this is a GitHub Pages demo — contact form is fully functional on the live site.');
-    clearForm();
-    return;
-  }
+  // if (window.location.hostname.includes('github.io')) {
+  //   showModal('success', '✅ Thank you! Message received. Note: this is a GitHub Pages demo — contact form is fully functional on the live site.');
+  //   clearForm();
+  //   return;
+  // }
 
   // ── Loading state on button ──
   const btn = document.querySelector('#contactForm .btn-gold');
