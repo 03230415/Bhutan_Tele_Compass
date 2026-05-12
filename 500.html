@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 — Page Not Found | TeleCompass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:         #0d4f5c;
+      --teal-light:   #0c7576;
+      --teal-dark:    #082e36;
+      --cream:        #fdf6ec;
+      --glass-border: rgba(15,224,182,0.2);
+      --shadow-lg:    0 14px 48px rgba(13,79,92,0.38);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background:
+        linear-gradient(to bottom, rgba(8,46,54,0.92), rgba(8,46,54,0.97)),
+        url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
+        center/cover no-repeat fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3.5rem 3rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(14px);
+      animation: fadeUp 0.55s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .error-code {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 18vw, 8rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, #0c7576, #25d997);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal-light), transparent);
+      border-radius: 2px;
+      margin: 1.5rem auto;
+      width: 60%;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 2rem;
+      background: var(--teal-light);
+      border: 2px solid var(--teal);
+      border-radius: 50px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.04em;
+    }
+    .btn:hover {
+      background: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(12,117,118,0.4);
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 2.5rem;
+      letter-spacing: 0.08em;
+    }
+    .brand em { color: var(--teal-light); font-style: normal; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="error-code">404</div>
+    <span class="emoji">🧭</span>
+    <h1>Signal Lost</h1>
+    <div class="divider"></div>
+    <p>
+      The page you're looking for doesn't exist or may have moved.<br/>
+      Let's get you back on track.
+    </p>
+    <a href="/" class="btn">🏠 Return to Home</a>
+  </div>
+
+  <div class="brand">Tele<em>Compass</em> · Bhutan Connectivity</div>
+
+</body>
+</html>

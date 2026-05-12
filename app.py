@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
 import os, json
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 app = Flask(__name__, static_folder=".")
 app.secret_key = "telecompass_bhutan_2026"
@@ -78,7 +78,7 @@ def save_message():
             "email":      email,
             "topic":      topic,
             "message":    message,
-            "receivedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "receivedAt": datetime.now(timezone(timedelta(hours=6))).strftime("%Y-%m-%d %H:%M:%S")
         })
         save_messages(all_messages)
 
@@ -108,6 +108,16 @@ def clear_messages():
         return jsonify({"error": "Unauthorized."}), 401
     save_messages([])
     return jsonify({"success": True})
+
+# ── Error Pages ────────────────────────────────────
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(".", "404.html"), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return send_from_directory(".", "500.html"), 500
 
 # ──────────────────────────────────────────────────
 if __name__ == "__main__":
