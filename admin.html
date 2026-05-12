@@ -32,8 +32,53 @@
       cursor: pointer;
       font-size: 0.85rem;
     }
-
     button.logout:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── Search bar ── */
+    .search-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .search-row input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-row input::placeholder { color: rgba(255,255,255,0.35); }
+    .search-row input:focus { border-color: #0c7576; }
+
+    .search-row select {
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .search-row select option { background: #082e36; }
+
+    .btn-clear-search {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .btn-clear-search:hover { background: rgba(255,255,255,0.08); }
 
     .count {
       color: rgba(255,255,255,0.5);
@@ -87,7 +132,6 @@
       cursor: pointer;
       margin-top: 0.75rem;
     }
-
     .del-btn:hover { background: rgba(255,80,80,0.3); }
 
     .clear-btn {
@@ -100,7 +144,6 @@
       cursor: pointer;
       font-size: 0.85rem;
     }
-
     .clear-btn:hover { background: rgba(255,80,80,0.3); }
 
     .empty {
@@ -119,30 +162,66 @@
   </header>
 
   <button class="clear-btn" onclick="clearAll()">🗑 Clear All Messages</button>
+
+  <!-- ── Search & Filter ── -->
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="🔍 Search by name, email or message…" oninput="renderMessages()"/>
+    <select id="filterTopic" onchange="renderMessages()">
+      <option value="">All Topics</option>
+      <option value="general">General Inquiry</option>
+      <option value="research">Research Collaboration</option>
+      <option value="telecom">Telecom Feedback</option>
+      <option value="other">Other</option>
+    </select>
+    <button class="btn-clear-search" onclick="clearSearch()">✕ Clear</button>
+  </div>
+
   <div class="count" id="count"></div>
   <div id="messages"></div>
 
   <script>
+    let allMessages = [];
+
     async function loadMessages() {
       const res = await fetch("/messages");
-
-      if (res.status === 401) {
-        window.location.href = "/login";
-        return;
-      }
-
+      if (res.status === 401) { window.location.href = "/login"; return; }
       const data = await res.json();
-      const box  = document.getElementById("messages");
-      document.getElementById("count").textContent = `${data.total} message(s) received`;
+      allMessages = [...data.messages].reverse();
+      renderMessages();
+    }
 
-      if (data.total === 0) {
-        box.innerHTML = '<p class="empty">No messages yet.</p>';
+    function renderMessages() {
+      const query  = document.getElementById("searchInput").value.trim().toLowerCase();
+      const topic  = document.getElementById("filterTopic").value.toLowerCase();
+      const box    = document.getElementById("messages");
+
+      let filtered = allMessages;
+
+      // filter by topic
+      if (topic) {
+        filtered = filtered.filter(m => m.topic && m.topic.toLowerCase() === topic);
+      }
+
+      // filter by search query (name, email, message)
+      if (query) {
+        filtered = filtered.filter(m =>
+          m.name.toLowerCase().includes(query)    ||
+          m.email.toLowerCase().includes(query)   ||
+          m.message.toLowerCase().includes(query)
+        );
+      }
+
+      document.getElementById("count").textContent =
+        filtered.length === allMessages.length
+          ? `${allMessages.length} message(s) received`
+          : `${filtered.length} of ${allMessages.length} message(s) shown`;
+
+      if (filtered.length === 0) {
+        box.innerHTML = '<p class="empty">No messages match your search.</p>';
         return;
       }
 
-      const sorted = [...data.messages].reverse();
-
-      box.innerHTML = sorted.map(m => `
+      box.innerHTML = filtered.map(m => `
         <div class="message-card" id="msg-${m.id}">
           <div class="meta">
             <div>
@@ -158,16 +237,24 @@
       `).join("");
     }
 
+    function clearSearch() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("filterTopic").value = "";
+      renderMessages();
+    }
+
     async function deleteMsg(id) {
       if (!confirm("Delete this message?")) return;
       await fetch(`/messages/${id}`, { method: "DELETE" });
-      loadMessages();
+      allMessages = allMessages.filter(m => m.id !== id);
+      renderMessages();
     }
 
     async function clearAll() {
       if (!confirm("Delete ALL messages? This cannot be undone.")) return;
       await fetch("/messages/clear", { method: "DELETE" });
-      loadMessages();
+      allMessages = [];
+      renderMessages();
     }
 
     async function logout() {
