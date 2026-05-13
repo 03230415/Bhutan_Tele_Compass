@@ -1,49 +1,24 @@
-# ==========================================================
-# TeleCompass - Flask Backend Application
-# ----------------------------------------------------------
-# This Flask application:
-# 1. Serves the frontend pages (index, login, admin)
-# 2. Handles admin login and logout
-# 3. Saves contact form messages into a JSON file
-# 4. Allows admin to view and delete messages
-# 5. Shows custom 404 and 500 error pages
-# ==========================================================
 
-# Import required modules
+# Handles admin login and logout
+# Saves contact form messages into a JSON file
+# Allows admin to view and delete messages - for further study for Telecom companies
+# Shows custom 404 and 500 error pages
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
 import os
 import json
 from datetime import datetime, timezone, timedelta
 
-
-# ==========================================================
-# Flask App Configuration
-# ==========================================================
-
-# Create the Flask application
-# static_folder="." tells Flask to serve files from the current folder
+# Create the a Flask application
+# static_folder="." - tells Flask to serve files from the current folder
 app = Flask(__name__, static_folder=".")
 
-# Secret key is required for session management
-# Flask uses this key to securely store session data
+# Flask uses - this key to securely store session data
 app.secret_key = "telecompass_bhutan_2026"
 
-
-# ==========================================================
-# Application Constants
-# ==========================================================
-
-# Admin credentials for login
 ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
-
-# JSON file where contact messages are stored
+# JSON file where messages are stored
 MESSAGES_FILE = "messages.json"
-
-
-# ==========================================================
-# Helper Functions
-# ==========================================================
 
 def is_logged_in():
     """
@@ -77,10 +52,6 @@ def save_messages(messages):
     with open(MESSAGES_FILE, "w") as f:
         json.dump(messages, f, indent=2)
 
-
-# ==========================================================
-# Page Routes
-# ==========================================================
 
 @app.route("/")
 def home():
@@ -133,10 +104,6 @@ def static_files(filename):
     return send_from_directory(".", filename)
 
 
-# ==========================================================
-# Authentication Routes
-# ==========================================================
-
 @app.route("/auth/login", methods=["POST"])
 def login():
     """
@@ -181,11 +148,6 @@ def logout():
     session.clear()
     return jsonify({"success": True})
 
-
-# ==========================================================
-# Contact Form Message Routes
-# ==========================================================
-
 @app.route("/message", methods=["POST"])
 def save_message():
     """
@@ -202,7 +164,7 @@ def save_message():
     Stores the message in messages.json.
     """
     try:
-        # Get JSON data sent from frontend
+        # Get JSON data sent through frontend
         data = request.get_json()
 
         # Extract and clean values
@@ -211,7 +173,6 @@ def save_message():
         topic = data.get("topic", "General")
         message = data.get("message", "").strip()
 
-        # Validate required fields
         if not name or not email or not message:
             return jsonify({
                 "success": False,
@@ -224,7 +185,7 @@ def save_message():
         # Create a unique message ID using current timestamp
         message_id = int(datetime.now().timestamp() * 1000)
 
-        # Bhutan Standard Time (UTC+6)
+        # Bhutan Standard Time 
         bhutan_time = datetime.now(
             timezone(timedelta(hours=6))
         ).strftime("%Y-%m-%d %H:%M:%S")
@@ -239,10 +200,9 @@ def save_message():
             "receivedAt": bhutan_time
         })
 
-        # Save updated list back to file
+        # Save updated list 
         save_messages(all_messages)
 
-        # Success response
         return jsonify({
             "success": True,
             "message": (
@@ -252,10 +212,8 @@ def save_message():
         })
 
     except Exception as e:
-        # Print error to Render logs or terminal
         print("Error:", e)
 
-        # Return JSON error response
         return jsonify({
             "success": False,
             "error": str(e)
@@ -291,7 +249,6 @@ def delete_message(msg_id):
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
-    # Keep all messages except the one with matching ID
     updated_messages = [
         m for m in read_messages()
         if m["id"] != msg_id
@@ -317,10 +274,6 @@ def clear_messages():
     return jsonify({"success": True})
 
 
-# ==========================================================
-# Custom Error Pages
-# ==========================================================
-
 @app.errorhandler(404)
 def not_found(e):
     """
@@ -336,10 +289,6 @@ def server_error(e):
     """
     return send_from_directory(".", "500.html"), 500
 
-
-# ==========================================================
-# Run the Flask Application
-# ==========================================================
 
 if __name__ == "__main__":
     """
