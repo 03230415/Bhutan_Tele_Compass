@@ -34,7 +34,7 @@
     }
     button.logout:hover { background: rgba(255,255,255,0.1); }
 
-    /* ── Search bar ── */
+    /* ── Search / Filter / Sort row ── */
     .search-row {
       display: flex;
       gap: 0.75rem;
@@ -86,6 +86,7 @@
       margin-bottom: 1.5rem;
     }
 
+    /* ── Message cards ── */
     .message-card {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
@@ -146,11 +147,38 @@
     }
     .clear-btn:hover { background: rgba(255,80,80,0.3); }
 
+    /* ── Empty state ── */
     .empty {
       text-align: center;
       color: rgba(255,255,255,0.3);
       margin-top: 4rem;
       font-size: 1rem;
+    }
+
+    /* ── Skeleton loading ── */
+    .skeleton-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .skeleton-line {
+      background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+      height: 12px;
+      margin-bottom: 0.6rem;
+    }
+    .skeleton-line.short  { width: 35%; }
+    .skeleton-line.medium { width: 55%; }
+    .skeleton-line.long   { width: 85%; }
+    .skeleton-line.full   { width: 100%; }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
   </style>
 </head>
@@ -163,9 +191,10 @@
 
   <button class="clear-btn" onclick="clearAll()">🗑 Clear All Messages</button>
 
-  <!-- ── Search & Filter ── -->
+  <!-- ── Search / Filter / Sort ── -->
   <div class="search-row">
     <input type="text" id="searchInput" placeholder="🔍 Search by name, email or message…" oninput="renderMessages()"/>
+
     <select id="filterTopic" onchange="renderMessages()">
       <option value="">All Topics</option>
       <option value="general">General Inquiry</option>
@@ -173,6 +202,12 @@
       <option value="telecom">Telecom Feedback</option>
       <option value="other">Other</option>
     </select>
+
+    <select id="sortOrder" onchange="renderMessages()">
+      <option value="newest">🕐 Newest First</option>
+      <option value="oldest">🕑 Oldest First</option>
+    </select>
+
     <button class="btn-clear-search" onclick="clearSearch()">✕ Clear</button>
   </div>
 
@@ -182,27 +217,50 @@
   <script>
     let allMessages = [];
 
+    // ── Show skeletons while loading ──
+    function showSkeletons() {
+      const box = document.getElementById("messages");
+      document.getElementById("count").textContent = "Loading messages…";
+      box.innerHTML = [1,2,3].map(() => `
+        <div class="skeleton-card">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+            <div style="width:40%;">
+              <div class="skeleton-line short"></div>
+              <div class="skeleton-line medium"></div>
+            </div>
+            <div class="skeleton-line" style="width:18%; height:10px; margin-top:4px;"></div>
+          </div>
+          <div class="skeleton-line" style="width:12%; height:18px; border-radius:50px; margin-bottom:0.75rem;"></div>
+          <div class="skeleton-line long"></div>
+          <div class="skeleton-line full"></div>
+          <div class="skeleton-line medium"></div>
+        </div>
+      `).join("");
+    }
+
     async function loadMessages() {
+      showSkeletons();
       const res = await fetch("/messages");
       if (res.status === 401) { window.location.href = "/login"; return; }
       const data = await res.json();
-      allMessages = [...data.messages].reverse();
+      allMessages = data.messages;
       renderMessages();
     }
 
     function renderMessages() {
-      const query  = document.getElementById("searchInput").value.trim().toLowerCase();
-      const topic  = document.getElementById("filterTopic").value.toLowerCase();
-      const box    = document.getElementById("messages");
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      const topic = document.getElementById("filterTopic").value.toLowerCase();
+      const sort  = document.getElementById("sortOrder").value;
+      const box   = document.getElementById("messages");
 
-      let filtered = allMessages;
+      let filtered = [...allMessages];
 
       // filter by topic
       if (topic) {
         filtered = filtered.filter(m => m.topic && m.topic.toLowerCase() === topic);
       }
 
-      // filter by search query (name, email, message)
+      // filter by search query
       if (query) {
         filtered = filtered.filter(m =>
           m.name.toLowerCase().includes(query)    ||
@@ -211,13 +269,29 @@
         );
       }
 
+      // sort by newest or oldest
+      filtered.sort((a, b) => {
+        if (sort === "oldest") return a.id - b.id;
+        return b.id - a.id;
+      });
+
       document.getElementById("count").textContent =
         filtered.length === allMessages.length
           ? `${allMessages.length} message(s) received`
           : `${filtered.length} of ${allMessages.length} message(s) shown`;
 
+      // empty state
       if (filtered.length === 0) {
-        box.innerHTML = '<p class="empty">No messages match your search.</p>';
+        box.innerHTML = `
+          <div class="empty">
+            <div style="font-size:2.5rem; margin-bottom:1rem;">📭</div>
+            <div style="font-size:1.05rem; margin-bottom:0.4rem; color:rgba(255,255,255,0.5);">
+              ${allMessages.length === 0 ? "No messages yet." : "No messages match your search."}
+            </div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.25);">
+              ${allMessages.length === 0 ? "Messages from the contact form will appear here." : "Try clearing the filters."}
+            </div>
+          </div>`;
         return;
       }
 
@@ -240,6 +314,7 @@
     function clearSearch() {
       document.getElementById("searchInput").value = "";
       document.getElementById("filterTopic").value = "";
+      document.getElementById("sortOrder").value   = "newest";
       renderMessages();
     }
 
