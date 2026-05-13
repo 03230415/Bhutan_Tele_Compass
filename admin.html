@@ -34,6 +34,52 @@
     }
     button.logout:hover { background: rgba(255,255,255,0.1); }
 
+    /* ── Today's notice banner ── */
+    .today-banner {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(12,117,118,0.2);
+      border: 1.5px solid rgba(12,117,118,0.5);
+      border-radius: 12px;
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.4s ease both;
+    }
+    .today-banner .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0c7576;
+      box-shadow: 0 0 8px #0c7576;
+      flex-shrink: 0;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.3); }
+    }
+    .today-banner .text { font-size: 0.92rem; color: #7de8e8; font-weight: 600; }
+    .today-banner .text span { color: #fff; }
+
+    .today-banner .view-btn {
+      margin-left: auto;
+      padding: 0.35rem 1rem;
+      background: rgba(12,117,118,0.3);
+      border: 1px solid #0c7576;
+      border-radius: 50px;
+      color: #7de8e8;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .today-banner .view-btn:hover { background: rgba(12,117,118,0.5); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* ── Search / Filter / Sort row ── */
     .search-row {
       display: flex;
@@ -93,6 +139,11 @@
       border-radius: 12px;
       padding: 1.2rem 1.5rem;
       margin-bottom: 1rem;
+      transition: border 0.2s;
+    }
+    /* highlight today's messages with a subtle teal left border */
+    .message-card.today {
+      border-left: 3px solid #0c7576;
     }
 
     .message-card .meta {
@@ -105,6 +156,18 @@
     .message-card .name  { font-weight: 700; font-size: 1rem; }
     .message-card .email { color: #0c7576; font-size: 0.85rem; }
     .message-card .time  { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+
+    .today-tag {
+      display: inline-block;
+      background: rgba(12,117,118,0.25);
+      border: 1px solid #0c7576;
+      color: #7de8e8;
+      font-size: 0.68rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 50px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
 
     .message-card .topic {
       display: inline-block;
@@ -191,6 +254,15 @@
 
   <button class="clear-btn" onclick="clearAll()">🗑 Clear All Messages</button>
 
+  <!-- ── Today's notice ── -->
+  <div class="today-banner" id="todayBanner">
+    <div class="dot"></div>
+    <div class="text">
+      <span id="todayCount"></span> new message(s) received today
+    </div>
+    <button class="view-btn" onclick="filterToday()">View Today's →</button>
+  </div>
+
   <!-- ── Search / Filter / Sort ── -->
   <div class="search-row">
     <input type="text" id="searchInput" placeholder="🔍 Search by name, email or message…" oninput="renderMessages()"/>
@@ -215,9 +287,21 @@
   <div id="messages"></div>
 
   <script>
-    let allMessages = [];
+    let allMessages   = [];
+    let showingToday  = false;
 
-    // ── Show skeletons while loading ──
+    // today's date in Bhutan time (UTC+6) as "YYYY-MM-DD"
+    function getTodayBhutan() {
+      const now = new Date();
+      const bst = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+      return bst.toISOString().slice(0, 10);
+    }
+
+    function isToday(receivedAt) {
+      return receivedAt && receivedAt.startsWith(getTodayBhutan());
+    }
+
+    // ── Skeletons ──────────────────────────────────
     function showSkeletons() {
       const box = document.getElementById("messages");
       document.getElementById("count").textContent = "Loading messages…";
@@ -238,15 +322,34 @@
       `).join("");
     }
 
+    // ── Load from server ───────────────────────────
     async function loadMessages() {
       showSkeletons();
       const res = await fetch("/messages");
       if (res.status === 401) { window.location.href = "/login"; return; }
       const data = await res.json();
       allMessages = data.messages;
+
+      // show today banner if there are messages today
+      const todayMsgs = allMessages.filter(m => isToday(m.receivedAt));
+      if (todayMsgs.length > 0) {
+        document.getElementById("todayCount").textContent = todayMsgs.length;
+        document.getElementById("todayBanner").style.display = "flex";
+      }
+
       renderMessages();
     }
 
+    // ── Filter to today only ───────────────────────
+    function filterToday() {
+      showingToday = true;
+      document.getElementById("searchInput").value = "";
+      document.getElementById("filterTopic").value = "";
+      document.getElementById("sortOrder").value   = "newest";
+      renderMessages();
+    }
+
+    // ── Render messages ────────────────────────────
     function renderMessages() {
       const query = document.getElementById("searchInput").value.trim().toLowerCase();
       const topic = document.getElementById("filterTopic").value.toLowerCase();
@@ -255,12 +358,17 @@
 
       let filtered = [...allMessages];
 
-      // filter by topic
+      // today filter
+      if (showingToday) {
+        filtered = filtered.filter(m => isToday(m.receivedAt));
+      }
+
+      // topic filter
       if (topic) {
         filtered = filtered.filter(m => m.topic && m.topic.toLowerCase() === topic);
       }
 
-      // filter by search query
+      // search filter
       if (query) {
         filtered = filtered.filter(m =>
           m.name.toLowerCase().includes(query)    ||
@@ -269,15 +377,14 @@
         );
       }
 
-      // sort by newest or oldest
-      filtered.sort((a, b) => {
-        if (sort === "oldest") return a.id - b.id;
-        return b.id - a.id;
-      });
+      // sort
+      filtered.sort((a, b) => sort === "oldest" ? a.id - b.id : b.id - a.id);
 
+      // count label
+      const label = showingToday ? "today's message(s)" : "message(s)";
       document.getElementById("count").textContent =
-        filtered.length === allMessages.length
-          ? `${allMessages.length} message(s) received`
+        filtered.length === (showingToday ? allMessages.filter(m => isToday(m.receivedAt)).length : allMessages.length)
+          ? `${filtered.length} ${label} received`
           : `${filtered.length} of ${allMessages.length} message(s) shown`;
 
       // empty state
@@ -286,7 +393,7 @@
           <div class="empty">
             <div style="font-size:2.5rem; margin-bottom:1rem;">📭</div>
             <div style="font-size:1.05rem; margin-bottom:0.4rem; color:rgba(255,255,255,0.5);">
-              ${allMessages.length === 0 ? "No messages yet." : "No messages match your search."}
+              ${allMessages.length === 0 ? "No messages yet." : showingToday ? "No messages received today." : "No messages match your search."}
             </div>
             <div style="font-size:0.85rem; color:rgba(255,255,255,0.25);">
               ${allMessages.length === 0 ? "Messages from the contact form will appear here." : "Try clearing the filters."}
@@ -295,11 +402,16 @@
         return;
       }
 
-      box.innerHTML = filtered.map(m => `
-        <div class="message-card" id="msg-${m.id}">
+      box.innerHTML = filtered.map(m => {
+        const todayMsg = isToday(m.receivedAt);
+        return `
+        <div class="message-card ${todayMsg ? 'today' : ''}" id="msg-${m.id}">
           <div class="meta">
             <div>
-              <div class="name">${m.name}</div>
+              <div class="name">
+                ${m.name}
+                ${todayMsg ? '<span class="today-tag">Today</span>' : ''}
+              </div>
               <div class="email">${m.email}</div>
             </div>
             <div class="time">${m.receivedAt}</div>
@@ -307,11 +419,13 @@
           <span class="topic">${m.topic}</span>
           <div class="body">${m.message}</div>
           <button class="del-btn" onclick="deleteMsg(${m.id})">🗑 Delete</button>
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
     }
 
+    // ── Clear search + today filter ────────────────
     function clearSearch() {
+      showingToday = false;
       document.getElementById("searchInput").value = "";
       document.getElementById("filterTopic").value = "";
       document.getElementById("sortOrder").value   = "newest";
@@ -322,6 +436,15 @@
       if (!confirm("Delete this message?")) return;
       await fetch(`/messages/${id}`, { method: "DELETE" });
       allMessages = allMessages.filter(m => m.id !== id);
+
+      // update today banner count
+      const todayMsgs = allMessages.filter(m => isToday(m.receivedAt));
+      if (todayMsgs.length > 0) {
+        document.getElementById("todayCount").textContent = todayMsgs.length;
+      } else {
+        document.getElementById("todayBanner").style.display = "none";
+      }
+
       renderMessages();
     }
 
@@ -329,6 +452,8 @@
       if (!confirm("Delete ALL messages? This cannot be undone.")) return;
       await fetch("/messages/clear", { method: "DELETE" });
       allMessages = [];
+      showingToday = false;
+      document.getElementById("todayBanner").style.display = "none";
       renderMessages();
     }
 
