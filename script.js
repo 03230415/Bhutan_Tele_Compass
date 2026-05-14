@@ -173,7 +173,7 @@ function showModal(type, message) {
 
 // ── Google Sheets submission via Apps Script ──
 async function submitToGoogleSheets(name, email, topic, message) {
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFgjwvFEW3J-cOkCeude7_ENzDDUG39X5oTLt0MMLHIRf4Ev4MuKo8Y0oCD_ATXhUA/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZrGyh2Yx4AO0HynnLkpbvsuQe5jHfWbWXmEpurUc_juJPq7Uy0nR5apYpzr2WGZ-O/exec";
 
   try {
     await fetch(APPS_SCRIPT_URL, {
