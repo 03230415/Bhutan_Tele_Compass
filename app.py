@@ -1,17 +1,23 @@
-# app.py - backend to receive text
-# import and app setup
+# app.py - backend to receive text - python flask
+# import and app setup 
+# request → gets data from user (like form input)
+# redirect → sends user to another page
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
+# os - works with files and folders
 import os
 import json
+# for timestamp
 from datetime import datetime, timezone, timedelta
 
+# Start website + enable login memory
+# {app = Flask(_name_)} === Flask, use this file as the starting point of the project.
 app = Flask(__name__, static_folder=".")
-
 app.secret_key = "telecompass_bhutan_2026"
 
 # password and username for admin login
 ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
+# Use the file called messages.json to store contact form messages.
 MESSAGES_FILE = "messages.json"
 
 # check login status
