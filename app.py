@@ -1,25 +1,20 @@
-
-# Handles admin login and logout
-# Saves contact form messages into a JSON file
-# Allows admin to view and delete messages - for further study for Telecom companies
-# Shows custom 404 and 500 error pages
+# app.py - backend to receive text
+# import and app setup
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
 import os
 import json
 from datetime import datetime, timezone, timedelta
 
-# Create the a Flask application
-# static_folder="." - tells Flask to serve files from the current folder
 app = Flask(__name__, static_folder=".")
 
-# Flask uses - this key to securely store session data
 app.secret_key = "telecompass_bhutan_2026"
 
+# password and username for admin login
 ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
-# JSON file where messages are stored
 MESSAGES_FILE = "messages.json"
 
+# check login status
 def is_logged_in():
     """
     Check whether the admin user is currently logged in.
@@ -29,7 +24,7 @@ def is_logged_in():
     """
     return session.get("logged_in") == True
 
-
+# read message from JSON files
 def read_messages():
     """
     Read all messages from messages.json.
@@ -42,7 +37,7 @@ def read_messages():
     with open(MESSAGES_FILE, "r") as f:
         return json.load(f)
 
-
+# save messages to JSON file
 def save_messages(messages):
     """
     Save the given list of messages to messages.json.
@@ -52,7 +47,8 @@ def save_messages(messages):
     with open(MESSAGES_FILE, "w") as f:
         json.dump(messages, f, indent=2)
 
-
+# fronend page route
+# hoempage
 @app.route("/")
 def home():
     """
@@ -62,7 +58,7 @@ def home():
     """
     return send_from_directory(".", "index.html")
 
-
+# login page
 @app.route("/login")
 def login_page():
     """
@@ -72,7 +68,7 @@ def login_page():
     """
     return send_from_directory(".", "login.html")
 
-
+# admin dashboard
 @app.route("/admin")
 def admin_page():
     """
@@ -86,7 +82,7 @@ def admin_page():
 
     return send_from_directory(".", "admin.html")
 
-
+# Static file serving (CSS JS images)
 @app.route("/<path:filename>")
 def static_files(filename):
     """
@@ -103,7 +99,8 @@ def static_files(filename):
     """
     return send_from_directory(".", filename)
 
-
+# Authentication system
+# login
 @app.route("/auth/login", methods=["POST"])
 def login():
     """
@@ -137,7 +134,7 @@ def login():
         "error": "Wrong username or password."
     }), 401
 
-
+# logout
 @app.route("/auth/logout", methods=["POST"])
 def logout():
     """
@@ -148,6 +145,8 @@ def logout():
     session.clear()
     return jsonify({"success": True})
 
+# Contact form message system
+# save new messages
 @app.route("/message", methods=["POST"])
 def save_message():
     """
@@ -220,6 +219,8 @@ def save_message():
         }), 500
 
 
+# Admin message APIs
+# Get all messages
 @app.route("/messages", methods=["GET"])
 def get_messages():
     """
@@ -238,6 +239,7 @@ def get_messages():
     })
 
 
+# Delete single message
 @app.route("/messages/<int:msg_id>", methods=["DELETE"])
 def delete_message(msg_id):
     """
@@ -258,7 +260,7 @@ def delete_message(msg_id):
 
     return jsonify({"success": True})
 
-
+# delete all message
 @app.route("/messages/clear", methods=["DELETE"])
 def clear_messages():
     """
@@ -274,22 +276,22 @@ def clear_messages():
     return jsonify({"success": True})
 
 
-@app.errorhandler(404)
-def not_found(e):
-    """
-    Show custom 404 page when a route is not found.
-    """
-    return send_from_directory(".", "404.html"), 404
+# @app.errorhandler(404)
+# def not_found(e):
+#     """
+#     Show custom 404 page when a route is not found.
+#     """
+#     return send_from_directory(".", "404.html"), 404
 
 
-@app.errorhandler(500)
-def server_error(e):
-    """
-    Show custom 500 page for internal server errors.
-    """
-    return send_from_directory(".", "500.html"), 500
+# @app.errorhandler(500)
+# def server_error(e):
+#     """
+#     Show custom 500 page for internal server errors.
+#     """
+#     return send_from_directory(".", "500.html"), 500
 
-
+# run server
 if __name__ == "__main__":
     """
     Start the Flask development server.
