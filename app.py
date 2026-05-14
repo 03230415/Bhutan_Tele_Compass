@@ -26,11 +26,6 @@ def is_logged_in():
 
 # read message from JSON files
 def read_messages():
-    """
-    Read all messages from messages.json.
-
-    If the file does not exist, return an empty list.
-    """
     if not os.path.exists(MESSAGES_FILE):
         return []
 
@@ -39,11 +34,6 @@ def read_messages():
 
 # save messages to JSON file
 def save_messages(messages):
-    """
-    Save the given list of messages to messages.json.
-
-    indent=2 makes the JSON file nicely formatted and readable.
-    """
     with open(MESSAGES_FILE, "w") as f:
         json.dump(messages, f, indent=2)
 
@@ -61,22 +51,11 @@ def home():
 # login page
 @app.route("/login")
 def login_page():
-    """
-    Serve the admin login page.
-    URL: /login
-    Returns: login.html
-    """
     return send_from_directory(".", "login.html")
 
 # admin dashboard
 @app.route("/admin")
 def admin_page():
-    """
-    Serve the admin dashboard.
-
-    Only accessible if the admin is logged in.
-    Otherwise redirects to /login.
-    """
     if not is_logged_in():
         return redirect("/login")
 
@@ -85,41 +64,12 @@ def admin_page():
 # Static file serving (CSS JS images)
 @app.route("/<path:filename>")
 def static_files(filename):
-    """
-    Serve static files such as:
-    - CSS files
-    - JavaScript files
-    - Images
-    - Other HTML pages
-
-    Example:
-    /styles.css
-    /script.js
-    /img3.png
-    """
     return send_from_directory(".", filename)
 
 # Authentication system
 # login
 @app.route("/auth/login", methods=["POST"])
 def login():
-    """
-    Handle admin login.
-
-    Expects JSON:
-    {
-        "username": "...",
-        "password": "..."
-    }
-
-    If credentials match:
-        session["logged_in"] = True
-
-    Returns:
-        {"success": True}
-    or
-        {"success": False, "error": "..."}
-    """
     data = request.get_json()
 
     if (
@@ -137,11 +87,6 @@ def login():
 # logout
 @app.route("/auth/logout", methods=["POST"])
 def logout():
-    """
-    Log out the admin user.
-
-    session.clear() removes all session data.
-    """
     session.clear()
     return jsonify({"success": True})
 
@@ -149,19 +94,6 @@ def logout():
 # save new messages
 @app.route("/message", methods=["POST"])
 def save_message():
-    """
-    Save a new message submitted from the contact form.
-
-    Expected JSON:
-    {
-        "name": "...",
-        "email": "...",
-        "topic": "...",
-        "message": "..."
-    }
-
-    Stores the message in messages.json.
-    """
     try:
         # Get JSON data sent through frontend
         data = request.get_json()
@@ -223,11 +155,6 @@ def save_message():
 # Get all messages
 @app.route("/messages", methods=["GET"])
 def get_messages():
-    """
-    Return all saved messages.
-
-    Only accessible to logged-in admin.
-    """
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
@@ -242,12 +169,6 @@ def get_messages():
 # Delete single message
 @app.route("/messages/<int:msg_id>", methods=["DELETE"])
 def delete_message(msg_id):
-    """
-    Delete a single message by ID.
-
-    Example:
-    DELETE /messages/123456789
-    """
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
@@ -293,12 +214,6 @@ def clear_messages():
 
 # run server
 if __name__ == "__main__":
-    """
-    Start the Flask development server.
-
-    Render automatically provides a PORT environment variable.
-    If PORT is not set, default to 5000.
-    """
     port = int(os.environ.get("PORT", 5000))
 
     app.run(
