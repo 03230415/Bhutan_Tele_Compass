@@ -171,6 +171,25 @@
     }
   }
 
+  // ── Silent Google Forms submission ──────────────
+  // Sends data to Google Sheets in the background
+  // User never sees this — no effect on modals or UI
+  function submitToGoogleForms(name, email, topic, message) {
+    const FORM_ID = "1FAIpQLSfLb5AHHaUwoUM2KcBtuz-L3gaedZ9dBIqcPorwb1H6n1_njA";
+    const url     = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
+
+    const body = new FormData();
+    body.append("entry.1670835809", name);
+    body.append("entry.5807425",    email);
+    body.append("entry.807966392",  topic);
+    body.append("entry.1752356242", message);
+
+    // no-cors because Google Forms doesn't allow cross-origin — this is normal and expected
+    // it still saves to Google Sheets even without a response
+    fetch(url, { method: "POST", mode: "no-cors", body })
+      .catch(() => {}); // silently ignore any error — Flask is the main record keeper
+  }
+
   // ── Contact Form ────────────────────────────────
   async function handleContact() {
     const name    = document.getElementById("cname").value.trim();
@@ -178,6 +197,7 @@
     const topic   = document.getElementById("ctopic").value;
     const message = document.getElementById("cmsg").value.trim();
 
+    // validation
     if (!name)                          { showModal('error', 'Please enter your full name.');         return; }
     if (!email || !email.includes('@')) { showModal('error', 'Please enter a valid email address.'); return; }
     if (!topic)                         { showModal('error', 'Please select a topic.');              return; }
@@ -188,6 +208,7 @@
     btn.disabled = true;
 
     try {
+      // ── 1. Send to Flask backend (admin history) ──
       const res  = await fetch('/message', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -195,9 +216,11 @@
       });
 
       const data = await res.json();
-      console.log('Status:', res.status, 'Data:', data);  // helpful for debugging
 
       if (res.ok && data.success) {
+        // ── 2. Also send to Google Sheets (silent backup) ──
+        submitToGoogleForms(name, email, topic, message);
+
         clearForm();
         showModal('success', data.message);
       } else {

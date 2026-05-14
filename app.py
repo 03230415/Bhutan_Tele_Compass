@@ -20,15 +20,9 @@ ADMIN_PASSWORD = "dream"
 # Use the file called messages.json to store contact form messages.
 MESSAGES_FILE = "messages.json"
 
-# check login status
+# check login status of admin
 def is_logged_in():
-    """
-    Check whether the admin user is currently logged in.
-
-    session["logged_in"] = True after successful login.
-    Returns True if logged in, otherwise False.
-    """
-    return session.get("logged_in") == True
+    return session.get("logged_in") == True   # yes, logged in so session remembers to keep it logged_in   #FALSE - no
 
 # read message from JSON files
 def read_messages():
