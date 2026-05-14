@@ -171,48 +171,21 @@ function showModal(type, message) {
   }
 }
 
-// ── Silent Google Forms submission (iframe method) ──
-// Bypasses CORS restriction — works reliably
-// User sees nothing — completely invisible
-function submitToGoogleForms(name, email, topic, message) {
-  const FORM_ID = "1FAIpQLSfLb5AHHaUwoUM2KcBtuz-L3gaedZ9dBIqcPorwb1H6n1_njA";
+// ── Google Sheets submission via Apps Script ──
+async function submitToGoogleSheets(name, email, topic, message) {
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFgjwvFEW3J-cOkCeude7_ENzDDUG39X5oTLt0MMLHIRf4Ev4MuKo8Y0oCD_ATXhUA/exec";
 
-  // create hidden iframe as the form target
-  const iframe = document.createElement("iframe");
-  iframe.style.display = "none";
-  iframe.name = "hidden_iframe";
-  document.body.appendChild(iframe);
-
-  // create hidden form pointing to Google Forms
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
-  form.target = "hidden_iframe"; // submit inside hidden iframe, not new tab
-
-  // add each field as a hidden input
-  const fields = {
-    "entry.1670835809": name,
-    "entry.5807425":    email,
-    "entry.807966392":  topic,
-    "entry.1752356242": message
-  };
-
-  Object.entries(fields).forEach(([key, value]) => {
-    const input   = document.createElement("input");
-    input.type    = "hidden";
-    input.name    = key;
-    input.value   = value;
-    form.appendChild(input);
-  });
-
-  document.body.appendChild(form);
-  form.submit(); // submits silently to Google Sheets
-
-  // clean up after 3 seconds
-  setTimeout(() => {
-    if (document.body.contains(form))   document.body.removeChild(form);
-    if (document.body.contains(iframe)) document.body.removeChild(iframe);
-  }, 3000);
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors", // required for Apps Script — response will be opaque but data still saves
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, topic, message })
+    });
+  } catch (err) {
+    // Silent fail — this is a backup, main submission already succeeded
+    console.warn("Google Sheets backup failed:", err);
+  }
 }
 
 // ── Contact Form ────────────────────────────────
@@ -243,8 +216,8 @@ async function handleContact() {
     const data = await res.json();
 
     if (res.ok && data.success) {
-      // ── 2. Also send to Google Sheets (silent backup) ──
-      submitToGoogleForms(name, email, topic, message);
+      // ── 2. Also send to Google Sheets via Apps Script (silent backup) ──
+      submitToGoogleSheets(name, email, topic, message);
 
       clearForm();
       showModal('success', data.message);
