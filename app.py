@@ -26,26 +26,34 @@ def is_logged_in():
 
 # read message from JSON files
 def read_messages():
+    # Does the file messages.json exist on the computer?
     if not os.path.exists(MESSAGES_FILE):
+        # Return an empty list instead of crashing
         return []
 
+    # r - read mode #opens messages.json
+    # f - file you just opened
     with open(MESSAGES_FILE, "r") as f:
+    # If file doesn’t exist → ❌ error
+    # Read the file and convert JSON text into Python data
         return json.load(f)
 
 # save messages to JSON file
+# receives message
 def save_messages(messages):
+    # w - write mode
+    # create the file if it doesn’t exist
+    # overwrite everything if it already exists
+    # Open messages.json so I can write into it
     with open(MESSAGES_FILE, "w") as f:
+        # Take Python data and convert it into JSON, then write it into the file
+        # dump - write into notebook   #f - file   #intend=2 - neat handwriting
         json.dump(messages, f, indent=2)
 
 # fronend page route
 # hoempage
 @app.route("/")
 def home():
-    """
-    Serve the main homepage.
-    URL: /
-    Returns: index.html
-    """
     return send_from_directory(".", "index.html")
 
 # login page
