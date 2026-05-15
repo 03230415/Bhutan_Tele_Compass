@@ -1,3 +1,4 @@
+# overall backend code for the website - python flask framework
 # app.py - backend to receive text - python flask
 # import and app setup 
 # request → gets data from user (like form input)
@@ -51,9 +52,10 @@ def save_messages(messages):
         json.dump(messages, f, indent=2)
 
 # fronend page route
-# hoempage
+# hoempage - when user goes to the website, show them the homepage (index.html)
 @app.route("/")
 def home():
+    # send_from_directory - send a file from this folder to the user
     return send_from_directory(".", "index.html")
 
 # login page
@@ -66,18 +68,30 @@ def login_page():
 def admin_page():
     if not is_logged_in():
         return redirect("/login")
-
     return send_from_directory(".", "admin.html")
 
+
+
+
+
 # Static file serving (CSS JS images)
+# If someone asks for any file (CSS, JS, image, etc.), send it from my project folder.
 @app.route("/<path:filename>")
 def static_files(filename):
     return send_from_directory(".", filename)
 
+
+
+
+
 # Authentication system
-# login
+# login door for the backend - when user tries to login, this function will check if the username and password are correct.
+# @ - decorator - a way to connect or modify a function without changing its inside code.
+# POST - when user submits the login form, it sends a POST request to the server with the username and password.
+# methods=["POST"] - This route ONLY accepts data being sent to it, not just opened in a browser.
 @app.route("/auth/login", methods=["POST"])
 def login():
+    # extract JSON data from request
     data = request.get_json()
 
     if (
@@ -85,14 +99,16 @@ def login():
         and data.get("password") == ADMIN_PASSWORD
     ):
         session["logged_in"] = True
+        # jsonify - convert Python data into JSON format to send back to the frontend
         return jsonify({"success": True})
 
     return jsonify({
         "success": False,
         "error": "Wrong username or password."
     }), 401
+    # 401 - unauthorized error code, means do not have the correct credentials.
 
-# logout
+# logout function  
 @app.route("/auth/logout", methods=["POST"])
 def logout():
     session.clear()
@@ -107,6 +123,7 @@ def save_message():
         data = request.get_json()
 
         # Extract and clean values
+        # If name does NOT exist, use empty string  #strip - remove extra spaces before and after the text
         name = data.get("name", "").strip()
         email = data.get("email", "").strip()
         topic = data.get("topic", "General")
@@ -119,14 +136,20 @@ def save_message():
             }), 400
 
         # Load existing messages
+        # 1.opens messages.json 2.reads the file 3.converts JSON text into Python data 4.returns the data
         all_messages = read_messages()
 
         # Create a unique message ID using current timestamp
+        # converts seconds into milliseconds
+        # int - integer
         message_id = int(datetime.now().timestamp() * 1000)
 
         # Bhutan Standard Time 
         bhutan_time = datetime.now(
+            # Bhutan is UTC +6
             timezone(timedelta(hours=6))
+            # .strftime - format the date and time in a specific way
+            # %y - year, %m - month, %d - day, %H - hour, %M - minute, %S - second
         ).strftime("%Y-%m-%d %H:%M:%S")
 
         # Add new message to list
@@ -150,11 +173,14 @@ def save_message():
             )
         })
 
+    # exception - any python error
+    # store the error in variable e
     except Exception as e:
         print("Error:", e)
 
         return jsonify({
             "success": False,
+            # str - string
             "error": str(e)
         }), 500
 
@@ -169,6 +195,7 @@ def get_messages():
     messages = read_messages()
 
     return jsonify({
+        # len - how many items
         "total": len(messages),
         "messages": messages
     })
@@ -180,8 +207,11 @@ def delete_message(msg_id):
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
+    # Make a new list of messages, but skip the one I want to delete.
     updated_messages = [
+        # first "m" - This is what you want to keep in the new list
         m for m in read_messages()
+        # msg_id - the id of the message you want to delete
         if m["id"] != msg_id
     ]
 
@@ -192,16 +222,11 @@ def delete_message(msg_id):
 # delete all message
 @app.route("/messages/clear", methods=["DELETE"])
 def clear_messages():
-    """
-    Delete all messages.
 
-    Used by the 'Clear All Messages' button.
-    """
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
     save_messages([])
-
     return jsonify({"success": True})
 
 
@@ -221,11 +246,19 @@ def clear_messages():
 #     return send_from_directory(".", "500.html"), 500
 
 # run server
+# his line makes sure the Flask server only starts when I run this file directly
 if __name__ == "__main__":
+    # Choose which port (door number) the website runs on
+    # If server gives a port → use it Otherwise → use 5000
     port = int(os.environ.get("PORT", 5000))
+    # system settings - environment variables - PORT
 
+    # Start the web server so people can access your app.
     app.run(
+        # Allow access from anywhere
         host="0.0.0.0",
+        # This decides the address number of your website
         port=port,
+        # Normal mode, not developer testing mode
         debug=False
     )
