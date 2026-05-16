@@ -6,9 +6,14 @@
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
 # os - works with files and folders
 import os
-import json
 # for timestamp
 from datetime import datetime, timezone, timedelta
+# supabase - cloud database to store messages
+# create_client - creates a connection to supabase
+# Client - the type of connection
+from supabase import create_client, Client
+from dotenv import load_dotenv
+load_dotenv()
 
 # Start website + enable login memory
 # {app = Flask(_name_)} === Flask, use this file as the starting point of the project.
@@ -18,38 +23,21 @@ app.secret_key = "telecompass_bhutan_2026"
 # password and username for admin login
 ADMIN_USERNAME = "yang"
 ADMIN_PASSWORD = "dream"
-# Use the file called messages.json to store contact form messages.
-MESSAGES_FILE = "messages.json"
+
+# -----------------------------
+# SUPABASE SETUP
+# -----------------------------
+# SUPABASE_URL - the address of your supabase project
+# SUPABASE_KEY - the secret key to access your supabase project
+
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+# create a connection to supabase using the URL and KEY
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # check login status of admin
 def is_logged_in():
     return session.get("logged_in") == True   # yes, logged in so session remembers to keep it logged_in   #FALSE - no
-
-# read message from JSON files
-def read_messages():
-    # Does the file messages.json exist on the computer?
-    if not os.path.exists(MESSAGES_FILE):
-        # Return an empty list instead of crashing
-        return []
-
-    # r - read mode #opens messages.json
-    # f - file you just opened
-    with open(MESSAGES_FILE, "r") as f:
-    # If file doesn’t exist → ❌ error
-    # Read the file and convert JSON text into Python data
-        return json.load(f)
-
-# save messages to JSON file
-# receives message
-def save_messages(messages):
-    # w - write mode
-    # create the file if it doesn’t exist
-    # overwrite everything if it already exists
-    # Open messages.json so I can write into it
-    with open(MESSAGES_FILE, "w") as f:
-        # Take Python data and convert it into JSON, then write it into the file
-        # dump - write into notebook   #f - file   #intend=2 - neat handwriting
-        json.dump(messages, f, indent=2)
 
 # fronend page route
 # hoempage - when user goes to the website, show them the homepage (index.html)
@@ -71,17 +59,11 @@ def admin_page():
     return send_from_directory(".", "admin.html")
 
 
-
-
-
 # Static file serving (CSS JS images)
 # If someone asks for any file (CSS, JS, image, etc.), send it from my project folder.
 @app.route("/<path:filename>")
 def static_files(filename):
     return send_from_directory(".", filename)
-
-
-
 
 
 # Authentication system
@@ -135,10 +117,6 @@ def save_message():
                 "error": "Name, email and message are required."
             }), 400
 
-        # Load existing messages
-        # 1.opens messages.json 2.reads the file 3.converts JSON text into Python data 4.returns the data
-        all_messages = read_messages()
-
         # Create a unique message ID using current timestamp
         # converts seconds into milliseconds
         # int - integer
@@ -152,18 +130,22 @@ def save_message():
             # %y - year, %m - month, %d - day, %H - hour, %M - minute, %S - second
         ).strftime("%Y-%m-%d %H:%M:%S")
 
-        # Add new message to list
-        all_messages.append({
+        # Build the new message as a dictionary
+        new_message = {
             "id": message_id,
             "name": name,
             "email": email,
             "topic": topic,
             "message": message,
-            "receivedAt": bhutan_time
-        })
+            # received_at - matches the column name in supabase table
+            "received_at": bhutan_time
+        }
 
-        # Save updated list 
-        save_messages(all_messages)
+        # Save message directly to supabase cloud database
+        # .table("messages") - which table to save to
+        # .insert(new_message) - add the new message
+        # .execute() - run the command
+        supabase.table("messages").insert(new_message).execute()
 
         return jsonify({
             "success": True,
@@ -192,12 +174,15 @@ def get_messages():
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
-    messages = read_messages()
+    # Fetch all messages from supabase
+    # .select("*") - get all columns
+    # .order("id", desc=True) - newest message first
+    result = supabase.table("messages").select("*").order("id", desc=True).execute()
 
     return jsonify({
         # len - how many items
-        "total": len(messages),
-        "messages": messages
+        "total": len(result.data),
+        "messages": result.data
     })
 
 
@@ -207,26 +192,22 @@ def delete_message(msg_id):
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
-    # Make a new list of messages, but skip the one I want to delete.
-    updated_messages = [
-        # first "m" - This is what you want to keep in the new list
-        m for m in read_messages()
-        # msg_id - the id of the message you want to delete
-        if m["id"] != msg_id
-    ]
-
-    save_messages(updated_messages)
+    # Delete the message from supabase where id matches
+    # .eq("id", msg_id) - find the row where id equals msg_id
+    supabase.table("messages").delete().eq("id", msg_id).execute()
 
     return jsonify({"success": True})
 
-# delete all message
+# delete all messages
 @app.route("/messages/clear", methods=["DELETE"])
 def clear_messages():
-
     if not is_logged_in():
         return jsonify({"error": "Unauthorized."}), 401
 
-    save_messages([])
+    # Delete all messages from supabase
+    # .neq("id", 0) - delete everything where id is not 0 (which is all rows)
+    supabase.table("messages").delete().neq("id", 0).execute()
+
     return jsonify({"success": True})
 
 
