@@ -56,65 +56,112 @@
 
       <!-- ══════════════ HOME PAGE ══════════════ -->
   <div id="intro">
-                <button class="btn-skip" onclick="enterSite()">skip the story →</button>
+  <button class="btn-skip" onclick="enterSite()">skip the story →</button>
 
-    <div class="intro-box">
+  <div class="intro-box">
+    <div class="story">
+      
+      <div class="story-progress">
+        <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
+        <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
+        <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
+        <span class="dot" id="dot-4" onclick="goToStep(4)"></span>
+      </div>
 
-  <section>
-          <div class="story">
+      <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
+      <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>
+      
+      <hr class="story-divider">
 
-          <!-- <h2 style="font-size: clamp(1rem, 0.7vw, 2rem); font-family: italic; color:var(--white); border:2px solid rgb(246, 240, 240, 0.3); display: inline-block;border-radius:20px; padding:0.8rem;" id="greeting"></h2> -->
-          <h2 class="greeting" id="greeting"></h2>
+      <div class="story-step active-step" id="step-1">
+        <h3 class="story-intro">🧭 Introduction</h3>
+        <p>I am <strong>Yangchay</strong>, an undergraduate student pursuing a Bachelor of Business Intelligence at Gedu College of Business Studies. As part of my internship, I developed a project analyzing user behavior and internet patterns across Bhutan.</p>
+        <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
+      </div>
 
+      <div class="story-step" id="step-2">
+        <h3 class="story-intro">📊 The Situation Overview</h3>
+        <p>When I started working remotely as an intern under Bhutan Data Scientists Pvt. Ltd., I depended heavily on mobile data for everything—online research, Zoom meetings, and daily tasks.</p>
+        <div class="stat-callout">
+          Mobile data costs were draining my budget. I was spending over <strong>Nu. 2,500+ per month</strong>, and the packages barely lasted!
+        </div>
+      </div>
 
-            <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
-            <h3 class="story-title">TeleCompass — A Guide for Better Connectivity</h3>
+      <div class="story-step" id="step-3">
+        <h3 class="story-intro">⚠️ The Problem Faced</h3>
+        <p>I wanted to switch to Wi-Fi to save money, but uncertainty held me back. Service counters warned me: <em>"If signal strength in your area is weak, Wi-Fi will fail, and refunds are impossible."</em></p>
+        <p>Social media was filled with complaints about stability. Overwhelmed by decision paralysis, I began rationing my internet—cutting out entertainment, YouTube, and gaming, which heavily impacted my daily happiness and work productivity.</p>
+      </div>
 
-            <h3 class = "story-intro">Introduction</h3>
-            <p style="font-size:19px;">I am Yangchay, an undergraduate student pursuing a Bachelor of Business Intelligence at Gedu College of Business
-            Studies. As part of my internship program, I worked on a project titled <strong>“Telecommunication Service 
-            Usage in Bhutan.”</strong> This project analyzes user behavior and internet usage patterns across different
-            locations and needs within the country. The goal of this platform is to act as a <strong>compass</strong> 
-            guiding users towards a more suitable network service based on their specific requirements.</p><br>
-            
-            <h3 class="story-intro">Situation Overview</h3>
-            <p>When I got enrolled as an intern under Bhutan Data Scientists Pvt. Ltd. doing remote work, I depended heavily on 
-            mobile data for everything—online research, Zoom meetings, and everyday online activities.<br><br>
-            Because I was using mobile data for almost all my activities, the expenses were high. I was 
-            spending around Nu. 699 in a week, and even when I tried a Nu. 1199 plan, I still had to recharge twice 
-            a month, and it still barely lasted. In total, I ended up spending more than Nu. 2500.</p>
-            
-            <h3 class="story-intro">Problem Faced</h3>
-            <p>I wanted to save some money and switch to Wi-Fi service or get a plan with higher value that could save me a few 
-            bucks, but I often struggled with uncertainty. I was confused about which telecommunication service to choose or whether
-            I should continue with my current plan. My thoughts kept going back and forth, especially when trying to manage 
-            internet costs. I even worried, “What if my investment in Wi-Fi fails?”<br><br>
-            When I inquired at a service counter, I was advised to reconsider carefully. I was told that if the internet strength 
-            in my area is weak, the Wi-Fi performance would also be poor, and in such cases, refunds would not be possible. At the same time,
-            I heard rumors circulating that Wi-Fi services were no longer as reliable as before, with some users 
-            requesting refunds and others complaining about cost and stability on social media. This made me even 
-            more uncertain and overwhelmed, and for nearly a month, I kept going back and forth with my decision.<br><br>
-            Over time, I had to become more careful about how I used the internet. I started limiting my entertainment 
-            activities like gaming, online videos, and watching dramas because of data constraints.<br><br>
-            I was always stressed about running out of data and unhappy about not being able to watch videos or play music freely 
-            which also affected my work efficiency.</p>
+      <div class="story-step" id="step-4">
+        <h3 class="story-intro">✨ The Solution</h3>
+        <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day.</strong></p>
+        <p>With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
+        <p>This taught me that internet selection is conditional. Let's find out what works best for you!</p>
+      </div>
 
-            <h3 class="story-intro">Solution</h3>
-            <p>Later, my cousin suggested that I try using Wi-Fi. She kindly let me use her router, and I started working through it.</p>
-            <p><strong>The difference was clear.</strong></p> 
-            <p>With Wi-Fi, I could do my work smoothly, attend Zoom meetings without interruption, and 
-            freely use the internet for research and entertainment such as YouTube, TikTok, games, and dramas without worrying 
-            about running out of data.<br><br>
-            It also became more affordable, costing Nu. 1450 per month, which was much better than what I was spending on mobile data.
-            <br><br>
-            This experience taught me that the type of internet connection matters a lot depending on how it is used. For remote 
-            work and daily usage, Wi-Fi was simply more stable, practical, and cost-effective for me.</p>
-            </div>
-        </section>
+      <div class="story-navigation">
+        <button id="btn-prev" class="btn-nav" onclick="changeStep(-1)" disabled>← Back</button>
+        <button id="btn-next" class="btn-nav btn-highlight" onclick="changeStep(1)">Next Chapter →</button>
+        <button id="btn-final-enter" class="btn-go hidden" onclick="enterSite()">Enter TeleCompass</button>
+      </div>
 
-      <button class="btn-go" onclick="enterSite()">Enter TeleCompass</button>
     </div>
   </div>
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  function changeStep(direction) {
+    // Hide current step
+    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.remove('active');
+    
+    currentStep += direction;
+
+    // Show new step
+    document.getElementById(`step-${currentStep}`).classList.add('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.add('active');
+
+    // Manage button states
+    document.getElementById('btn-prev').disabled = (currentStep === 1);
+    
+    if (currentStep === totalSteps) {
+      document.getElementById('btn-next').classList.add('hidden');
+      document.getElementById('btn-final-enter').classList.remove('hidden');
+    } else {
+      document.getElementById('btn-next').classList.remove('hidden');
+      document.getElementById('btn-final-enter').classList.add('hidden');
+    }
+  }
+
+  function goToStep(stepNumber) {
+    // Let users click progress dots directly to jump steps
+    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.remove('active');
+    
+    currentStep = stepNumber;
+    
+    document.getElementById(`step-${currentStep}`).classList.add('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.add('active');
+    
+    document.getElementById('btn-prev').disabled = (currentStep === 1);
+    if (currentStep === totalSteps) {
+      document.getElementById('btn-next').classList.add('hidden');
+      document.getElementById('btn-final-enter').classList.remove('hidden');
+    } else {
+      document.getElementById('btn-next').classList.remove('hidden');
+      document.getElementById('btn-final-enter').classList.add('hidden');
+    }
+  }
+
+  function enterSite() {
+    alert("Navigating to dashboard..."); 
+    // Replace with your actual transition logic, e.g., document.getElementById('intro').style.display = 'none';
+  }
+</script>
 
 <!-- ========================================================================================================================================= -->
 
