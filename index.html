@@ -60,12 +60,14 @@
 
   <div class="intro-box">
     <div class="story">
+      <h2 class="greeting" id="greeting"></h2>
       
       <div class="story-progress">
         <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
         <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
         <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
         <span class="dot" id="dot-4" onclick="goToStep(4)"></span>
+        <span class="dot" id="dot-5" onclick="goToStep(5)"></span>
       </div>
 
       <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
@@ -74,28 +76,32 @@
       <hr class="story-divider">
 
       <div class="story-step active-step" id="step-1">
+        <img src="introduction.png" alt="Introduction Comic" class="intro-image" style="display: block; margin: 0 auto; max-width: 100%; max-height: 450px; border-radius: 20px;">
+      </div>
+
+      <div class="story-step" id="step-2">
         <h3 class="story-intro">🧭 Introduction</h3>
         <p>I am <strong>Yangchay</strong>, an undergraduate student pursuing a Bachelor of Business Intelligence at Gedu College of Business Studies. As part of my internship, I developed a project analyzing user behavior and internet patterns across Bhutan.</p>
         <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
       </div>
 
-      <div class="story-step" id="step-2">
-        <h3 class="story-intro">📊 The Situation Overview</h3>
+      <div class="story-step" id="step-3">
+        <h3 class="story-intro">The Situation Overview</h3>
         <p>When I started working remotely as an intern under Bhutan Data Scientists Pvt. Ltd., I depended heavily on mobile data for everything—online research, Zoom meetings, and daily tasks.</p>
         <div class="stat-callout">
           Mobile data costs were draining my budget. I was spending over <strong>Nu. 2,500+ per month</strong>, and the packages barely lasted!
         </div>
       </div>
 
-      <div class="story-step" id="step-3">
-        <h3 class="story-intro">⚠️ The Problem Faced</h3>
+      <div class="story-step" id="step-4">
+        <h3 class="story-intro">The Problem Faced</h3>
         <p>I wanted to switch to Wi-Fi to save money, but uncertainty held me back. Service counters warned me: <em>"If signal strength in your area is weak, Wi-Fi will fail, and refunds are impossible."</em></p>
         <p>Social media was filled with complaints about stability. Overwhelmed by decision paralysis, I began rationing my internet—cutting out entertainment, YouTube, and gaming, which heavily impacted my daily happiness and work productivity.</p>
       </div>
 
-      <div class="story-step" id="step-4">
-        <h3 class="story-intro">✨ The Solution</h3>
-        <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day.</strong></p>
+      <div class="story-step" id="step-5">
+        <h3 class="story-intro">✨The Solution</h3>
+        <p>Finally, my cousin lent me her router to test. <br><strong>The difference was clear as day.</strong></p>
         <p>With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
         <p>This taught me that internet selection is conditional. Let's find out what works best for you!</p>
       </div>
@@ -103,7 +109,7 @@
       <div class="story-navigation">
         <button id="btn-prev" class="btn-nav" onclick="changeStep(-1)" disabled>← Back</button>
         <button id="btn-next" class="btn-nav btn-highlight" onclick="changeStep(1)">Next Chapter →</button>
-        <button id="btn-final-enter" class="btn-go hidden" onclick="enterSite()">Enter TeleCompass</button>
+        <button id="btn-final-enter" class="btn-nav btn-highlight hidden" onclick="enterSite()">Enter TeleCompass</button>
       </div>
 
     </div>
@@ -112,7 +118,8 @@
 
 <script>
   let currentStep = 1;
-  const totalSteps = 4;
+  // 2. UPDATED TOTAL STEPS TO 5
+  const totalSteps = 5; 
 
   function changeStep(direction) {
     // Hide current step
@@ -128,6 +135,7 @@
     // Manage button states
     document.getElementById('btn-prev').disabled = (currentStep === 1);
     
+    // 3. UPDATED SWITCH LOGIC FOR 5 STEPS
     if (currentStep === totalSteps) {
       document.getElementById('btn-next').classList.add('hidden');
       document.getElementById('btn-final-enter').classList.remove('hidden');
@@ -148,6 +156,8 @@
     document.getElementById(`dot-${currentStep}`).classList.add('active');
     
     document.getElementById('btn-prev').disabled = (currentStep === 1);
+    
+    // 4. UPDATED SWITCH LOGIC FOR DOT CLICKS
     if (currentStep === totalSteps) {
       document.getElementById('btn-next').classList.add('hidden');
       document.getElementById('btn-final-enter').classList.remove('hidden');
@@ -159,10 +169,8 @@
 
   function enterSite() {
     alert("Navigating to dashboard..."); 
-    // Replace with your actual transition logic, e.g., document.getElementById('intro').style.display = 'none';
   }
 </script>
-
 <!-- ========================================================================================================================================= -->
 
 <main>

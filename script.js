@@ -34,6 +34,23 @@ function enterSite() {
 }
 
 function goBackToStory() {
+  // 1. Hide the current active step and dot before resetting
+  document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+  document.getElementById(`dot-${currentStep}`).classList.remove('active');
+
+  // 2. Reset our tracking variable back to the beginning
+  currentStep = 1;
+
+  // 3. Make Step 1 and Dot 1 active again
+  document.getElementById(`step-${currentStep}`).classList.add('active-step');
+  document.getElementById(`dot-${currentStep}`).classList.add('active');
+
+  // 4. Reset the navigation buttons back to their starting state
+  document.getElementById('btn-prev').disabled = true;
+  document.getElementById('btn-next').classList.remove('hidden');
+  document.getElementById('btn-final-enter').classList.add('hidden');
+
+  // 5. Swap the page views
   document.getElementById("main").style.display  = "none";
   document.getElementById("intro").style.display = "block";
 }

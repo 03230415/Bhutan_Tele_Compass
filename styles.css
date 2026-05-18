@@ -233,14 +233,16 @@
   /*========== story card ======================*/
   /* Container updates */
 .story {
-  max-width: 750px; /* Reduced width makes short text look highly balanced */
+  max-width: 600px; /* Reduced width makes short text look highly balanced */
+  height:auto;
   margin: 40px auto;
   padding: 40px;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: rgba(30, 35, 34, 0.95); /* Deeper contrast background */
+  background: rgba(12, 68, 74, 0.95); /* Deeper contrast background */
   border-radius: 1.5rem;
   color: #ffffff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
 }
 
 .story-title {
@@ -281,7 +283,7 @@
 
 /* Highlight boxes for costs */
 .stat-callout {
-  background: rgba(242, 97, 24, 0.15);
+  background: rgba(2, 56, 31, 0.299);
   border-left: 4px solid #f26118;
   padding: 15px;
   margin-top: 15px;
@@ -308,16 +310,16 @@
 .story-progress .dot {
   width: 12px;
   height: 12px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(24, 216, 165, 0.269);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .story-progress .dot.active {
-  background: #ebd846;
+  background: #d47c62;
   transform: scale(1.3);
-  box-shadow: 0 0 8px #ebd846;
+  box-shadow: 0 0 8px #f0e959;
 }
 
 /* Interactive Navigation System */
@@ -326,6 +328,13 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
+}
+
+.intro-image{
+  width: 550px;
+  height:auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
 .btn-nav {
@@ -349,12 +358,7 @@
 }
 
 .btn-highlight {
-  background: #f26118;
-  border-color: #f26118;
-}
-
-.btn-highlight:hover {
-  background: #d44f10 !important;
+  background: transparent
 }
 
 .btn-go {
