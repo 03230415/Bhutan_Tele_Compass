@@ -337,6 +337,91 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
+/* Create the side-by-side layout using CSS Grid */
+.story-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 40px;                      /* Space between text and image */
+  align-items: center;            /* Vertically center align both sides */
+  margin-top: 20px;
+}
+
+/* Ensure the image container scales properly */
+.story-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the storytelling image to fit its column perfectly */
+.side-story-image {
+  width: 100%;
+  max-width: 400px;              /* Adjust max-width based on your layout size */
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Optional elegant shadow */
+}
+
+/* Responsive design: Stack text on top of image on mobile screens */
+@media (max-width: 768px) {
+  .story-grid-container {
+    grid-template-columns: 1fr;   /* Change to a single column */
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .side-story-image {
+    max-width: 280px;            /* Slightly smaller image on mobile devices */
+  }
+}
+/* Custom subtle accent for the welcome box text */
+.stat-callout.welcome-accent {
+  background-color: #f0fdf4; /* Soft, clean light green tint */
+  border-left: 5px solid #22c55e; /* Bright green accent line for a positive welcome */
+  color: #166534;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Ensure the landing character doesn't stretch awkwardly */
+.landing-character {
+  max-height: 400px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Reusing our responsive grid structure from earlier */
+.story-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.story-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-story-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .story-grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
 .btn-nav {
   padding: 10px 20px;
   border: 1px solid rgba(255,255,255,0.3);
