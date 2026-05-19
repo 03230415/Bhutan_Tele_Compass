@@ -79,10 +79,10 @@
             <img src="introduction.png" alt="Introduction Comic" class="side-story-image landing-character">
           </div>
           <div class="story-text">
-            <h3 class="story-intro">🧭 Introduction</h3>
+            <h3 class="story-intro">Introduction</h3>
             <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
-            <div class="stat-callout welcome-accent">
-              Let's walk through how my personal connectivity struggles inspired the creation of <strong>TeleCompass</strong>!
+            <div class="stat-callout welcome-accent" style="border-left: 5px solid orange; color:black;">
+              Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);">TeleCompass</strong>!
             </div>
           </div>
         </div>
@@ -120,31 +120,43 @@
         <div class="story-grid-container">
           <div class="story-text">
             <h3 class="story-intro">✨ The Solution</h3>
-            <p>Finally, my cousin lent me her router to test. <br><strong>The difference was clear as day!</strong></p>
+            <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day!</strong></p>
+            <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
+
           </div>
           <div class="story-image-wrap">
             <img src="WiFi.png" alt="solution Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
           </div>
         </div>
-        <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
-        <div class="stat-callout welcome-accent" style="background-color: #f0fdf4; border-left: 5px solid #22c55e; color: #166534; padding: 15px; border-radius: 8px; margin-top: 15px;">
+        <div class="stat-callout welcome-accent" style="background-color: #f0fdf4; border-left: 5px solid #d58103; color: #101111; padding: 15px; border-radius: 8px; margin-top: 15px;">
           This taught me that internet selection is conditional. Let's find out what works best for you!
         </div>
       </div>
 
       <div class="story-step" id="step-5">
-        <div class="story-grid-container" style="text-align: center; display: block;">
-          <div class="story-text" style="max-width: 100%; margin: 0 auto;">
-            <!-- <h2 style="font-size: 2.2rem; color: #f97316; margin-bottom: 0.5rem; animation: pulse 2s infinite;">Welcome to TeleCompass 🧭</h2> -->
-            <img src="image.png" alt="logo Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
-            <img src="welcome.png" alt="welcome Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
-            <p style="font-size: 1.1rem; line-height: 1.6; max-width: 550px; margin: 0 auto 1.5rem auto;">
-              No more decision paralysis or non-refundable risks. Take the guesswork out of your decision.<br>
-              Not sure which telecom service to choose? We make it simple, so you can decide with confidence.
-            </p>           
-               </div>
-        </div>
+  <div class="story-grid-container" style="text-align: center; max-width: 700px; margin: 0 auto; display: block;">
+    <div class="story-text" style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      
+      <div class="closure-images-container" style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+        
+        <img src="image.png" alt="logo Comic" style="width: 13rem; height: auto; border-radius: 1.2rem; transform: rotate(-6deg); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.25); filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.15));">
+        <img src="welcome.png" alt="welcome Comic" style="width: 25rem; height: auto; border-radius: 1.2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
+              
       </div>
+
+      <div class="closure-notes" style="max-width: 580px; margin: 0 auto;">
+        <p style="font-size: 1.25rem; line-height: 1.6; color: #f1f5f9;  margin-bottom: 0.75rem; letter-spacing: -0.01em;">
+          <strong>No more decision paralysis or non-refundable risks.</strong> 
+          <br>Take the guesswork out of your decision.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.6; color: #94a3b8; margin: 0; border:2px solid rgba(136, 207, 161, 0.703); padding: 15px; border-radius: 10px; background:var(--teal-dark);border-left:3px solid orange;">
+          <strong>Not sure which telecom service to choose?</strong> We make it simple, so you can decide with confidence.
+        </p>
+      </div>
+               
+    </div>
+  </div>
+</div>
 
       <div class="story-navigation">
         <button id="btn-prev" class="btn-nav" onclick="changeStep(-1)" disabled>← Back</button>
