@@ -231,15 +231,16 @@
     transform: translateY(-2px);
   }
   /*========== story card ======================*/
-  /* Container updates */
+  /* Story - Container updates */
 .story {
-  max-width: 600px; /* Reduced width makes short text look highly balanced */
-  height:auto;
+  max-width: 750px; 
+  height: auto;
   margin: 40px auto;
   padding: 40px;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: rgba(12, 68, 74, 0.95); /* Deeper contrast background */
+  font-family:comic sans ms, cursive, sans-serif;
+  background: rgb(1, 31, 44); /* Deeper contrast background */
   border-radius: 1.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.5); 
   color: #ffffff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
@@ -330,13 +331,6 @@
   margin-top: 30px;
 }
 
-.intro-image{
-  width: 550px;
-  height:auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
 /* Create the side-by-side layout using CSS Grid */
 .story-grid-container {
   display: grid;
@@ -374,11 +368,12 @@
     max-width: 280px;            /* Slightly smaller image on mobile devices */
   }
 }
-/* Custom subtle accent for the welcome box text */
+/* Story - Introduction box */
+
 .stat-callout.welcome-accent {
-  background-color: #f0fdf4; /* Soft, clean light green tint */
-  border-left: 5px solid #22c55e; /* Bright green accent line for a positive welcome */
-  color: #166534;
+  background-color: var(--cream); /* Soft, clean light green tint */
+  border-left: 5px solid var(--teal-dark); /* Bright green accent line for a positive welcome */
+  color: var(--teal);
   padding: 15px 20px;
   border-radius: 8px;
   margin-top: 20px;
