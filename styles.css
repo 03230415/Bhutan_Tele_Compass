@@ -417,6 +417,116 @@
   }
 }
 
+/* ==========================================================================
+   RESPONSIVE DESIGN: TABLETS & PHONES (TeleCompass Story Mode)
+   ========================================================================== */
+
+/* 1. TABLET BREAKPOINT (Screens smaller than 992px) */
+@media screen and (max-width: 992px) {
+  .story-grid-container {
+    display: flex !important;
+    flex-direction: column !important; /* Stack image and text vertically */
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Swap text/image visual order for step 2 & 3 so header stays on top */
+  #step-2 .story-grid-container,
+  #step-3 .story-grid-container {
+    flex-direction: column-reverse !important;
+  }
+
+  /* Adjust final closure step imagery layout */
+  .closure-images-container {
+    gap: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Force image constraints so they don't break containers */
+  .story-image-wrap img, 
+  .closure-images-container img {
+    max-width: 90% !important;
+    height: auto !important;
+  }
+
+  /* Adjust welcome image on tablets */
+  .closure-images-container img[src="welcome.png"] {
+    width: 20rem !important; 
+  }
+}
+
+/* 2. MOBILE PHONE BREAKPOINT (Screens smaller than 576px) */
+@media screen and (max-width: 576px) {
+  #intro {
+    padding: 10px !important;
+  }
+
+  .intro-box {
+    padding: 15px !important;
+    border-radius: 1rem !important;
+  }
+
+  /* Font Scaling for small viewports */
+  .story-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .story-subtitle {
+    font-size: 1.1rem !important;
+  }
+
+  .story-intro {
+    font-size: 1.3rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Custom component adjustments */
+  .stat-callout {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Handle Step 5 graphics for tight mobile screens */
+  .closure-images-container img[src="welcome.png"] {
+    width: 85vw !important; /* Dynamically maps to viewport width */
+  }
+
+  .closure-images-container img[src="image.png"] {
+    width: 45vw !important;
+    transform: rotate(-4deg) !important; /* Reduce tilt angle on mobile */
+  }
+
+  /* Optimize Navigation Button Layout */
+  .story-navigation {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .btn-nav {
+    padding: 10px 16px !important;
+    font-size: 0.95rem !important;
+    flex: 1 !important; /* Buttons share screen width equally */
+    text-align: center !important;
+  }
+  
+  .btn-skip {
+    top: 10px !important;
+    right: 10px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+
+
 .btn-nav {
   padding: 10px 20px;
   border: 1px solid rgba(255,255,255,0.3);
