@@ -52,181 +52,131 @@
       </button>
 
     </nav>
+        <!-- ══════════════ STORY BOARD ══════════════ -->
 
-<div id="intro">
-  <button class="btn-skip" onclick="enterSite()">skip the story →</button>
+    <div id="intro">
+      <button class="btn-skip" onclick="enterSite()">skip the story →</button>
 
-  <div class="intro-box">
-    <div class="story">
-      <h2 class="greeting" id="greeting"></h2>
-      
-      <div class="story-progress">
-        <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
-        <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
-        <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
-        <span class="dot" id="dot-4" onclick="goToStep(4)"></span>
-        <span class="dot" id="dot-5" onclick="goToStep(5)"></span>
-      </div>
-
-      <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
-      <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>
-      
-      <hr class="story-divider">
-
-      <div class="story-step active-step" id="step-1">
-        <div class="story-grid-container">
-          <div class="story-image-wrap">
-            <img src="introduction.png" alt="Introduction Comic" class="side-story-image landing-character">
+      <div class="intro-box">
+        <div class="story">
+          <h2 class="greeting" id="greeting"></h2>
+          
+          <div class="story-progress">
+            <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
+            <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
+            <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
+            <span class="dot" id="dot-4" onclick="goToStep(4)"></span>
+            <span class="dot" id="dot-5" onclick="goToStep(5)"></span>
           </div>
-          <div class="story-text">
-            <h3 class="story-intro">Introduction</h3>
-            <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
-            <div class="stat-callout welcome-accent" style="border-left: 5px solid orange; color:black;">
-              Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);">TeleCompass</strong>!
+
+          <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
+          <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>
+          
+          <hr class="story-divider">
+
+          <div class="story-step active-step" id="step-1">
+            <div class="story-grid-container">
+              <div class="story-image-wrap">
+                <img src="introduction.png" alt="Introduction Comic" class="side-story-image landing-character">
+              </div>
+              <div class="story-text">
+                <h3 class="story-intro">Introduction</h3>
+                <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
+                <div class="stat-callout welcome-accent" style="border-left: 5px solid orange; color:black;">
+                  Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);">TeleCompass</strong>!
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="story-step" id="step-2">
-        <div class="story-grid-container">
-          <div class="story-text">
-            <h3 class="story-intro">The Situation Overview</h3>
-            <p>When I started working remotely as an intern at Bhutan Data Scientists Pvt. Ltd., I depended heavily on mobile data for everything—online research, Zoom meetings, and daily tasks.</p>
+          <div class="story-step" id="step-2">
+            <div class="story-grid-container">
+              <div class="story-text">
+                <h3 class="story-intro">The Situation Overview</h3>
+                <p>When I started working remotely as an intern at Bhutan Data Scientists Pvt. Ltd., I depended heavily on mobile data for everything—online research, Zoom meetings, and daily tasks.</p>
+              </div>
+              <div class="story-image-wrap">
+                <img src="trouble.png" alt="Problem Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
+              </div>
+            </div>
+            <div class="stat-callout">
+              Mobile data costs were draining my budget while delivering an incredibly slow connection. All of my calls dropped constantly, and my daily tasks were repeatedly interrupted and delayed. And at the end of the month, I was spending over <strong>Nu. 2,500+ per month</strong>, and the packages barely lasted!
+            </div>
           </div>
-          <div class="story-image-wrap">
-            <img src="trouble.png" alt="Problem Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
+
+          <div class="story-step" id="step-3">
+            <div class="story-grid-container">    
+              <div class="story-text">
+                <h3 class="story-intro">The Decision Paralysis</h3>
+                <p>I desperately wanted to switch to Wi-Fi to save money, but uncertainty held me back. When I visited the service counters, the agents were direct and serious. They warned me with rigid warnings like: <em>"We have a strict no-refund policy, and we cannot guarantee signal strength at your exact location."</em></p>
+              </div>    
+              <div class="story-image-wrap">
+                <img src="warning.png" alt="decision paralysis Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
+              </div>
+            </div>
+            <p style="margin-top: 1.5rem;">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
+          </div>
+
+          <div class="story-step" id="step-4">
+            <div class="story-grid-container">
+              <div class="story-text">
+                <h3 class="story-intro">✨ The Solution</h3>
+                <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day!</strong></p>
+                <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
+
+              </div>
+              <div class="story-image-wrap">
+                <img src="WiFi.png" alt="solution Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
+              </div>
+            </div>
+            <div class="stat-callout welcome-accent" style="background-color: #f0fdf4; border-left: 5px solid #d58103; color: #101111; padding: 15px; border-radius: 8px; margin-top: 15px;">
+              This taught me that internet selection is conditional. Let's find out what works best for you!
+            </div>
+          </div>
+
+
+          <!-- whole page -->
+          <div class="story-step" id="step-5">
+            <!-- handles layout structure -->
+            <div class="story-grid-container" style="text-align: center; max-width: 700px; margin: 0 auto; display: block;">
+              <!-- how things are arranged inside -->
+              <div class="story-text" style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+              <!-- picture arrangement -->
+                <div class="closure-images-container" style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                  <img src="image.png" alt="logo Comic" style="width: 13rem; height: auto; border-radius: 1.2rem; transform: rotate(-6deg); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.25); filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.15));">
+                  <img src="welcome.png" alt="welcome Comic" style="width: 25rem; height: auto; border-radius: 1.2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
+                </div>
+                <div class="closure-notes" style="max-width: 580px; margin: 0 auto;">
+                  <p style="font-size: 1.25rem; line-height: 1.6; color: #f1f5f9;  margin-bottom: 0.75rem; letter-spacing: -0.01em;">
+                  <strong>No more decision paralysis or non-refundable risks.</strong> 
+                  <br>Take the guesswork out of your decision.
+                  </p>
+                  <p style="font-size: 1.05rem; line-height: 1.6; color: #94a3b8; margin: 0; border:2px solid rgba(136, 207, 161, 0.703); padding: 15px; border-radius: 10px; background:var(--teal-dark);border-left:3px solid orange;">
+                  <strong>Not sure which telecom service to choose?</strong> We make it simple, so you can decide with confidence.
+                  </p>
+                </div> 
+              </div>
+            </div>
+          </div>
+
+          <!-- container to hold buttons -->
+          <div class="story-navigation">
+            <!-- the back button is not clickable rn but when clicked go 1 step back -->
+            <button id="btn-prev" class="btn-nav" onclick="changeStep(-1)" disabled>← Back</button>
+            <!-- next chapter button to go one step next -->
+            <button id="btn-next" class="btn-nav btn-highlight" onclick="changeStep(1)">Next Chapter →</button>
+            <!-- enter button -->
+            <button id="btn-final-enter" class="btn-nav btn-highlight hidden" onclick="enterSite()">Enter TeleCompass</button>
           </div>
         </div>
-        <div class="stat-callout">
-          Mobile data costs were draining my budget while delivering an incredibly slow connection. All of my calls dropped constantly, and my daily tasks were repeatedly interrupted and delayed. And at the end of the month, I was spending over <strong>Nu. 2,500+ per month</strong>, and the packages barely lasted!
-        </div>
       </div>
-
-      <div class="story-step" id="step-3">
-        <div class="story-grid-container">    
-          <div class="story-text">
-            <h3 class="story-intro">The Decision Paralysis</h3>
-            <p>I desperately wanted to switch to Wi-Fi to save money, but uncertainty held me back. When I visited the service counters, the agents were direct and serious. They warned me with rigid warnings like: <em>"We have a strict no-refund policy, and we cannot guarantee signal strength at your exact location."</em></p>
-          </div>    
-          <div class="story-image-wrap">
-            <img src="warning.png" alt="decision paralysis Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
-          </div>
-        </div>
-        <p style="margin-top: 1.5rem;">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
-      </div>
-
-      <div class="story-step" id="step-4">
-        <div class="story-grid-container">
-          <div class="story-text">
-            <h3 class="story-intro">✨ The Solution</h3>
-            <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day!</strong></p>
-            <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
-
-          </div>
-          <div class="story-image-wrap">
-            <img src="WiFi.png" alt="solution Comic" style="width:13rem; padding:auto; border-radius:1.2rem">
-          </div>
-        </div>
-        <div class="stat-callout welcome-accent" style="background-color: #f0fdf4; border-left: 5px solid #d58103; color: #101111; padding: 15px; border-radius: 8px; margin-top: 15px;">
-          This taught me that internet selection is conditional. Let's find out what works best for you!
-        </div>
-      </div>
-
-      <div class="story-step" id="step-5">
-  <div class="story-grid-container" style="text-align: center; max-width: 700px; margin: 0 auto; display: block;">
-    <div class="story-text" style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-      
-      <div class="closure-images-container" style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
-        
-        <img src="image.png" alt="logo Comic" style="width: 13rem; height: auto; border-radius: 1.2rem; transform: rotate(-6deg); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.25); filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.15));">
-        <img src="welcome.png" alt="welcome Comic" style="width: 25rem; height: auto; border-radius: 1.2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
-              
-      </div>
-
-      <div class="closure-notes" style="max-width: 580px; margin: 0 auto;">
-        <p style="font-size: 1.25rem; line-height: 1.6; color: #f1f5f9;  margin-bottom: 0.75rem; letter-spacing: -0.01em;">
-          <strong>No more decision paralysis or non-refundable risks.</strong> 
-          <br>Take the guesswork out of your decision.
-        </p>
-        <p style="font-size: 1.05rem; line-height: 1.6; color: #94a3b8; margin: 0; border:2px solid rgba(136, 207, 161, 0.703); padding: 15px; border-radius: 10px; background:var(--teal-dark);border-left:3px solid orange;">
-          <strong>Not sure which telecom service to choose?</strong> We make it simple, so you can decide with confidence.
-        </p>
-      </div>
-               
     </div>
-  </div>
-</div>
 
-      <div class="story-navigation">
-        <button id="btn-prev" class="btn-nav" onclick="changeStep(-1)" disabled>← Back</button>
-        <button id="btn-next" class="btn-nav btn-highlight" onclick="changeStep(1)">Next Chapter →</button>
-        <button id="btn-final-enter" class="btn-nav btn-highlight hidden" onclick="enterSite()">Enter TeleCompass</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script>
-  let currentStep = 1;
-  // UPDATED FROM 4 TO 5 TOTAL STEPS
-  const totalSteps = 5; 
-
-  function changeStep(direction) {
-    // Hide current step
-    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
-    document.getElementById(`dot-${currentStep}`).classList.remove('active');
-    
-    currentStep += direction;
-
-    // Show new step
-    document.getElementById(`step-${currentStep}`).classList.add('active-step');
-    document.getElementById(`dot-${currentStep}`).classList.add('active');
-
-    // Manage button states
-    document.getElementById('btn-prev').disabled = (currentStep === 1);
-    
-    // Switch navigation button states at step 5
-    if (currentStep === totalSteps) {
-      document.getElementById('btn-next').classList.add('hidden');
-      document.getElementById('btn-final-enter').classList.remove('hidden');
-    } else {
-      document.getElementById('btn-next').classList.remove('hidden');
-      document.getElementById('btn-final-enter').classList.add('hidden');
-    }
-  }
-
-  function goToStep(stepNumber) {
-    // Let users click progress dots directly to jump steps
-    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
-    document.getElementById(`dot-${currentStep}`).classList.remove('active');
-    
-    currentStep = stepNumber;
-    
-    document.getElementById(`step-${currentStep}`).classList.add('active-step');
-    document.getElementById(`dot-${currentStep}`).classList.add('active');
-    
-    document.getElementById('btn-prev').disabled = (currentStep === 1);
-    
-    if (currentStep === totalSteps) {
-      document.getElementById('btn-next').classList.add('hidden');
-      document.getElementById('btn-final-enter').classList.remove('hidden');
-    } else {
-      document.getElementById('btn-next').classList.remove('hidden');
-      document.getElementById('btn-final-enter').classList.add('hidden');
-    }
-  }
-
-  function enterSite() {
-    alert("Navigating to dashboard..."); 
-  }
-</script>
 <!-- ========================================================================================================================================= -->
 
 <main>
 
-  <div id="main">   
+<div id="main">
   <button class="returnback" onclick="goBackToStory()">« 🐾 Back to story</button>
 </div>
 

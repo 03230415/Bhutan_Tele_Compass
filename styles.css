@@ -182,6 +182,19 @@
         width: 100%;
       }
       
+
+
+
+
+
+
+
+
+
+
+
+
+
       /* ══════════════ STORY ══════════════ */
       /* homepage screen overall*/
       /* intro overlay */
@@ -635,7 +648,7 @@
           margin-bottom: 1.25rem;
         }
 
-        .returnback{
+        /* .returnback{
           display: inline-block;
           display:flex;
           justify-content:flex-end;
@@ -650,17 +663,43 @@
           padding: 0.5rem 1.1rem;
           cursor: pointer;
           transition: all var(--t);
-        }
+        } */
   
-        .returnback:hover {
+        /* .returnback:hover {
           transform:translateY(-2px); 
           box-shadow:var(--shadow-lg);
           background: var(--sage-mist);
           border-color: var(--sage-light);
-        }
-        #main {
+        } */
+        /* #main {
           padding: 1rem 5rem;
-        }
+        } */
+
+        /* NEW */
+#main {
+  padding: 1rem clamp(1rem, 5vw, 3rem);
+}
+
+.returnback {
+  display: inline-block;
+  border: 2px solid #848d9f;
+  border-radius: 10px;
+  color: var(--cream);
+  font-size: 15px;
+  background: rgba(209, 184, 188, 0.5);
+  padding: 0.5rem 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all var(--t);
+}
+
+.returnback:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+
 
       .clearForm {
         margin-top: 20px;
@@ -1348,7 +1387,7 @@
 
 
 
-      
+
 @media(max-width:700px){
   .nav-links {
     display:none; 

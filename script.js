@@ -20,6 +20,63 @@ function getGreeting() {
 
 document.getElementById("greeting").innerText = getGreeting();
 
+
+
+  let currentStep = 1;
+  // UPDATED FROM 4 TO 5 TOTAL STEPS
+  const totalSteps = 5; 
+
+  function changeStep(direction) {
+    // Hide current step
+    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.remove('active');
+    
+    currentStep += direction;
+
+    // Show new step
+    document.getElementById(`step-${currentStep}`).classList.add('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.add('active');
+
+    // Manage button states
+    document.getElementById('btn-prev').disabled = (currentStep === 1);
+    
+    // Switch navigation button states at step 5
+    if (currentStep === totalSteps) {
+      document.getElementById('btn-next').classList.add('hidden');
+      document.getElementById('btn-final-enter').classList.remove('hidden');
+    } else {
+      document.getElementById('btn-next').classList.remove('hidden');
+      document.getElementById('btn-final-enter').classList.add('hidden');
+    }
+  }
+
+  function goToStep(stepNumber) {
+    // Let users click progress dots directly to jump steps
+    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.remove('active');
+    
+    currentStep = stepNumber;
+    
+    document.getElementById(`step-${currentStep}`).classList.add('active-step');
+    document.getElementById(`dot-${currentStep}`).classList.add('active');
+    
+    document.getElementById('btn-prev').disabled = (currentStep === 1);
+    
+    if (currentStep === totalSteps) {
+      document.getElementById('btn-next').classList.add('hidden');
+      document.getElementById('btn-final-enter').classList.remove('hidden');
+    } else {
+      document.getElementById('btn-next').classList.remove('hidden');
+      document.getElementById('btn-final-enter').classList.add('hidden');
+    }
+  }
+
+  function enterSite() {
+    alert("Navigating to dashboard..."); 
+  }
+
+
+
 // Clear Answers 🧹
 function clearForm() {
   document.getElementById("cname").value  = "";
