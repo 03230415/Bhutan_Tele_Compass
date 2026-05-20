@@ -1337,32 +1337,42 @@
           grid-template-columns:1fr; 
         }
       }
-      @media(max-width:700px){
-        .nav-links {
-          display:none; 
-          flex-direction:column;
-          position:absolute; 
-          /* places menu right below navbar */
-          top:var(--nav-h); 
-          left:0; right:0;
-          background:rgba(8,46,54,0.97); 
-          padding:1rem;
-          border-bottom:1px solid var(--glass-border); 
-          gap:0.15rem;
-        }
-        .nav-links.open { 
-          display:flex; 
-        }
-        .nav-links li button { 
-          padding:0.75rem 1rem; 
-          font-size:1rem; 
-          width:100%; 
-          text-align:left; 
-        }
-        /* hamburger menu button (☰ icon) on mobile. */
-        .nav-toggle { display:flex;}
-        /* tells the browser: “Use this nav as the anchor for positioning dropdown menu” */
-        nav {position:relative;}
-      }
+
+
+
+
+
+
+
+
+
+
+
+      
+@media(max-width:700px){
+  .nav-links {
+    display:none; 
+    flex-direction:column;
+    position:fixed;
+    top:var(--nav-h); 
+    left:0; right:0;
+    background:rgba(8,46,54,0.97); 
+    padding:1rem;
+    border-bottom:1px solid var(--glass-border); 
+    gap:0.15rem;
+  }
+  .nav-links.open { 
+    display:flex; 
+  }
+  .nav-links li button { 
+    padding:0.75rem 1rem; 
+    font-size:1rem; 
+    width:100%; 
+    text-align:left; 
+  }
+  .nav-toggle { display:flex; }
+  nav { position:fixed; width:100%; }
+  .page-bg { padding-top: var(--nav-h); }
+}
   /* IMPORTANT: prevents anchor links (#section) from hiding under fixed navbar */
   /* scroll padding for sticky nav */    
