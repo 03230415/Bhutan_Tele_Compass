@@ -525,6 +525,28 @@
   }
 }
 
+/* Fix for Step 5 Alignment Hierarchy on Laptop/Desktop Screens */
+#step-5.active-step {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#step-5 .story-grid-container {
+  display: block !important; /* Overrides the 2-column grid rule for this final slide */
+  width: 100%;
+}
+
+#step-5 .closure-images-container img[src="welcome.png"] {
+  max-width: 100% !important;
+  /* Scales the wide canvas illustration on smaller laptops so it stays within safe viewport bounds */
+  width: clamp(16rem, 35vw, 24rem) !important; 
+}
+
+
+
+
 
 
 .btn-nav {
