@@ -210,22 +210,6 @@ def clear_messages():
 
     return jsonify({"success": True})
 
-
-# @app.errorhandler(404)
-# def not_found(e):
-#     """
-#     Show custom 404 page when a route is not found.
-#     """
-#     return send_from_directory(".", "404.html"), 404
-
-
-# @app.errorhandler(500)
-# def server_error(e):
-#     """
-#     Show custom 500 page for internal server errors.
-#     """
-#     return send_from_directory(".", "500.html"), 500
-
 # run server
 # his line makes sure the Flask server only starts when I run this file directly
 if __name__ == "__main__":
