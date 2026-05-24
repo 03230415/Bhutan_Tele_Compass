@@ -627,55 +627,27 @@
           margin-bottom: 1.25rem;
         }
 
-        /* .returnback{
-          display: inline-block;
-          display:flex;
-          justify-content:flex-end;
-          border: 2px solid #848d9f;
-          border-radius: 10px;
-          color:var(--cream);
-          font-size:15px;
-          background:rgb(209, 184, 188, 0.5);
-          padding:11px;
-          font-weight:bold;
-          transition: 0.3s ease;
-          padding: 0.5rem 1.1rem;
-          cursor: pointer;
-          transition: all var(--t);
-        } */
-  
-        /* .returnback:hover {
-          transform:translateY(-2px); 
-          box-shadow:var(--shadow-lg);
-          background: var(--sage-mist);
-          border-color: var(--sage-light);
-        } */
-        /* #main {
-          padding: 1rem 5rem;
-        } */
+      #main {
+        padding: 1rem clamp(1rem, 5vw, 3rem);
+      }
 
-        /* NEW */
-#main {
-  padding: 1rem clamp(1rem, 5vw, 3rem);
-}
+      .returnback {
+        display: inline-block;
+        border: 2px solid #848d9f;
+        border-radius: 10px;
+        color: var(--cream);
+        font-size: 15px;
+        background: rgba(209, 184, 188, 0.5);
+        padding: 0.5rem 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all var(--t);
+      }
 
-.returnback {
-  display: inline-block;
-  border: 2px solid #848d9f;
-  border-radius: 10px;
-  color: var(--cream);
-  font-size: 15px;
-  background: rgba(209, 184, 188, 0.5);
-  padding: 0.5rem 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all var(--t);
-}
-
-.returnback:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
+      .returnback:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
 
 
 
@@ -1108,15 +1080,6 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
       /* ══════════════ FORMS ══════════════ */
       /* the form from both companies and contact section */
       .form-group { 
@@ -1193,69 +1156,7 @@
         font-weight:500; 
         font-size:0.95rem; 
         margin-top:1rem;
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+      }   
 
       /* ══════════════ TABLE ══════════════ */
       /* main wording */
@@ -1342,17 +1243,6 @@
           grid-template-columns:1fr; 
         }
       }
-
-
-
-
-
-
-
-
-
-
-
 
 @media(max-width:700px){
   .nav-links {
