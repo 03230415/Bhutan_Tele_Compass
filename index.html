@@ -61,7 +61,10 @@
         <div class="story">
           <h2 class="greeting" id="greeting"></h2>
           
-          <div class="story-progress">
+          <div class="story-progress">   <!--  container holding all dots -->
+            <!-- each span creates a dot -->
+            <!-- id - gives each dot a unique identifier ---- Needed so JavaScript can target specific dots later -->
+            <!-- class dot active - indicates the current step ---- Without active, all dots look the same -->
             <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
             <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
             <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
@@ -69,11 +72,13 @@
             <span class="dot" id="dot-5" onclick="goToStep(5)"></span>
           </div>
 
+          <!-- displayed on all pages -->
           <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
           <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>
           
           <hr class="story-divider">
 
+          <!-- active-step - indicates the current step -->
           <div class="story-step active-step" id="step-1">
             <div class="story-grid-container">
               <div class="story-image-wrap">
@@ -262,6 +267,7 @@
           </div>
               </div>
 
+<!-- ========================================================================================================================================= -->
       <!-- ══════════════ ABOUT PAGE ══════════════ -->
       <div class="page" id="page-about">
         <div class="page-hero">
@@ -351,6 +357,7 @@
         </section>
       </div>
 
+<!-- ========================================================================================================================================= -->
       <!-- ══════════════ DASHBOARD PAGE ══════════════ -->
       <div class="page" id="page-dashboard">
         <div class="page-hero">
@@ -417,6 +424,7 @@
         </section>
       </div>
 
+<!-- ========================================================================================================================================= -->
       <!-- ══════════════ COMPANY PAGE ══════════════ -->
       <div class="page" id="page-company">
         <div class="page-hero">
@@ -519,6 +527,7 @@
             </table>
           </div>
 
+<!-- ========================================================================================================================================= -->
           <!----------------------- Quiz Form package -------------------------------->
           <!-- ask 3 questions - quiz -->
           <!-- main white card box holding everything -->
@@ -598,7 +607,7 @@
           </div>
         </section>
       </div>
-
+<!-- ========================================================================================================================================= -->
 
 
 

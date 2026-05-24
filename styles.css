@@ -27,66 +27,82 @@
         --nav-h:       68px;
         --t:           0.3s cubic-bezier(0.4,0,0.2,1);
       }
-  /* pseudo - applying same padding and margin to all normal elements */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; font-size: 16px; }
+
+
+      /* ========================================================================================================================================= */
+
+
+
+/* pseudo - applying same padding and margin to all normal elements */
+      *, *::before, *::after { 
+        /* border-boxing - ensures padding and border are included in the element's total width and height */
+        box-sizing: border-box; 
+        margin: 0; padding: 0; 
+      }
+      html { 
+        /* scrolls smoothly like animation */
+        scroll-behavior: smooth; 
+        font-size: 16px; 
+      }
       
-
-
       /* default mood of whole website */
       body {
-        font-family: 'DM Sans', sans-serif;                    /* if DM Sans not available then sans-serif  */
+        font-family: 'DM Sans', sans-serif;     /* if DM Sans not available then sans-serif  */
         color: var(--text-dark);
         background: var(--teal-dark);
         min-height: 100vh;
       }
 
 
-      /* ── Global BG ── */
+      /* ── Global Background ── */
       .page-bg {
         min-height: 100vh;
         background:
           linear-gradient(to bottom, rgba(23, 27, 28, 0.2) 0%, rgba(8, 46, 54, 0.54) 100%),
-          /* url(https://tse2.mm.bing.net/th/id/OIP.MQwV26GDpGXRkEuAFaYj3AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3) */
-          /* url(https://facts.net/wp-content/uploads/2023/09/11-intriguing-facts-about-tashichoedzong-thimphu-dzong-1694995288.jpg) */
           url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
 
           center/cover no-repeat fixed;
-                  
-          /* background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center; */
-
       }
-
 
       /* ══════════════ NAVIGATION ══════════════ */
       /* navigation bar at the top corner */
       nav {
+        /* Let this element scroll normally… but once it reaches the top of the screen, keep it stuck there. */
         position: sticky; 
+        /* It “sticks” to the top of the viewport */
         top: 0; 
+        /* z-index: 1000; is used to control which element appears on top of others. */
         z-index: 1000;
         height: var(--nav-h);
         background: #0b2f33;
+        /* Blurs whatever is behind the element, not the element itself. */
         backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        /* ensures blur works on Apple devices */
+        /* filter-webkit-backdrop- -> This is for older Safari / iOS support. */
+        filter-webkit-backdrop-: blur(18px);
+        /* Adds a thin line at the bottom of the element. */
         border-bottom: 1px solid var(--glass-border);
         display: flex; 
         align-items: center;
         /* justify-content: space-between; */
         padding: 0 clamp(1rem,5vw,3rem);   /*padding <top-buttom><left-right>*/
-        gap: 2rem;}
+        gap: 2rem;
+      }
       .nav-links {
           display:flex; 
           gap:0.2rem; 
+          /* This removes the default bullet points or numbers from lists */
           list-style:none; 
           margin-left:auto; 
-          align-items:center; }
+          align-items:center; 
+        }
+      /* hovering effect - You move your mouse over a menu button */
       .nav-links li button:hover,
+      /* active - highlight used to show “current page” */
       .nav-links li button.active { 
           color:rgb(198, 248, 237); 
           background:rgba(140, 122, 122, 0.35); 
-  }
+      }
       .nav-links li button {
         display:block; 
         padding:0.45rem 0.9rem; 
@@ -110,7 +126,8 @@
         margin-left:auto; 
         padding:6px; 
         background:none; 
-        border:none;}
+        border:none;
+      }
       .nav-toggle span {      
           display:block; 
           width:24px; 
@@ -125,8 +142,6 @@
         width: 36px; 
         height: 36px; 
         background: linear-gradient(90deg, #72ddc9ab, #034637a5);
-
-        /* background: var(--teal-light); */
         border-radius: 50%;
       /*this is for the logo design*/
         display: flex;   
@@ -135,7 +150,8 @@
         font-size: 1.5rem; 
         box-shadow: 0 0 12px rgba(15, 8, 212, 0.45);
         transition: transform var(--t), 
-        box-shadow var(--t);}
+        box-shadow var(--t);
+      }
       .nav-brand:hover .ci { 
           transform: rotate(45deg); 
           box-shadow: 0 0 22px rgba(2, 168, 168, 0.7); 
@@ -146,10 +162,12 @@
           font-family:'Playfair Display',serif; 
           font-size:1.35rem; 
           font-weight:700; 
-          color:var(--white);}
+          color:var(--white);
+      }
       .nav-brand span em { 
           color:var(--teal-light); 
-          font-style:normal; }
+          font-style:normal; 
+      }
       .nav-brand {
         display: flex; 
         align-items: center; 
@@ -166,40 +184,30 @@
           display:none; 
           animation: fadeUp 0.55s ease both;} 
       .page.active { 
-          display:block;}
-      @keyframes fadeUp {                                        /*adding animation transition - fadeUp */
+          display:block;
+      }
+      /* the element gently rises into view */
+      @keyframes fadeUp {  /* @kkeyframes -> adding animation transition - fadeUp */
         from { opacity:0; 
-          transform:translateY(22px);}
+          transform:translateY(22px);
+        }
         to   { 
           opacity:1; 
-          transform:translateY(0);}
+          transform:translateY(0);
+        }
       }
-
       .section {
         padding: clamp(3rem,7vw,5rem) clamp(1rem,5vw,3rem);  /*top&buttom left&right - Min, Ideal, Max*/
         max-width: 1160px;                                   /* max width- the space the items takes*/
         margin: 0 auto;                                      /* to bring items in center*/
         width: 100%;
       }
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-      /* ══════════════ STORY ══════════════ */
-      /* homepage screen overall*/
-      /* intro overlay */
+   /* ══════════════ STORY ══════════════ */
+   /* homepage screen overall*/
+   /* intro overlay */
     #intro{
     position: fixed;
+    /* sticker is stretched to cover the entire inside of the box -> top, bottom, left, right */
     inset: 0;
     background:url(https://i.pinimg.com/736x/46/08/08/460808987ed4e8c3468e58377b417c14.jpg)
     center/cover no-repeat fixed;
@@ -208,6 +216,7 @@
     justify-content: center;
     color: var(--cream);
     z-index: 2000;
+    /* If content overflows vertically, show a scrollbar (only when needed). */
     overflow-y: auto; 
   }
   /* centers and caps the width */
@@ -221,17 +230,13 @@
     top: 1.5rem;
     right: 1.5rem;
     z-index: 3000;
-
     font-size: clamp(14px, 1.2vw, 18px);
     font-family: 'Courier New', Courier, monospace;
     font-weight: 800;
-
     color: rgb(247, 232, 242);
-
     border: 2px solid rgb(69, 47, 47);
     border-radius: 20px;
     background: rgba(78, 60, 71, 0.564);
-
     padding: 0.4rem 0.8rem;
     letter-spacing: 0.05em;
     cursor: pointer;
@@ -243,6 +248,7 @@
     text-decoration-thickness: 1.5px; */
     transform: translateY(-2px);
   }
+
   /*========== story card ======================*/
   /* Story - Container updates */
 .story {
@@ -369,20 +375,7 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Optional elegant shadow */
 }
 
-/* Responsive design: Stack text on top of image on mobile screens */
-@media (max-width: 768px) {
-  .story-grid-container {
-    grid-template-columns: 1fr;   /* Change to a single column */
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .side-story-image {
-    max-width: 280px;            /* Slightly smaller image on mobile devices */
-  }
-}
 /* Story - Introduction box */
-
 .stat-callout.welcome-accent {
   background-color: var(--cream); /* Soft, clean light green tint */
   border-left: 5px solid var(--teal-dark); /* Bright green accent line for a positive welcome */
@@ -399,27 +392,17 @@
   object-fit: contain;
 }
 
-/* Reusing our responsive grid structure from earlier */
-.story-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.story-image-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.side-story-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+/* Responsive design: Stack text on top of image on mobile screens */
+@media (max-width: 768px) {
+  .story-grid-container {
+    grid-template-columns: 1fr;   /* Change to a single column */
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .side-story-image {
+    max-width: 280px;            /* Slightly smaller image on mobile devices */
+  }
 }
 
 @media (max-width: 768px) {
@@ -429,10 +412,6 @@
     text-align: center;
   }
 }
-
-/* ==========================================================================
-   RESPONSIVE DESIGN: TABLETS & PHONES (TeleCompass Story Mode)
-   ========================================================================== */
 
 /* 1. TABLET BREAKPOINT (Screens smaller than 992px) */
 @media screen and (max-width: 992px) {
