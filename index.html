@@ -266,7 +266,8 @@
               <div class="q-sub">We're here to listen to your feedback</div>
             </div>
           </div>
-              </div>
+        </div> 
+
 
 <!-- ========================================================================================================================================= -->
       <!-- ══════════════ ABOUT PAGE ══════════════ -->
@@ -438,89 +439,124 @@
         </div>
 
         <!-- ========================================================================================================================================= -->
-          <!----------------------- Quiz Form package -------------------------------->
-          <!-- ask 3 questions - quiz -->
-          <!-- main white card box holding everything -->
-          <!-- white card - CSS card -->
-          <div class="white-card" style="margin-bottom:4rem;">
-          <!-- styles the view -->
-          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
-              <!-- the design around 📡sign -->
-              <div style="width:40px; height:40px; background:var(--teal-light); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">📡</div>
-              <h2 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--teal-dark);">Find Your Best Connectivity</h2>
-          </div>
-          <!-- cant use gap without display:flex -->
-            <p style="color:var(--text-dark); font-size:0.9rem; margin-bottom:1.75rem; font-weight:600;">👉Let us help you enjoy a better experience with available telecommunication services.👈</p>
-            <!-- no need of display:grid -->
-            <div class="two-col" style="gap:1.5rem;">
+          <!-- QUIZ SECTION -->
+<div class="quiz-card">
 
-      <!-- Question 1 -->
-              <!-- name for styling CSS -->
-              <!-- one big box -->
-              <div class="form-group">
-                <!-- question title -->
-                <h3>Your Location</h3>
-                <!-- container - groups all the options together -->
-                <!-- a neat organized box -->
-                <div class="radio-group">
-                  <!-- <label> - clicking - select radio button -->
-                  <label><input type="radio" name="location" value="urban" /> Urban area (Thimphu, Phuentsholing, Gelephu.)</label>
-                  <label><input type="radio" name="location" value="semi" /> Semi-urban (Dzongkhag town)</label>
-                  <label><input type="radio" name="location" value="rural" /> Rural / Remote</label>
-                  <label><input type="radio" name="location" value="high altitude" /> High altitude area</label>
-      <!-- Question 2 -->
-                </div>
-              </div>
-              <div class="form-group">
-                <h3>Primary Purpose</h3>
-                <div class="radio-group">
-                  <!-- &amp - ampersand - used for html coding since browser can misread if not used -->
-                  <label><input type="radio" name="purpose" value="social"/> Social media &amp; browsing</label>
-                  <label><input type="radio" name="purpose" value="work"/> Remote work / Video conferencing / zoom meeting</label>
-                  <label><input type="radio" name="purpose" value="business"/> Business / Enterprise</label>
-                  <label><input type="radio" name="purpose" value="gaming"/> Streaming &amp; gaming</label>
-                </div>
-              </div>
-            </div>
-            <!-- input type = "radio" - You want the user to choose ONLY ONE option from many choices. -->
+  <!-- heading -->
+  <div class="quiz-header">
+    <div class="quiz-icon">📡</div>
+    <h2>Find Your Best Connectivity</h2>
+  </div>
 
-            <div class="form-group" style="margin-top:0.5rem;">
-              <h3>Occupation</h3>
-              <select id="occupation">
-                <option value="" disabled selected>Select Your Occupation…</option>
-                <option value="student">Student</option>
-                <option value="civil">Civil Servant / Government</option>
-                <option value="private">Private Sector Employee</option>
-                <option value="farmer">Farmer / Self-employed</option>
-                <option value="entrepreneur">Entrepreneur / Business Owner</option>
-                <option value="digital">Digital Nomad</option>
-                <option value="other">Other...</option>
-              </select>
-            </div>
+  <p class="quiz-subtitle">
+    👉 Let us help you enjoy a better experience with available telecommunication services. 👈
+  </p>
 
-            <!-- wrap - ✔ move to next line
-                        ✔ stay readable
-                        ✔ adjust to screen size -->
-            
-            <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
-              <!-- onclick - run javascript function -->
-              <!-- two classes 1.btn - common for all button -->
-                <!-- what it looks like depeds on CSS -->
+  <!-- TWO COLUMN QUESTIONS -->
+  <div class="quiz-grid">
 
-              <button class="btn btn-gold" onclick="submitQuiz()">🔍 Find My Provider</button>
-              <button class="btn btn-outline" onclick="resetQuiz()"style="color:var(--teal-dark);border-color:var(--teal);">↩ Start Over</button>
-              <button class="btn btn-teal" onclick="showPage('home')">🏠 Return Home</button>
-            </div>
-            <!-- output area -->
-            <!-- css styling for result box -->
-            <div class="success-msg" id="quizResult"></div>
-          </div>
-        </section>
+    <!-- QUESTION 1 -->
+    <div class="quiz-group">
+      <h3>Your Location</h3>
+
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="location" value="urban">
+          Urban area (Thimphu, Phuentsholing, Gelephu.)
+        </label>
+
+        <label>
+          <input type="radio" name="location" value="semi">
+          Semi-urban (Dzongkhag town)
+        </label>
+
+        <label>
+          <input type="radio" name="location" value="rural">
+          Rural / Remote
+        </label>
+
+        <label>
+          <input type="radio" name="location" value="high-altitude">
+          High altitude area
+        </label>
       </div>
+    </div>
+
+    <!-- QUESTION 2 -->
+    <div class="quiz-group">
+      <h3>Primary Purpose</h3>
+
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="purpose" value="social">
+          Social media &amp; browsing
+        </label>
+
+        <label>
+          <input type="radio" name="purpose" value="work">
+          Remote work / Video conferencing / Zoom meeting
+        </label>
+
+        <label>
+          <input type="radio" name="purpose" value="business">
+          Business / Enterprise
+        </label>
+
+        <label>
+          <input type="radio" name="purpose" value="gaming">
+          Streaming &amp; gaming
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OCCUPATION -->
+  <div class="quiz-group occupation-box">
+    <h3>Occupation</h3>
+
+    <select id="occupation">
+      <option value="" disabled selected>Select Your Occupation...</option>
+      <option value="student">Student</option>
+      <option value="civil">Civil Servant / Government</option>
+      <option value="private">Private Sector Employee</option>
+      <option value="farmer">Farmer / Self-employed</option>
+      <option value="entrepreneur">Entrepreneur / Business Owner</option>
+      <option value="digital">Digital Nomad</option>
+      <option value="other">Other...</option>
+    </select>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="quiz-buttons">
+
+    <button class="btn btn-gold" onclick="submitQuiz()">
+      🔍 Find My Provider
+    </button>
+
+    <button class="btn btn-outline"
+      onclick="resetQuiz()"
+      style="color:var(--teal-dark); border-color:var(--teal);">
+
+      ↩ Start Over
+    </button>
+
+    <button class="btn btn-teal" onclick="showPage('home')">
+      🏠 Return Home
+    </button>
+
+  </div>
+
+  <!-- RESULT -->
+  <div class="success-msg" id="quizResult"></div>
+
+</div>
 <!-- ========================================================================================================================================= -->
 
-
-
+        <div class="provider-heading">
+          <h2>Recommended Providers For You</h2>
+          <p>Click any provider card or the provider to explore plans, coverage and services.</p>
+        </div>
         <section class="section" style="padding-top:0;">  
           <div class="company-grid">
 
@@ -612,28 +648,8 @@
               </tbody>
             </table>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
+      </div>
 
       <!-- ══════════════ CONTACT PAGE ══════════════ -->
 <div class="page" id="page-contact">
@@ -661,18 +677,6 @@
         <p style="color:var(--text-mid);font-size:0.88rem;margin-bottom:1.75rem;">
           Fill in the form and we'll respond within 2 business days.
         </p>
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- form spree -->
 
