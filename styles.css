@@ -369,7 +369,7 @@
 /* Style the storytelling image to fit its column perfectly */
 .side-story-image {
   width: 100%;
-  max-width: 400px;              /* Adjust max-width based on your layout size */
+  max-width: 600px;              /* Adjust max-width based on your layout size */
   height: auto;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Optional elegant shadow */
