@@ -846,7 +846,8 @@
       }
       /* view dashboard in homepage - all the floating buttons with btn-gold class*/
       .btn-gold { 
-        background:var(--teal-light); 
+        color:var(--white);
+        background: rgb(71, 79, 77); 
         border-color:var(--teal); 
         }    
       .btn-gold:hover { 
@@ -855,7 +856,9 @@
         transform:translateY(-2px); 
       }
       .btn-option { 
-        background:var(--cream); 
+        font-family:comic sans ms, cursive, sans-serif;
+        color:var(--cream); 
+        background:var(--teal-dark);
         border-color:var(--teal); 
         }    
       .btn-option:hover { 
