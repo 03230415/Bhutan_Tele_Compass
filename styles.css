@@ -713,7 +713,7 @@
         transform:translateY(-2px); 
       }
       .btn-option { 
-        font-family:comic sans ms, cursive, sans-serif;
+        font-family:"comic sans ms", 'Nunito', sans-serif;
         color:var(--cream); 
         background:var(--teal-dark);
         border-color:var(--teal); 
