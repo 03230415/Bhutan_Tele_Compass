@@ -1,10 +1,3 @@
-       /* ═══════════════════════════════════════════════════════════
-        TeleCompass — Single Page Application
-        Aesthetic: Himalayan Altitude · Teal + Saffron + Glass
-      ═══════════════════════════════════════════════════════════ */
-
-
-  /* this are the color code to be used in later code */
       :root {
         --teal:        #0d4f5c;
         --teal-light: #0c7576;
@@ -27,12 +20,7 @@
         --nav-h:       68px;
         --t:           0.3s cubic-bezier(0.4,0,0.2,1);
       }
-
-
-      /* ========================================================================================================================================= */
-
-
-
+/* ========================================================================================================================================= */
 /* pseudo - applying same padding and margin to all normal elements */
       *, *::before, *::after { 
         /* border-boxing - ensures padding and border are included in the element's total width and height */
@@ -137,25 +125,8 @@
       transform: translateY(-1px); 
       /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);  */
     }
-      /* phone navigation  */
-      .nav-toggle {
-        display:none; 
-        flex-direction:column; 
-        gap:5px; 
-        cursor:pointer;
-        margin-left:auto; 
-        padding:6px; 
-        background:none; 
-        border:none;
-      }
-      .nav-toggle span {      
-          display:block; 
-          width:24px; 
-          height:2px; 
-          background:var(--white); 
-          border-radius:2px; 
-          transition:all var(--t); 
-      }
+
+     /* logo */
   /* .ci - ci i labeled */
       .nav-brand .ci {
       /* the thing around the compass logo */
@@ -177,7 +148,7 @@
           box-shadow: 0 0 22px rgba(2, 168, 168, 0.7); 
       }
 
-      /* logo design */
+      /* logo design - TeleCompass */
       .nav-brand span { 
           font-family:'Playfair Display',serif; 
           font-size:1.35rem; 
@@ -196,7 +167,6 @@
         flex-shrink: 0; 
         cursor: pointer;
       }
-
 
       /* ══════════════ PAGE SECTIONS ══════════════ */
   /* display page - each section is given to their respective section */
@@ -222,7 +192,35 @@
         margin: 0 auto;                                      /* to bring items in center*/
         width: 100%;
       }
-   /* ══════════════ STORY ══════════════ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* ══════════════ STORY PAGE ══════════════ */
    /* homepage screen overall*/
    /* intro overlay */
     #intro{
@@ -244,7 +242,6 @@
     padding: 30px;
     border-radius: 16px;
   }
-
   .btn-skip {
     position: absolute;
     top: 1.5rem;
@@ -261,30 +258,22 @@
     letter-spacing: 0.05em;
     cursor: pointer;
   }
-
   .btn-skip:hover {
-    /* background: rgba(33, 30, 37, 0.422); */
-    /* text-decoration:underline;
-    text-decoration-thickness: 1.5px; */
     transform: translateY(-2px);
   }
-
-  /*========== story card ======================*/
-  /* Story - Container updates */
+  /* story card */
 .story {
   max-width: 750px; 
   height: auto;
   margin: 40px auto;
   padding: 40px;
-  font-family:comic sans ms, cursive, sans-serif;
+  font-family:"comic sans ms", 'Nunito';
   background: rgb(1, 31, 44); /* Deeper contrast background */
   border-radius: 1.5rem;
   border: 3px solid rgba(255, 255, 255, 0.5); 
   color: #ffffff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-
 }
-
 .story-title {
   text-align: center; 
   background: linear-gradient(90deg, #ebd846, #f26118);
@@ -294,7 +283,6 @@
   font-weight: 800;
   margin-bottom: 5px;
 }
-
 .story-subtitle {
   text-align: center;
   color: #ccc;
@@ -302,25 +290,21 @@
   font-weight: 400;
   margin-top: 0;
 }
-
 .story-divider {
   border: 0;
   height: 1px;
   background: rgba(255,255,255,0.1);
   margin: 20px 0;
 }
-
 /* Step Switching Visibility Logic */
 .story-step {
   display: none;
   min-height: 220px; /* Prevents container from shifting heights unexpectedly */
 }
-
 .story-step.active-step {
   display: block;
   animation: fadeIn 0.4s ease-in-out;
 }
-
 /* Highlight boxes for costs */
 .stat-callout {
   background: rgba(2, 56, 31, 0.299);
@@ -330,7 +314,6 @@
   border-radius: 0 8px 8px 0;
   font-size: 17px;
 }
-
 .story p {
   text-align: left;
   margin-top: 1.2rem;
@@ -338,7 +321,6 @@
   line-height: 1.7; 
   color: #e0e0e0;     
 }
-
 /* Progress Tracker Dots */
 .story-progress {
   display: flex;
@@ -346,7 +328,6 @@
   gap: 12px;
   margin-bottom: 25px;
 }
-
 .story-progress .dot {
   width: 12px;
   height: 12px;
@@ -355,13 +336,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .story-progress .dot.active {
   background: #d47c62;
   transform: scale(1.3);
   box-shadow: 0 0 8px #f0e959;
 }
-
 /* Interactive Navigation System */
 .story-navigation {
   display: flex;
@@ -369,7 +348,6 @@
   align-items: center;
   margin-top: 30px;
 }
-
 /* Create the side-by-side layout using CSS Grid */
 .story-grid-container {
   display: grid;
@@ -378,14 +356,12 @@
   align-items: center;            /* Vertically center align both sides */
   margin-top: 20px;
 }
-
 /* Ensure the image container scales properly */
 .story-image-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 /* Style the storytelling image to fit its column perfectly */
 .side-story-image {
   width: 100%;
@@ -394,7 +370,6 @@
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Optional elegant shadow */
 }
-
 /* Story - Introduction box */
 .stat-callout.welcome-accent {
   background-color: var(--cream); /* Soft, clean light green tint */
@@ -404,137 +379,11 @@
   border-radius: 8px;
   margin-top: 20px;
 }
-
 /* Ensure the landing character doesn't stretch awkwardly */
 .landing-character {
   max-height: 400px;
   width: auto;
   object-fit: contain;
-}
-
-/* Responsive design: Stack text on top of image on mobile screens */
-@media (max-width: 768px) {
-  .story-grid-container {
-    grid-template-columns: 1fr;   /* Change to a single column */
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .side-story-image {
-    max-width: 280px;            /* Slightly smaller image on mobile devices */
-  }
-}
-
-@media (max-width: 768px) {
-  .story-grid-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    text-align: center;
-  }
-}
-
-/* 1. TABLET BREAKPOINT (Screens smaller than 992px) */
-@media screen and (max-width: 992px) {
-  .story-grid-container {
-    display: flex !important;
-    flex-direction: column !important; /* Stack image and text vertically */
-    align-items: center !important;
-    text-align: center !important;
-    gap: 1.5rem !important;
-  }
-
-  /* Swap text/image visual order for step 2 & 3 so header stays on top */
-  #step-2 .story-grid-container,
-  #step-3 .story-grid-container {
-    flex-direction: column-reverse !important;
-  }
-
-  /* Adjust final closure step imagery layout */
-  .closure-images-container {
-    gap: 1.5rem !important;
-    margin-bottom: 2rem !important;
-  }
-
-  /* Force image constraints so they don't break containers */
-  .story-image-wrap img, 
-  .closure-images-container img {
-    max-width: 90% !important;
-    height: auto !important;
-  }
-
-  /* Adjust welcome image on tablets */
-  .closure-images-container img[src="welcome.png"] {
-    width: 20rem !important; 
-  }
-}
-
-/* 2. MOBILE PHONE BREAKPOINT (Screens smaller than 576px) */
-@media screen and (max-width: 576px) {
-  #intro {
-    padding: 10px !important;
-  }
-
-  .intro-box {
-    padding: 15px !important;
-    border-radius: 1rem !important;
-  }
-
-  /* Font Scaling for small viewports */
-  .story-title {
-    font-size: 1.5rem !important;
-    line-height: 1.3 !important;
-  }
-
-  .story-subtitle {
-    font-size: 1.1rem !important;
-  }
-
-  .story-intro {
-    font-size: 1.3rem !important;
-  }
-
-  p {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-  }
-
-  /* Custom component adjustments */
-  .stat-callout {
-    padding: 12px !important;
-    font-size: 0.95rem !important;
-    margin-top: 1rem !important;
-  }
-
-  /* Handle Step 5 graphics for tight mobile screens */
-  .closure-images-container img[src="welcome.png"] {
-    width: 85vw !important; /* Dynamically maps to viewport width */
-  }
-
-  .closure-images-container img[src="image.png"] {
-    width: 45vw !important;
-    transform: rotate(-4deg) !important; /* Reduce tilt angle on mobile */
-  }
-
-  /* Optimize Navigation Button Layout */
-  .story-navigation {
-    display: flex !important;
-    justify-content: space-between !important;
-    gap: 10px !important;
-    margin-top: 1.5rem !important;
-  }
-
-  .btn-nav {
-    padding: 10px 16px !important;
-    font-size: 0.95rem !important;
-    flex: 1 !important; /* Buttons share screen width equally */
-    text-align: center !important;
-  }
-  
-  .btn-skip {
-    top: 10px !important;
-    right: 10px !important;
-    font-size: 0.85rem !important;
-  }
 }
 
 /* Fix for Step 5 Alignment Hierarchy on Laptop/Desktop Screens */
@@ -554,13 +403,8 @@
   max-width: 100% !important;
   /* Scales the wide canvas illustration on smaller laptops so it stays within safe viewport bounds */
   width: clamp(16rem, 35vw, 24rem) !important; 
+/* back and next chapter button */
 }
-
-
-
-
-
-
 .btn-nav {
   padding: 10px 20px;
   border: 1px solid rgba(255,255,255,0.3);
@@ -605,12 +449,28 @@
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-      /* MOBILE */
-      @media (max-width: 700px) {
-        .story { padding: 2rem 1.25rem; }
-        .story p { font-size: 0.92rem; }
-      }
+      
+      /* main */
       .btn-go{
         display: block;
         margin: 3rem auto;
@@ -744,9 +604,6 @@
         letter-spacing:0.04em; 
         box-shadow:var(--shadow-sm);
       }
-
-
-
 
       /* ══════════════ QUICK-LINKS GRID ══════════════ */
       /* the navbar below */
@@ -1101,17 +958,6 @@
   display: block;
 }
 
-/* MOBILE — shrink further on small screens */
-@media (max-width: 700px) {
-  .tableau-wrapper {
-    border-radius: var(--radius-sm);
-    min-height: 0;
-  }
-  .tableau-wrapper iframe {
-    height: clamp(320px, 80vw, 500px);
-  }
-}
-
       /* ══════════════ FORMS ══════════════ */
       /* the form from both companies and contact section */
       .form-group { 
@@ -1263,47 +1109,6 @@
       }
 
       /* ══════════════ RESPONSIVE ══════════════ */
-      /*///// for phone ////////*/
-      /* nav bar remains hidden unless javascript for nav opens 
-      rest are for styling the nav link on phone which remains hidden behind the bar */
-      @media(max-width:700px){
-        .hero-inner { 
-          grid-template-columns:1fr; 
-          gap:2.5rem; 
-        }
-        .two-col { 
-          grid-template-columns:1fr; 
-        }
-      }
-
-@media(max-width:700px){
-  .nav-links {
-    display:none; 
-    flex-direction:column;
-    position:fixed;
-    top:var(--nav-h); 
-    left:0; right:0;
-    background:rgba(8,46,54,0.97); 
-    padding:1rem;
-    border-bottom:1px solid var(--glass-border); 
-    gap:0.15rem;
-  }
-  .nav-links.open { 
-    display:flex; 
-  }
-  .nav-links li button { 
-    padding:0.75rem 1rem; 
-    font-size:1rem; 
-    width:100%; 
-    text-align:left; 
-  }
-  .nav-toggle { display:flex; }
-  nav { position:fixed; width:100%; }
-  .page-bg { padding-top: var(--nav-h); }
-}
-  /* IMPORTANT: prevents anchor links (#section) from hiding under fixed navbar */
-  /* scroll padding for sticky nav */    
-
 
   /* best company service choice */
   /* QUIZ CARD */
@@ -1454,3 +1259,216 @@
   color:#d8e7e8;
   font-size:0.95rem;
 }
+
+/* ==================== Mobile phone display code ================================== */
+
+/* 1 */
+ /* phone navigation (☰) */
+      .nav-toggle {
+        display:none; 
+        flex-direction:column; 
+        gap:5px; 
+        cursor:pointer;
+        margin-left:auto; 
+        padding:6px; 
+        background:none; 
+        border:none;
+      }
+      .nav-toggle span {      
+      /* This targets the HTML <span> elements sitting inside your button container. */
+          display:block; 
+          width:24px; 
+          height:2px; 
+          background:var(--white); 
+          border-radius:2px; 
+          transition:all var(--t); 
+      }
+
+      /* 2 */
+
+            /*///// for phone ////////*/
+      /* nav bar remains hidden unless javascript for nav opens 
+      rest are for styling the nav link on phone which remains hidden behind the bar */
+      @media(max-width:700px){
+        .hero-inner { 
+          grid-template-columns:1fr; 
+          gap:2.5rem; 
+        }
+        .two-col { 
+          grid-template-columns:1fr; 
+        }
+      }
+
+@media(max-width:700px){
+  .nav-links {
+    display:none; 
+    flex-direction:column;
+    position:fixed;
+    top:var(--nav-h); 
+    left:0; right:0;
+    background:rgba(8,46,54,0.97); 
+    padding:1rem;
+    border-bottom:1px solid var(--glass-border); 
+    gap:0.15rem;
+  }
+  .nav-links.open { 
+    display:flex; 
+  }
+  .nav-links li button { 
+    padding:0.75rem 1rem; 
+    font-size:1rem; 
+    width:100%; 
+    text-align:left; 
+  }
+  .nav-toggle { display:flex; }
+  nav { position:fixed; width:100%; }
+  .page-bg { padding-top: var(--nav-h); }
+}
+  /* IMPORTANT: prevents anchor links (#section) from hiding under fixed navbar */
+  /* scroll padding for sticky nav */    
+
+
+      /* 3 */
+      /* storyboard */
+/* Responsive design: Stack text on top of image on mobile screens */
+@media (max-width: 768px) {
+  .story-grid-container {
+    grid-template-columns: 1fr;   /* Change to a single column */
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .side-story-image {
+    max-width: 280px;            /* Slightly smaller image on mobile devices */
+  }
+}
+
+@media (max-width: 768px) {
+  .story-grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* 1. TABLET BREAKPOINT (Screens smaller than 992px) */
+@media screen and (max-width: 992px) {
+  .story-grid-container {
+    display: flex !important;
+    flex-direction: column !important; /* Stack image and text vertically */
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Swap text/image visual order for step 2 & 3 so header stays on top */
+  #step-2 .story-grid-container,
+  #step-3 .story-grid-container {
+    flex-direction: column-reverse !important;
+  }
+
+  /* Adjust final closure step imagery layout */
+  .closure-images-container {
+    gap: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Force image constraints so they don't break containers */
+  .story-image-wrap img, 
+  .closure-images-container img {
+    max-width: 90% !important;
+    height: auto !important;
+  }
+
+  /* Adjust welcome image on tablets */
+  .closure-images-container img[src="welcome.png"] {
+    width: 20rem !important; 
+  }
+}
+
+/* 2. MOBILE PHONE BREAKPOINT (Screens smaller than 576px) */
+@media screen and (max-width: 576px) {
+  #intro {
+    padding: 10px !important;
+  }
+
+  .intro-box {
+    padding: 15px !important;
+    border-radius: 1rem !important;
+  }
+
+  /* Font Scaling for small viewports */
+  .story-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .story-subtitle {
+    font-size: 1.1rem !important;
+  }
+
+  .story-intro {
+    font-size: 1.3rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Custom component adjustments */
+  .stat-callout {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Handle Step 5 graphics for tight mobile screens */
+  .closure-images-container img[src="welcome.png"] {
+    width: 85vw !important; /* Dynamically maps to viewport width */
+  }
+
+  .closure-images-container img[src="image.png"] {
+    width: 45vw !important;
+    transform: rotate(-4deg) !important; /* Reduce tilt angle on mobile */
+  }
+
+  /* Optimize Navigation Button Layout */
+  .story-navigation {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .btn-nav {
+    padding: 10px 16px !important;
+    font-size: 0.95rem !important;
+    flex: 1 !important; /* Buttons share screen width equally */
+    text-align: center !important;
+  }
+  
+  .btn-skip {
+    top: 10px !important;
+    right: 10px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* MOBILE */
+      @media (max-width: 700px) {
+        .story { padding: 2rem 1.25rem; }
+        .story p { font-size: 0.92rem; }
+      }
+
+      /* tableau - dashboard */
+      /* MOBILE — shrink further on small screens */
+    @media (max-width: 700px) {
+      .tableau-wrapper {
+        border-radius: var(--radius-sm);
+        min-height: 0;
+      }
+      .tableau-wrapper iframe {
+        height: clamp(320px, 80vw, 500px);
+      }
+    }
