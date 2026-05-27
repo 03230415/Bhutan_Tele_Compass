@@ -410,28 +410,73 @@
       gap: 40px;                      
       align-items: center;            
       margin-top: 20px;
+      max-width: 700px; 
+    }
+    .story-text{
+      max-width: 100%; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: column; 
     }
     /* Ensure the image container scales properly */
-    .story-image-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    /* Style the storytelling image to fit its column perfectly */
-    .side-story-image {
-      width: 100%;
-      max-width: 600px;              
+    .story-image-wrap img {
+      max-width: 100%;
       height: auto;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); 
+      display: block;
+      margin: 0 auto;
     }
-
-
-
-
-
-
-
+    .trouble-img{
+      width:13rem; 
+      padding:auto; 
+      border-radius:1.2rem;
+    }
+    .warn-img{
+      width:13rem; 
+      padding:auto; 
+      border-radius:1.2rem;
+    }
+    .wifi-img{
+      width:13rem; 
+      padding:auto; 
+      border-radius:1.2rem;
+    }
+    .closing-image{
+      width: 13rem; 
+      height: auto; 
+      border-radius: 1.2rem; 
+      transform: rotate(-6deg); 
+      box-shadow: 0 8px 20px -5px rgba(0,0,0,0.25); 
+      filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.15));
+    }
+    .solution-img{
+      width: 25rem; 
+      height: auto; 
+      border-radius: 1.2rem; 
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); 
+      transition: transform 0.3s ease;
+    }
+    .closure-notes{
+      max-width: 580px; 
+      margin: 0 auto;
+    }
+    .paralysis{
+      font-size: 1.25rem; 
+      line-height: 1.6; 
+      color: #f1f5f9;  
+      margin-bottom: 0.75rem; 
+      letter-spacing: -0.01em;
+    }
+    .decision{
+      font-size: 1.05rem; 
+      line-height: 1.6; 
+      color: #94a3b8; 
+      margin: 0; 
+      border:2px solid rgba(136, 207, 161, 0.703); 
+      padding: 15px; 
+      border-radius: 10px; 
+      background:var(--teal-dark);
+      border-left:3px solid orange;
+    }
 
 
 
@@ -447,6 +492,13 @@
 
 
     
+
+
+
+
+
+
+
     /* Story - Introduction box */
     .stat-callout.welcome-accent {
       background-color: var(--cream); /* Soft, clean light green tint */
@@ -462,6 +514,13 @@
       width: auto;
       object-fit: contain;
     }
+    .side-story-image {
+      width: 100%;
+      max-width: 600px;              
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); 
+    }
 
     /* Fix for Step 5 Alignment Hierarchy on Laptop/Desktop Screens */
     #step-5.active-step {
@@ -476,11 +535,9 @@
       width: 100%;
     }
 
-    #step-5 .closure-images-container img[src="welcome.png"] {
-      max-width: 100% !important;
-      /* Scales the wide canvas illustration on smaller laptops so it stays within safe viewport bounds */
-      width: clamp(16rem, 35vw, 24rem) !important; 
-    /* back and next chapter button */
+    #step-5 .closure-images-container img[src="solution.png"] {
+      max-width: 100%;
+      width: clamp(16rem, 35vw, 24rem); 
     }
     .btn-nav {
       padding: 10px 20px;
@@ -570,13 +627,7 @@
         margin-bottom: 2rem !important;
       }
 
-      /* Force image constraints so they don't break containers */
-      .story-image-wrap img, 
-      .closure-images-container img {
-        max-width: 90% !important;
-        height: auto !important;
-      }
-
+     
       /* Adjust welcome image on tablets */
       .closure-images-container img[src="welcome.png"] {
         width: 20rem !important; 
