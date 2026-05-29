@@ -15,10 +15,8 @@
   </head>
 
   <body>
-
     <!-- ══════════════ NAVBAR ══════════════ -->
      <div class="page-bg">
-      
     <!-- The main navigation section of your website -->
     <nav id="mainNav">
       <!-- display the logo -->
@@ -31,7 +29,6 @@
           <!-- “em” = emphasis tag - makes text italic by default -->
         <span>Tele<em>Compass</em></span>
       </div>
-
       <!-- js for nav bar -->
         <!-- This is your navigation menu list -->
         <!-- nav-links - CSS target     navLinks - javascripthook-->
@@ -43,53 +40,44 @@
           <li><button type="button" onclick="showPage('dashboard')" id="nav-dashboard">Dashboard</button></li>
           <li><button type="button" onclick="showPage('company')" id="nav-company" class="company">Telecom Companies</button></li>        
           <li><button type="button" onclick="showPage('contact')" id="nav-contact">Contact Us</button></li>
-      
-        </ul>
-
-        <!-- ══════════════ ☰ (menu icon) ══════════════ -->
-      
+      </ul>
+        <!-- ══════════════ ☰ (menu icon) ══════════════ -->   
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
-
     </nav>
         <!-- ══════════════ STORY BOARD ══════════════ -->
-
     <div id="intro">
       <button class="btn-skip" onclick="enterSite()">skip the story →</button>
-
       <div class="intro-box">
         <div class="story">
           <h2 class="greeting" id="greeting"></h2>
-          
           <div class="story-progress">   <!--  container holding all dots -->
             <!-- each span creates a dot -->
             <!-- id - gives each dot a unique identifier ---- Needed so JavaScript can target specific dots later -->
             <!-- class dot active - indicates the current step ---- Without active, all dots look the same -->
+            
             <span class="dot active" id="dot-1" onclick="goToStep(1)"></span>
             <span class="dot" id="dot-2" onclick="goToStep(2)"></span>
             <span class="dot" id="dot-3" onclick="goToStep(3)"></span>
             <span class="dot" id="dot-4" onclick="goToStep(4)"></span>
             <span class="dot" id="dot-5" onclick="goToStep(5)"></span>
           </div>
-
           <!-- displayed on all pages -->
           <h1 class="story-title">Telecommunication Service Usage in Bhutan</h1>
-          <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>
-          
+          <h3 class="story-subtitle">TeleCompass — A Guide for Better Connectivity</h3>        
           <hr class="story-divider">
-
           <!-- active-step - indicates the current step -->
           <div class="story-step active-step" id="step-1">
             <div class="story-grid-container">
               <div class="story-image-wrap">
-                <img src="introduction.png" alt="Introduction Comic" class="side-story-image landing-character">
+                <img src="images/introduction.png" alt="Introduction Comic" class="side-story-image landing-character">
               </div>
               <div class="story-text">
                 <h3 class="story-intro">Introduction</h3>
                 <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
                 <div class="stat-callout welcome-accent">
-                  Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);">TeleCompass</strong>!
+                  Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);" >TeleCompass</strong>!
                 </div>
               </div>
             </div>
@@ -102,7 +90,7 @@
                 <p>When I started working remotely as an intern at Bhutan Data Scientists Pvt. Ltd., I depended heavily on mobile data for everything—online research, Zoom meetings, and daily tasks.</p>
               </div>
               <div>
-              <img src="trouble.png" alt="Problem Comic" class="trouble-img">
+              <img src="images/trouble.png" alt="Problem Comic" class="trouble-img">
               </div>
             </div>
             <div class="stat-callout">
@@ -117,7 +105,7 @@
                 <p>I desperately wanted to switch to Wi-Fi to save money, but uncertainty held me back. When I visited the service counters, the agents were direct and serious. They warned me with rigid warnings like: <em>"We have a strict no-refund policy, and we cannot guarantee signal strength at your exact location."</em></p>
               </div>    
               <div>
-                <img src="warning.png" alt="decision paralysis Comic" class="warn-img">
+                <img src="images/warning.png" alt="decision paralysis Comic" class="warn-img">
               </div>
             </div>
             <p style="margin-top: 1.5rem;">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
@@ -132,7 +120,7 @@
 
               </div>
               <div>
-                <img src="WiFi.png" alt="solution Comic" class="wifi-img">
+                <img src="images/WiFi.png" alt="solution Comic" class="wifi-img">
               </div>
             </div>
             <div class="stat-callout welcome-accent">
@@ -148,8 +136,8 @@
               <div class="story-text" >
               <!-- picture arrangement -->
                 <div class="closure-images-container" style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
-                  <img src="image.png" alt="logo Comic" class="closing-image">
-                  <img src="solution.png" alt="solution Comic" class="solution-img">
+                  <img src="images/image.png" alt="logo Comic" class="closing-image">
+                  <img src="images/solution.png" alt="solution Comic" class="solution-img">
                 </div>
                 <div class="closure-notes">
                   <p class="paralysis">
@@ -236,7 +224,7 @@
           <div class="hero-image">
 
             <!-- wifi vs data img.png -->
-              <img src="img3.png" alt="teleBhutan">
+              <img src="images/img3.png" alt="teleBhutan">
               <!-- 📍 Thimphu, Bhutan -->
               <div class="img-caption">📍 Thimphu, Bhutan</div>
               </div>
