@@ -535,6 +535,15 @@
       width: 100%;
     }
 
+   .closure-images-container{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 2rem; 
+    margin-bottom: 2.5rem; 
+    flex-wrap: wrap;
+   }
+
     #step-5 .closure-images-container img[src="solution.png"] {
       max-width: 100%;
       width: clamp(16rem, 35vw, 24rem); 
@@ -1055,6 +1064,155 @@
         box-shadow:var(--shadow-lg); 
       }
 
+      .about-title{
+        margin-top:0.75rem;
+      }
+
+      .about-section{
+          padding-top:0;
+      }
+
+      .profile-header{
+          display:flex;
+          align-items:center;
+          gap:1rem;
+          margin-bottom:1.5rem;
+      }
+
+      .profile-icon{
+          width:60px;
+          height:60px;
+          border-radius:50%;
+          background:linear-gradient(
+              135deg,
+              var(--teal-dark),
+              rgb(10,160,115)
+          );
+
+          display:flex;
+          align-items:center;
+          justify-content:center;
+
+          font-size:1.6rem;
+          flex-shrink:0;
+
+          box-shadow:0 0 16px rgba(232,160,32,0.4);
+      }
+
+      .profile-title{
+          font-family:'Playfair Display', serif;
+          font-size:1.3rem;
+          font-weight:700;
+          color:var(--cream);
+          letter-spacing:0.095rem;
+      }
+
+      .profile-subtitle{
+          color:rgb(180,220,220);
+          font-size:0.85rem;
+          letter-spacing:0.075em;
+          text-transform:uppercase;
+      }
+
+      .about-text{
+          text-align:justify;
+      }
+
+      .about-text p{
+          line-height:1.75;
+          color:var(--text-light);
+      }
+
+      .paragraph-spacing{
+          margin-bottom:1.2rem;
+      }
+
+      .highlight-text{
+          color:rgb(195,237,237);
+      }
+
+      .stat-margin{
+          margin-top:1.75rem;
+      }
+
+      .highlight-header{
+          display:flex;
+          align-items:center;
+          gap:0.75rem;
+          margin-bottom:1.5rem;
+      }
+
+      .highlight-icon{
+          width:44px;
+          height:44px;
+          border-radius:10px;
+
+          background:linear-gradient(
+              135deg,
+              var(--teal-dark),
+              var(--teal-light)
+          );
+
+          display:flex;
+          align-items:center;
+          justify-content:center;
+
+          font-size:1.2rem;
+      }
+
+      .highlight-title{
+          font-family:'Playfair Display', serif;
+          font-size:1.4rem;
+          color:var(--teal-light);
+      }
+
+      .highlight-heading{
+          display:block;
+          margin-bottom:0.2rem;
+          color:var(--teal-dark);
+      }
+
+      .dashboard-btn-wrapper{
+          margin-top:2rem;
+          padding-top:1.25rem;
+          border-top:1px solid rgba(13,79,92,0.1);
+      }
+
+      .dashboard-btn{
+          font-size:0.9rem;
+      }
+
+      .mission-section{
+          padding-top:0;
+          padding-bottom:4rem;
+      }
+
+      .mission-card{
+          text-align:center;
+          padding:2.5rem;
+      }
+
+      .mission-icon{
+          font-size:2.5rem;
+          margin-bottom:1rem;
+      }
+
+      .mission-title{
+          font-family:'Playfair Display', serif;
+          font-size:1.7rem;
+          color:var(--cream);
+          margin-bottom:0.75rem;
+      }
+
+      .mission-text{
+          max-width:640px;
+          margin:0 auto;
+          color:var(--text-light);
+          line-height:1.75;
+          font-size:1.1rem;
+          font-weight:500;
+      }
+
       /* ══════════════ HIGHLIGHT LIST ══════════════ */
       .highlight-list { 
         list-style:none; 
@@ -1090,7 +1248,6 @@
       /* ══════════════ BADGE ══════════════ */ 
       /* Bhutan Connectivity - homepage and information badge - companies  */
       .badge {
-        /* display:inline-block;      */
         padding:0.2rem 0.65rem;
         background:rgba(70, 94, 94, 0.15);
         color:var(--teal-light);
@@ -1100,6 +1257,19 @@
         font-weight:700;  
         letter-spacing:0.04em; 
         text-transform:uppercase;
+        margin-bottom:1rem; 
+        display:inline-block;
+      }
+
+      .subtitle{
+        color:#74edeb;
+        font-weight:bold;
+      }
+
+      .home-button{
+        display:flex; 
+        gap:1rem; 
+        flex-wrap:wrap;
       }
 
       /* companies section */
