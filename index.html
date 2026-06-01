@@ -1,4 +1,4 @@
-<!-- code using HTML -->
+   <!-- code using HTML -->
   <!-- styled using CSS -->
     <!-- shows result using JavaScript -->
   <!DOCTYPE html>
@@ -21,12 +21,12 @@
     <nav id="mainNav">
       <!-- display the logo -->
       <div class="nav-brand" onclick="showPage('home')">
-        <!-- "ci" is just a custom class name you created -->
+        <!-- “ci” is just a custom class name you created -->
         <!-- ci is the label and CSS targets .ci for styling and design -->
         <div class="ci">🧭</div>
         <!-- It displays: TeleCompass -->
         <!-- inline HTML element used to group small pieces of text -->
-          <!-- "em" = emphasis tag - makes text italic by default -->
+          <!-- “em” = emphasis tag - makes text italic by default -->
         <span>Tele<em>Compass</em></span>
       </div>
       <!-- js for nav bar -->
@@ -77,7 +77,7 @@
                 <h3 class="story-intro">Introduction</h3>
                 <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
                 <div class="stat-callout welcome-accent">
-                  Let's walk through how my personal connectivity struggles inspired the creation of <strong class="telecompass-brand">TeleCompass</strong>!
+                  Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);" >TeleCompass</strong>!
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@
                 <img src="images/warning.png" alt="decision paralysis Comic" class="warn-img">
               </div>
             </div>
-            <p class="step3-note">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
+            <p style="margin-top: 1.5rem;">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
           </div>
 
           <div class="story-step" id="step-4">
@@ -116,7 +116,7 @@
               <div class="story-text">
                 <h3 class="story-intro">✨ The Solution</h3>
                 <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day!</strong></p>
-                <p class="step4-savings">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
+                <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
 
               </div>
               <div>
@@ -186,7 +186,7 @@
               <!-- "badge" class - badge like icon on every section -->
               <span class="badge">🇧🇹 Bhutan Connectivity Study</span><br>
               <h1>Kuzu <em>Zangpo La</em></h1> 
-              <p class="subtitle"><strong class="hero-quote">"This page is designed to guide you toward better connectivity choices that match your needs and lifestyle."</strong>
+              <p class="subtitle"><strong style="font-family:italic;color:rgb(147, 237, 237);font-weight:bolder;">"This page is designed to guide you toward better connectivity choices that match your needs and lifestyle.”</strong>
                 <br><br>
                 <button class="btn btn-option" onclick="showPage('company')">Find your best connectivity option</button>
                 <br><br>
@@ -229,7 +229,7 @@
           </div>
         </section>
 
-        <section class="section section-quicklinks">
+        <section class="section" style="padding-top:0; padding-bottom:4rem;">
           <!-- nav bar below -->
           <div class="qlinks">
             <!-- q-icon, q-title, q-sub - they are the class names for CSS -->
@@ -497,12 +497,12 @@
       <div class="page" id="page-dashboard">
         <div class="page-hero">
           <span class="badge">📊 Data Analytics</span>
-          <h1 class="section-title dashboard-title">Connectivity Insight Dashboard</h1>
-          <p class="dashboard-subtitle">Explore Bhutan's data package and Wi-Fi usage patterns across different regions and purposes, along with demographic trends and user satisfaction, through our interactive Tableau visualisation.</p>
+          <h1 class="section-title" style="color:rgb(183, 231, 239);margin-top:0.75rem;">Connectivity Insight Dashboard</h1>
+          <p style="color:var(--cream);margin-bottom:0.5rem;font-weight:400;letter-spacing:0.12rem;">Explore Bhutan's data package and Wi-Fi usage patterns across different regions and purposes, along with demographic trends and user satisfaction, through our interactive Tableau visualisation.</p>
           <div class="divider"></div>
         </div>
 
-        <section class="section section-dashboard">
+        <section class="section" style="padding-top:0; max-width:1300px;">
           <div class="viz-grid">
             <div class="viz-card">
               <div class="vnum">94%</div>
@@ -515,11 +515,11 @@
                     
           </div>
 
-          <div class="glass-card tableau-glass-card">
-            <div class="tableau-header">
+          <div class="glass-card" style="padding:1.5rem;margin-bottom:2rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
               <div>
-                <h2 class="tableau-heading">📡 Bhutan Connectivity — Interactive View</h2>
-                <p class="tableau-subheading">Powered by Tableau Public · Use filters to drill down by region, type of service, or purpose</p>
+                <h2 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);">📡 Bhutan Connectivity — Interactive View</h2>
+                <p style="color:var(--text-light);font-size:0.88rem;margin-top:0.2rem;">Powered by Tableau Public · Use filters to drill down by region, type of service, or purpose</p>
               </div>
             </div>
             <div class="tableau-wrapper">
@@ -530,30 +530,30 @@
                 allowfullscreen>
               </iframe>
             </div>
-            <p class="tableau-credit">ⓘ public.tableau.com - internship project</p>
+            <p style="color:rgba(255,255,255,0.4);font-size:0.76rem;margin-top:0.75rem;text-align:right;">ⓘ public.tableau.com - internship project</p>
           </div>
 
-          <h2 class="section-title key-findings-title">Key Findings</h2>
-          <div class="key-findings-grid">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1.5rem;">Key Findings</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;padding-bottom:4rem;">
             <div class="white-card">
-              <div class="finding-icon">📱</div>
-              <h3 class="finding-title">Mobile Dominance</h3>
-              <p class="finding-text">Bhutanese access the internet primarily via mobile devices, with 4G/LTE being the most used standard and introduction of 5G service in urban central.</p>
+              <div style="font-size:1.75rem;margin-bottom:0.75rem;">📱</div>
+              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Mobile Dominance</h3>
+              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Bhutanese access the internet primarily via mobile devices, with 4G/LTE being the most used standard and introduction of 5G service in urban central.</p>
             </div>
             <div class="white-card">
-              <div class="finding-icon">🌄</div>
-              <h3 class="finding-title">Rural Gap</h3>
-              <p class="finding-text">A significant issue regarding network connectivity and realibility shows a potential for Starlink's satellite service to help bridge in remote dzongkhags and curb the gap.</p>
+              <div style="font-size:1.75rem;margin-bottom:0.75rem;">🌄</div>
+              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Rural Gap</h3>
+              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">A significant issue regarding network connectivity and realibility shows a potential for Starlink's satellite service to help bridge in remote dzongkhags and curb the gap.</p>
             </div>
             <div class="white-card">
-              <div class="finding-icon">⭐</div>
-              <h3 class="finding-title">Satisfaction Trends</h3>
-              <p class="finding-text">Average satisfaction scores hover around 3/5, with network reliability and affordable pricing cited as the top improvement priorities.</p>
+              <div style="font-size:1.75rem;margin-bottom:0.75rem;">⭐</div>
+              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Satisfaction Trends</h3>
+              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Average satisfaction scores hover around 3/5, with network reliability and affordable pricing cited as the top improvement priorities.</p>
             </div>
             <div class="white-card">
-              <div class="finding-icon">🚀</div>
-              <h3 class="finding-title">Growth Opportunity</h3>
-              <p class="finding-text">Bhutan is strengthening digital infrastructure through the Digital Drukyul initiative, expanding fibre networks and improving rural connectivity.</p>
+              <div style="font-size:1.75rem;margin-bottom:0.75rem;">🚀</div>
+              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Growth Opportunity</h3>
+              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Bhutan is strengthening digital infrastructure through the Digital Drukyul initiative, expanding fibre networks and improving rural connectivity.</p>
             </div>
           </div>
         </section>
@@ -566,8 +566,8 @@
         <div class="page-hero">
           <span class="badge">🏢 Telecom Providers</span>
           
-          <h1 class="section-title company-page-title">Telecom Companies in Bhutan</h1>
-          <p class="company-page-subtitle">Three key players bridging connectivity across the Kingdom of Bhutan.</p>
+          <h1 class="section-title" style="margin-top:0.75rem;">Telecom Companies in Bhutan</h1>
+          <p style="color:var(--text-light);margin-bottom:0.5rem;">Three key players bridging connectivity across the Kingdom of Bhutan.</p>
           <div class="divider"></div>
         </div>
 
@@ -667,12 +667,14 @@
       🔍 Find My Provider
     </button>
 
-    <button class="btn btn-outline quiz-outline-btn"
-      onclick="resetQuiz()">
+    <button class="btn btn-outline"
+      onclick="resetQuiz()"
+      style="color:var(--teal-dark); border-color:var(--teal);">
       ↩ Start Over
     </button>
 
-    <button class="btn btn-outline quiz-outline-btn" onclick="showPage('home')">
+    <button class="btn btn-outline" onclick="showPage('home')"
+      style="color:var(--teal-dark); border-color:var(--teal);">
       🏠 Return Home
     </button>
 
@@ -688,7 +690,7 @@
           <h2>Recommended Providers For You</h2>
           <p>Click any provider card or the provider to explore plans, coverage and services.</p>
         </div>
-        <section class="section section-companies">  
+        <section class="section" style="padding-top:0;">  
           <div class="company-grid">
 
             <!-- "article" - card -->
@@ -699,7 +701,7 @@
                 <img src="https://img.favpng.com/20/6/24/bhutan-telecom-telecommunication-internet-service-provider-postpaid-mobile-phone-png-favpng-0Wmtn1JRZaWkk7gkUpe3C7G4C.jpg" alt="Bhutan Telecom">
               </div></a>
               <h3>Bhutan Telecom Limited</h3>
-              <span class="badge badge-company">State-Owned · Est. 2000</span>
+              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">State-Owned · Est. 2000</span>
               <p>The B-Mobile network, now has a comprehensive reach, covering all 205 gewogs across the country, ensuring connectivity even in remote areas.</p>
               <div class="tag-row">
                 <span class="badge">4G LTE / 5G</span>
@@ -715,7 +717,7 @@
                 <img src="https://hrms.tashicell.bt/assets/img/tashicell.png">
                </div></a> 
               <h3>Tashi InfoComm Pvt Ltd</h3>
-              <span class="badge badge-company">Private · Est. 2008</span>
+              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">Private · Est. 2008</span>
               <p>Offers mobile services across urban and growing semi-urban areas. Known for its competitive pricing and customer-focused plan</p>
               <div class="tag-row">
                 <span class="badge">4G LTE / 5G</span>
@@ -732,7 +734,7 @@
                 <img src="https://crystalpng.com/wp-content/uploads/2025/01/starlink-logo-01.png">
                </div></a>
               <h3>Starlink</h3>
-              <span class="badge badge-company">Global · SpaceX LEO Satellite</span>
+              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">Global · SpaceX LEO Satellite</span>
               <p> A satellite-based internet service, increasingly available in Bhutan as an alternative for remote and high-altitude areas. Better connectivity ideal for Bhutan's mountainous terrain. </p>
               <div class="tag-row">
                 <span class="badge">Satellite Internet</span>
@@ -745,8 +747,8 @@
 
           <!-- Comparison Table -->
           <!-- (overflow) - If content is too wide, (-x) - show a horizontal (:auto)- scroll bar ONLY when needed. -->
-          <div class="glass-card comp-table-card">
-            <h2 class="comp-table-heading">Quick Comparison</h2>
+          <div class="glass-card" style="overflow-x:auto;margin-bottom:2.5rem;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.25rem;">Quick Comparison</h2>
             <table class="comp-table">
               <thead><tr>
                 <th>Provider</th><th>Type</th><th>Coverage</th><th>Strength</th>
@@ -787,25 +789,25 @@
 
   <div class="page-hero">
     <span class="badge">📬 Share Your Feedback</span>
-    <h1 class="section-title contact-page-title">Contact Us</h1>
-    <p class="contact-page-subtitle">
+    <h1 class="section-title" style="margin-top:0.75rem;">Contact Us</h1>
+    <p style="color:#e5e7eb;font-weight:500;margin-bottom:0.5rem;">
       Have questions about the project or insights? Share your feedback to help us improve and better understand connectivity needs.
     </p>
     <div class="divider"></div>
   </div>
 
-  <section class="section section-contact">
+  <section class="section" style="padding-top:0; padding-bottom:4rem;">
 
     <div class="two-col">
 
       <!-- Contact Form -->
       <div class="white-card">
 
-        <h2 class="contact-form-heading">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--teal-dark);margin-bottom:0.25rem;">
           Send a Message
         </h2>
 
-        <p class="contact-form-subheading">
+        <p style="color:var(--text-mid);font-size:0.88rem;margin-bottom:1.75rem;">
           Fill in the form and we'll respond within 2 business days.
         </p>
 
@@ -845,7 +847,7 @@
           <input type="hidden" name="_subject" value="New TeleCompass Feedback">
 
           <!-- Submit Button -->
-          <button type="button" onclick="handleContact()" class="btn btn-gold btn-contact-submit">
+          <button type="button" onclick="handleContact()" class="btn btn-gold" style="width:100%;justify-content:center;">
             Send Message ✈️
           </button>
 
@@ -853,7 +855,7 @@
         <button type="button" onclick="clearForm()" class="clearForm">
           Clear Answers 🧹
         </button>
-        <p id="contactSuccess" class="contact-success-msg">
+        <p id="contactSuccess" style="display:none; color:green; margin-top:10px;">
           ✅ Message sent successfully!
         </p>
         </form>
@@ -863,42 +865,42 @@
 
       
       <!-- Sidebar -->
-      <div class="contact-sidebar">
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
 
         <div class="glass-card">
-          <div class="sidebar-icon">📍</div>
-          <h3 class="sidebar-heading">
+          <div style="font-size:1.5rem;margin-bottom:0.75rem;">📍</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:0.4rem;">
             Location
           </h3>
-          <p class="sidebar-text">
+          <p style="color:var(--text-light);font-size:0.9rem;line-height:1.6;">
             Chhukha Dzongkhag<br/>Bhutan 🇧🇹
           </p>
         </div>
 
         <div class="glass-card">
-          <div class="sidebar-icon">🕐</div>
-          <h3 class="sidebar-heading">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🕐</div>
+          <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--white); margin-bottom:0.4rem;">
             Response Time
           </h3>
-          <p class="sidebar-text">
+          <p style="color:var(--text-light); font-size:0.9rem; line-height:1.6;">
             We aim to reply within 2 business days.
           </p>
         </div>
 
         <div class="glass-card">
-          <div class="sidebar-icon">🔗</div>
-          <h3 class="sidebar-heading sidebar-heading-links">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🔗</div>
+          <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--white); margin-bottom:0.75rem;">
             Quick Links
           </h3>
 
-          <div class="sidebar-links">
-            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('dashboard')">
+          <div style="display:flex; flex-direction:column; gap:0.5rem;">
+            <button class="btn btn-outline" onclick="showPage('dashboard')" style="font-size:0.88rem;padding:0.55rem 1rem;">
               📊 View Dashboard
             </button>
-            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('company')">
+            <button class="btn btn-outline" onclick="showPage('company')" style="font-size:0.88rem;padding:0.55rem 1rem;">
               🏢 Telecom Companies Info
             </button>
-            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('about')">
+            <button class="btn btn-outline" onclick="showPage('about')" style="font-size:0.88rem;padding:0.55rem 1rem;">
               👤 About the Project
             </button>
           </div>
@@ -917,7 +919,7 @@
  <footer>
   © 2026 <strong>TeleCompass</strong> · Built for telecom data exploration in Bhutan
   <br>
-  <small class="footer-note">
+  <small style="opacity:0.9;">
     This project is for self-learning and intern project only.
   </small>
 </footer>

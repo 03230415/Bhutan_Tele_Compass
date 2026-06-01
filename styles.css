@@ -1,4 +1,4 @@
-:root {
+      :root {
         --teal:        #0d4f5c;
         --teal-light: #0c7576;
         --teal-dark:   #082e36;
@@ -60,7 +60,7 @@
       nav {
         /* Let this element scroll normally… but once it reaches the top of the screen, keep it stuck there. */
         position: sticky; 
-        /* It "sticks" to the top of the viewport */
+        /* It “sticks” to the top of the viewport */
         top: 0; 
         /* z-index: 1000; is used to control which element appears on top of others. */
         z-index: 1000;
@@ -89,7 +89,7 @@
         }
       /* hovering effect - You move your mouse over a menu button */
       .nav-links li button:hover,
-      /* active - highlight used to show "current page" */
+      /* active - highlight used to show “current page” */
       .nav-links li button.active { 
           color:rgb(198, 248, 237); 
           background:rgba(140, 122, 122, 0.35); 
@@ -478,20 +478,26 @@
       border-left:3px solid orange;
     }
 
-    /* TeleCompass brand name highlight in story intro */
-    .telecompass-brand {
-      color: var(--teal-dark);
-    }
 
-    /* Step 3 — note paragraph below the grid */
-    .step3-note {
-      margin-top: 1.5rem;
-    }
 
-    /* Step 4 — savings paragraph */
-    .step4-savings {
-      margin-top: 1.5rem;
-    }
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
 
     /* Story - Introduction box */
     .stat-callout.welcome-accent {
@@ -518,14 +524,14 @@
 
     /* Fix for Step 5 Alignment Hierarchy on Laptop/Desktop Screens */
     #step-5.active-step {
-      display: flex;
+      display: flex !important;
       justify-content: center;
       align-items: center;
       width: 100%;
     }
 
     #step-5 .story-grid-container {
-      display: block; /* Overrides the 2-column grid rule for this final slide */
+      display: block !important; /* Overrides the 2-column grid rule for this final slide */
       width: 100%;
     }
 
@@ -579,7 +585,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     @keyframes fadeIn {
@@ -611,103 +617,119 @@
     /* 1. TABLET BREAKPOINT (Screens smaller than 992px) */
     @media screen and (max-width: 992px) {
       .story-grid-container {
-        display: flex;
-        flex-direction: column; /* Stack image and text vertically */
-        align-items: center;
-        text-align: center;
-        gap: 1.5rem;
+        display: flex !important;
+        flex-direction: column !important; /* Stack image and text vertically */
+        align-items: center !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
       }
 
       /* Swap text/image visual order for step 2 & 3 so header stays on top */
       #step-2 .story-grid-container,
       #step-3 .story-grid-container {
-        flex-direction: column-reverse;
+        flex-direction: column-reverse !important;
       }
 
       /* Adjust final closure step imagery layout */
       .closure-images-container {
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 1.5rem !important;
+        margin-bottom: 2rem !important;
       }
 
      
       /* Adjust welcome image on tablets */
       .closure-images-container img[src="welcome.png"] {
-        width: 20rem; 
+        width: 20rem !important; 
       }
     }
 
     /* 2. MOBILE PHONE BREAKPOINT (Screens smaller than 576px) */
     @media screen and (max-width: 576px) {
       #intro {
-        padding: 10px;
+        padding: 10px !important;
       }
 
       .intro-box {
-        padding: 15px;
-        border-radius: 1rem;
+        padding: 15px !important;
+        border-radius: 1rem !important;
       }
 
       /* Font Scaling for small viewports */
       .story-title {
-        font-size: 1.5rem;
-        line-height: 1.3;
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
       }
 
       .story-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.1rem !important;
       }
 
       .story-intro {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
       }
 
       p {
-        font-size: 1rem;
-        line-height: 1.5;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
       }
 
       /* Custom component adjustments */
       .stat-callout {
-        padding: 12px;
-        font-size: 0.95rem;
-        margin-top: 1rem;
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+        margin-top: 1rem !important;
       }
 
       /* Handle Step 5 graphics for tight mobile screens */
       .closure-images-container img[src="welcome.png"] {
-        width: 85vw; /* Dynamically maps to viewport width */
+        width: 85vw !important; /* Dynamically maps to viewport width */
       }
 
       .closure-images-container img[src="image.png"] {
-        width: 45vw;
-        transform: rotate(-4deg); /* Reduce tilt angle on mobile */
+        width: 45vw !important;
+        transform: rotate(-4deg) !important; /* Reduce tilt angle on mobile */
       }
 
       /* Optimize Navigation Button Layout */
       .story-navigation {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        margin-top: 1.5rem;
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        margin-top: 1.5rem !important;
       }
 
       .btn-nav {
-        padding: 10px 16px;
-        font-size: 0.95rem;
-        flex: 1; /* Buttons share screen width equally */
-        text-align: center;
+        padding: 10px 16px !important;
+        font-size: 0.95rem !important;
+        flex: 1 !important; /* Buttons share screen width equally */
+        text-align: center !important;
       }
       
       .btn-skip {
-        top: 10px;
-        right: 10px;
-        font-size: 0.85rem;
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 0.85rem !important;
       }
     }
 /* ========================================================================================================================================= */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
       
       /* main */
       .btn-go{
@@ -840,13 +862,6 @@
         box-shadow:var(--shadow-sm);
       }
 
-      /* hero quote strong text */
-      .hero-quote {
-        font-family: italic;
-        color: rgb(147, 237, 237);
-        font-weight: bolder;
-      }
-
       /* ══════════════ QUICK-LINKS GRID ══════════════ */
       /* the navbar below */
       .qlinks { 
@@ -890,12 +905,6 @@
         color:var(--cream); 
         font-width: 800;
         letter-spacing: 1px;
-      }
-
-      /* quick links section padding override */
-      .section-quicklinks {
-        padding-top: 0;
-        padding-bottom: 4rem;
       }
 
     /* ══════════════ STATS ══════════════ */
@@ -991,12 +1000,6 @@
         background:var(--teal); 
         border-color:var(--teal); 
         transform:translateY(-2px); 
-      }
-
-      /* submit button in contact form — full width */
-      .btn-contact-submit {
-        width: 100%;
-        justify-content: center;
       }
 
       /* ══════════════ About Us SECTIONS ══════════════ */
@@ -1240,100 +1243,6 @@
         grid-template-columns:1fr 1fr;   /* one faction of the space*/
         gap:2rem; 
       }
-
-      /* ══════════════ DASHBOARD PAGE ══════════════ */
-
-      /* dashboard section title */
-      .dashboard-title {
-        color: rgb(183, 231, 239);
-        margin-top: 0.75rem;
-      }
-
-      /* dashboard intro paragraph */
-      .dashboard-subtitle {
-        color: var(--cream);
-        margin-bottom: 0.5rem;
-        font-weight: 400;
-        letter-spacing: 0.12rem;
-      }
-
-      /* dashboard section padding override */
-      .section-dashboard {
-        padding-top: 0;
-        max-width: 1300px;
-      }
-
-      /* tableau glass card padding and margin */
-      .tableau-glass-card {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      /* tableau card top row — title + filter controls */
-      .tableau-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.25rem;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      /* tableau card heading */
-      .tableau-heading {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.35rem;
-        color: var(--white);
-      }
-
-      /* tableau card sub-heading */
-      .tableau-subheading {
-        color: var(--text-light);
-        font-size: 0.88rem;
-        margin-top: 0.2rem;
-      }
-
-      /* tableau credit line */
-      .tableau-credit {
-        color: rgba(255,255,255,0.4);
-        font-size: 0.76rem;
-        margin-top: 0.75rem;
-        text-align: right;
-      }
-
-      /* key findings section title spacing */
-      .key-findings-title {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      /* key findings card grid */
-      .key-findings-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.25rem;
-        padding-bottom: 4rem;
-      }
-
-      /* icon inside each finding card */
-      .finding-icon {
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-      }
-
-      /* title inside each finding card */
-      .finding-title {
-        font-family: 'Playfair Display', serif;
-        color: var(--teal-dark);
-        margin-bottom: 0.5rem;
-      }
-
-      /* body text inside each finding card */
-      .finding-text {
-        font-size: 0.9rem;
-        color: var(--text-mid);
-        line-height: 1.6;
-      }
      
       /* ══════════════ COMPANY SECTION ══════════════ */
       /* ══════════════ BADGE ══════════════ */ 
@@ -1350,48 +1259,6 @@
         text-transform:uppercase;
         margin-bottom:1rem; 
         display:inline-block;
-      }
-
-      /* company page title margin */
-      .company-page-title {
-        margin-top: 0.75rem;
-      }
-
-      /* company page intro text */
-      .company-page-subtitle {
-        color: var(--text-light);
-        margin-bottom: 0.5rem;
-      }
-
-      /* badge inside company cards — display and spacing */
-      .badge-company {
-        margin-bottom: 0.75rem;
-        display: inline-block;
-      }
-
-      /* quiz "Start Over" and "Return Home" outline button colours */
-      .quiz-outline-btn {
-        color: var(--teal-dark);
-        border-color: var(--teal);
-      }
-
-      /* companies section padding override */
-      .section-companies {
-        padding-top: 0;
-      }
-
-      /* comparison table glass card — horizontal scroll + margin */
-      .comp-table-card {
-        overflow-x: auto;
-        margin-bottom: 2.5rem;
-      }
-
-      /* comparison table heading */
-      .comp-table-heading {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.3rem;
-        color: var(--white);
-        margin-bottom: 1.25rem;
       }
 
       .subtitle{
@@ -1655,94 +1522,6 @@
         margin-top:0.5rem; 
       }
 
-      /* ══════════════ CONTACT PAGE ══════════════ */
-
-      /* contact page title margin */
-      .contact-page-title {
-        margin-top: 0.75rem;
-      }
-
-      /* contact page intro text */
-      .contact-page-subtitle {
-        color: #e5e7eb;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-      }
-
-      /* contact section padding override */
-      .section-contact {
-        padding-top: 0;
-        padding-bottom: 4rem;
-      }
-
-      /* contact form card heading */
-      .contact-form-heading {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
-        color: var(--teal-dark);
-        margin-bottom: 0.25rem;
-      }
-
-      /* contact form card sub-heading */
-      .contact-form-subheading {
-        color: var(--text-mid);
-        font-size: 0.88rem;
-        margin-bottom: 1.75rem;
-      }
-
-      /* success confirmation message */
-      .contact-success-msg {
-        display: none;
-        color: green;
-        margin-top: 10px;
-      }
-
-      /* contact sidebar column layout */
-      .contact-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-      }
-
-      /* icon in each sidebar card */
-      .sidebar-icon {
-        font-size: 1.5rem;
-        margin-bottom: 0.75rem;
-      }
-
-      /* heading in each sidebar card */
-      .sidebar-heading {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
-        color: var(--white);
-        margin-bottom: 0.4rem;
-      }
-
-      /* extra bottom margin for the quick-links sidebar heading */
-      .sidebar-heading-links {
-        margin-bottom: 0.75rem;
-      }
-
-      /* body text in each sidebar card */
-      .sidebar-text {
-        color: var(--text-light);
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-
-      /* sidebar quick-link button column stack */
-      .sidebar-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      /* individual sidebar link button sizing */
-      .sidebar-link-btn {
-        font-size: 0.88rem;
-        padding: 0.55rem 1rem;
-      }
-
       /* ══════════════ FOOTER ══════════════ */
       footer {
         background:rgba(5,26,30,0.96); 
@@ -1752,11 +1531,6 @@
         color:rgba(255,255,255,0.45); 
         font-size:0.85rem; 
         letter-spacing:0.03em;
-      }
-
-      /* footer small note opacity */
-      .footer-note {
-        opacity: 0.9;
       }
 
       /* ══════════════ RESPONSIVE ══════════════ */
