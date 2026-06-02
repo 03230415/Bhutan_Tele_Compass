@@ -118,38 +118,38 @@ function submitQuiz() {
     return;
   }
 
-  const locationValue   = loc.value;
-  const purposeValue    = purp.value;
-  const occupationValue = occ.value;
-  let rec = '';
+    const locationValue   = loc.value;
+    const purposeValue    = purp.value;
+    const occupationValue = occ.value;
+    let rec = '';
 
-  if (locationValue === 'urban' || locationValue === 'semi') {
-    if (purposeValue === 'social' || purposeValue === 'gaming') {
+    if (locationValue === 'urban' || locationValue === 'semi') {
+      if (purposeValue === 'social' || purposeValue === 'gaming') {
+        if (occupationValue === 'farmer' || occupationValue === 'student' || occupationValue === 'other') {
+          rec = '📶 <strong>Tashi InfoComm (TashiCell)</strong> — A pricing competitive advantage, or 📡 <strong>Bhutan Telecom Limited</strong> — Good coverage for general daily usage.';
+        } else {
+          rec = '📶 <strong>Tashi InfoComm (Wi-Fi)</strong> & 📡 <strong>Bhutan Telecom (WiFi)</strong> — Great choice for high performance and stable professional connectivity.';
+        }
+      } else if (purposeValue === 'work' || purposeValue === 'business') {
+        if (['digital', 'civil', 'private', 'entrepreneur'].includes(occupationValue)) {
+          rec = '📡 <strong>Bhutan Telecom (Wi-Fi)</strong> & 📶 <strong>TashiCell (Wi-Fi)</strong> — Best for professional and work-from-home use.';
+        } else {
+          rec = '📡 <strong>Bhutan Telecom</strong> & 📶 <strong>TashiCell</strong> — Suitable options for general workspace needs.';
+        }
+      } else {
+        rec = '📶 <strong>TashiCell</strong> — General recommendation for urban users prioritising cost efficiency.';
+      }
+    } else if (locationValue === 'rural') {
       if (occupationValue === 'farmer' || occupationValue === 'student' || occupationValue === 'other') {
-        rec = '📶 <strong>Tashi InfoComm (TashiCell)</strong> — A pricing competitive advantage, or 📡 <strong>Bhutan Telecom Limited</strong> — Good coverage for general daily usage.';
+        rec = '📡 <strong>Bhutan Telecom Limited</strong> — Stronger coverage across rural areas.';
       } else {
-        rec = '📶 <strong>Tashi InfoComm (Wi-Fi)</strong> & 📡 <strong>Bhutan Telecom (WiFi)</strong> — Great choice for high performance and stable professional connectivity.';
+        rec = '📡 <strong>Bhutan Telecom (WiFi)</strong> — Stable coverage, & 📶 <strong>TashiCell</strong> — Good cost-effective alternative.';
       }
-    } else if (purposeValue === 'work' || purposeValue === 'business') {
-      if (['digital', 'civil', 'private', 'entrepreneur'].includes(occupationValue)) {
-        rec = '📡 <strong>Bhutan Telecom (Wi-Fi)</strong> & 📶 <strong>TashiCell (Wi-Fi)</strong> — Best for professional and work-from-home use.';
-      } else {
-        rec = '📡 <strong>Bhutan Telecom</strong> & 📶 <strong>TashiCell</strong> — Suitable options for general workspace needs.';
-      }
+    } else if (locationValue === 'high-altitude') {
+      rec = '🛸 <strong>Starlink</strong> — Best suited for high-altitude and remote areas with weak terrestrial signals. <br>📡 <strong>Bhutan Telecom (B-Mobile)</strong> — A good backup option for lighter usage and cost savings.';
     } else {
-      rec = '📶 <strong>TashiCell</strong> — General recommendation for urban users prioritising cost efficiency.';
+      rec = '📶 <strong>Bhutan Telecom & TashiCell</strong> — General recommendation.';
     }
-  } else if (locationValue === 'rural') {
-    if (occupationValue === 'farmer' || occupationValue === 'student' || occupationValue === 'other') {
-      rec = '📡 <strong>Bhutan Telecom Limited</strong> — Stronger coverage across rural areas.';
-    } else {
-      rec = '📡 <strong>Bhutan Telecom (WiFi)</strong> — Stable coverage, & 📶 <strong>TashiCell</strong> — Good cost-effective alternative.';
-    }
-  } else if (locationValue === 'high altitude') {
-    rec = '🛸 <strong>Starlink</strong> — Best suited for high-altitude and remote areas with weak terrestrial signals.';
-  } else {
-    rec = '📶 <strong>Bhutan Telecom & TashiCell</strong> — General recommendation.';
-  }
 
   const el = document.getElementById('quizResult');
   if (el) {
