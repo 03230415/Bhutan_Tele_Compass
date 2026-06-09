@@ -1,4 +1,4 @@
-   <!-- code using HTML -->
+<!-- code using HTML -->
   <!-- styled using CSS -->
     <!-- shows result using JavaScript -->
   <!DOCTYPE html>
@@ -21,12 +21,12 @@
     <nav id="mainNav">
       <!-- display the logo -->
       <div class="nav-brand" onclick="showPage('home')">
-        <!-- “ci” is just a custom class name you created -->
+        <!-- "ci" is just a custom class name you created -->
         <!-- ci is the label and CSS targets .ci for styling and design -->
         <div class="ci">🧭</div>
         <!-- It displays: TeleCompass -->
         <!-- inline HTML element used to group small pieces of text -->
-          <!-- “em” = emphasis tag - makes text italic by default -->
+          <!-- "em" = emphasis tag - makes text italic by default -->
         <span>Tele<em>Compass</em></span>
       </div>
       <!-- js for nav bar -->
@@ -46,6 +46,7 @@
         <span></span><span></span><span></span>
       </button>
     </nav>
+
         <!-- ══════════════ STORY BOARD ══════════════ -->
     <div id="intro">
       <button class="btn-skip" onclick="enterSite()">skip the story →</button>
@@ -77,7 +78,7 @@
                 <h3 class="story-intro">Introduction</h3>
                 <p>This platform acts as a <strong>compass</strong>, guiding you toward the most suitable, cost-effective network service based on your specific requirements.</p>
                 <div class="stat-callout welcome-accent">
-                  Let's walk through how my personal connectivity struggles inspired the creation of <strong style="color: var(--teal-dark);" >TeleCompass</strong>!
+                  Let's walk through how my personal connectivity struggles inspired the creation of <strong class="accent-brand">TeleCompass</strong>!
                 </div>
               </div>
             </div>
@@ -108,7 +109,7 @@
                 <img src="images/warning.png" alt="decision paralysis Comic" class="warn-img">
               </div>
             </div>
-            <p style="margin-top: 1.5rem;">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
+            <p class="step3-note">Social media was overflowing with endless complaints about network stability and Wi-Fi package system. Caught in complete decision paralysis between an expensive data bill and a risky, unrefundable Wi-Fi connection, I found myself with only one option: I began rationing my internet just to survive.</p>
           </div>
 
           <div class="story-step" id="step-4">
@@ -116,8 +117,7 @@
               <div class="story-text">
                 <h3 class="story-intro">✨ The Solution</h3>
                 <p>Finally, my cousin lent me her router to test. <strong>The difference was clear as day!</strong></p>
-                <p style="margin-top: 1.5rem;">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
-
+                <p class="step4-note">With Wi-Fi, my Zoom calls became smooth, and I could browse freely without data anxiety. Best of all? It cost only <strong>Nu. 1,450 per month</strong>—a massive saving compared to mobile data.</p>
               </div>
               <div>
                 <img src="images/WiFi.png" alt="solution Comic" class="wifi-img">
@@ -131,9 +131,9 @@
           <!-- whole page -->
           <div class="story-step" id="step-5">
             <!-- handles layout structure -->
-            <div class="story-grid-container" >
+            <div class="story-grid-container">
               <!-- how things are arranged inside -->
-              <div class="story-text" >
+              <div class="story-text">
               <!-- picture arrangement -->
                 <div class="closure-images-container">
                   <img src="images/image.png" alt="logo Comic" class="closing-image">
@@ -144,7 +144,7 @@
                   <strong>No more decision paralysis or non-refundable risks.</strong> 
                   <br>Take the guesswork out of your decision.
                   </p>
-                  <p class="decision" >
+                  <p class="decision">
                   <strong>Not sure which telecom service to choose?</strong> We make it simple, so you can decide with confidence.
                   </p>
                 </div> 
@@ -186,7 +186,7 @@
               <!-- "badge" class - badge like icon on every section -->
               <span class="badge">🇧🇹 Bhutan Connectivity Study</span><br>
               <h1>Kuzu <em>Zangpo La</em></h1> 
-              <p class="subtitle"><strong style="font-family:italic;color:rgb(147, 237, 237);font-weight:bolder;">"This page is designed to guide you toward better connectivity choices that match your needs and lifestyle.”</strong>
+              <p class="subtitle"><strong class="hero-quote">"This page is designed to guide you toward better connectivity choices that match your needs and lifestyle."</strong>
                 <br><br>
                 <button class="btn btn-option" onclick="showPage('company')">Find your best connectivity option</button>
                 <br><br>
@@ -220,7 +220,6 @@
             </div>
             
           <div class="hero-image">
-
             <!-- wifi vs data img.png -->
               <img src="images/img.png" alt="teleBhutan">
               <!-- 📍 Thimphu, Bhutan -->
@@ -229,7 +228,7 @@
           </div>
         </section>
 
-        <section class="section" style="padding-top:0; padding-bottom:4rem;">
+        <section class="section section-qlinks">
           <!-- nav bar below -->
           <div class="qlinks">
             <!-- q-icon, q-title, q-sub - they are the class names for CSS -->
@@ -254,7 +253,8 @@
               <div class="q-sub">We're here to listen to your feedback</div>
             </div>
           </div>
-        </div> 
+        </section>
+      </div> 
 
 
 <!-- ========================================================================================================================================= -->
@@ -263,22 +263,13 @@
 
   <!-- HERO SECTION -->
   <div class="page-hero">
-
-    <span class="badge">
-      👤 About Us
-    </span>
-
-    <h1 class="section-title about-title">
-      Project Background
-    </h1>
-
+    <span class="badge">👤 About Us</span>
+    <h1 class="section-title about-title">Project Background</h1>
     <div class="divider"></div>
-
   </div>
 
   <!-- ABOUT SECTION -->
   <section class="section about-section">
-
     <div class="two-col">
 
       <!-- ══════════════ ABOUT ME GLASS CARD ══════════════ -->
@@ -286,75 +277,48 @@
 
         <!-- PROFILE HEADER -->
         <div class="profile-header">
-
           <!-- 🎓 ICON -->
           <!-- border-radius:50%; → perfect circle -->
-          <div class="profile-icon">
-            🎓
-          </div>
-
+          <div class="profile-icon">🎓</div>
           <!-- PROFILE TEXT -->
           <div>
-
-            <div class="profile-title">
-              Intern Researcher
-            </div>
-
+            <div class="profile-title">Intern Researcher</div>
             <div class="profile-subtitle">
               <span>Data Practitioner -</span>
               <span><br></span>
               Turning Data into Insights
             </div>
-
           </div>
-
         </div>
 
         <!-- gap between each line → margin-bottom between paragraphs -->
         <div class="about-text">
-
           <p class="paragraph-spacing">
-
             As part of my college program, I completed a six-month internship at Bhutan Data Scientists Pvt. Ltd.
-
             This project explores telecommunications service usage in Bhutan, with a focus on customer preferences and satisfaction.
-
             The website aims to provide personalized service recommendations based on user's needs.
-
           </p>
-
           <p>
-
             The project focuses on reducing Bhutan's digital divide by
-
-            <em class="highlight-text">
-              understanding connectivity gaps and promoting fair access,
-            </em>
-
+            <em class="highlight-text">understanding connectivity gaps and promoting fair access,</em>
             to telecommunications services across all 20 dzongkhags.
-
           </p>
-
         </div>
 
         <!-- STATS -->
         <div class="stat-row stat-margin">
-
           <div class="stat-box">
             <span class="num">20</span>
             <span class="lbl">Dzongkhags</span>
           </div>
-
           <div class="stat-box">
             <span class="num">100+</span>
             <span class="lbl">Respondents</span>
           </div>
-
           <div class="stat-box">
             <span class="num">2026</span>
             <span class="lbl">Study Year</span>
           </div>
-
         </div>
 
       </div>
@@ -365,212 +329,146 @@
 
         <!-- HEADER -->
         <div class="highlight-header">
-          <div class="highlight-icon">
-            🏔️
-          </div>
-
-          <h2 class="highlight-title">
-            Project Highlights
-          </h2>
-
+          <div class="highlight-icon">🏔️</div>
+          <h2 class="highlight-title">Project Highlights</h2>
         </div>
 
         <!-- HIGHLIGHTS LIST -->
         <ul class="highlight-list">
-
           <!-- UNDERSTANDING USAGE -->
           <li>
-
             <div>
-
-              <strong class="highlight-heading">
-                Understanding Mobile Data Package &amp; Wi-Fi Usage Patterns
-              </strong>
-
+              <strong class="highlight-heading">Understanding Mobile Data Package &amp; Wi-Fi Usage Patterns</strong>
               Examining the internet service usage pattern across urban and rural area of Bhutan, including what is their primary purpose and their needs based on occupation.
-
             </div>
-
           </li>
-
           <li>
             <div>
-              <strong class="highlight-heading">
-                Analysing Customer Satisfaction
-              </strong>
+              <strong class="highlight-heading">Analysing Customer Satisfaction</strong>
               Measuring satisfaction levels with service quality, network reliability, and pricing, and how these factors influence daily usage of different services.
             </div>
           </li>
           <!-- DASHBOARD -->
           <li>
-
             <div>
-
-              <strong class="highlight-heading">
-                Responsive Dashboard for Insights
-              </strong>
-
+              <strong class="highlight-heading">Responsive Dashboard for Insights</strong>
               Building an interactive Tableau dashboard that enables users to explore data visually, filter by region, and identify trends at a glance, helping them better understand services based on their needs.
-
             </div>
-
           </li>
-
           <!-- RECOMMENDATIONS -->
           <li>
-
             <div>
-
-              <strong class="highlight-heading">
-                Recommendations for Better Connectivity
-              </strong>
-
+              <strong class="highlight-heading">Recommendations for Better Connectivity</strong>
               Having better connectivity recommendations is our priority, and we welcome user feedback that goes beyond the scope of this project, helping us improve and provide better, more tailored services.
-
             </div>
-
           </li>
-
         </ul>
 
         <!-- DASHBOARD BUTTON -->
         <!-- "showPage('dashboard')" -->
         <div class="dashboard-btn-wrapper">
-
-          <button
-            class="btn btn-teal dashboard-btn"
-            onclick="showPage('dashboard')"
-          >
+          <button class="btn btn-teal dashboard-btn" onclick="showPage('dashboard')">
             📊 Explore the Dashboard →
           </button>
-
         </div>
 
       </div>
 
     </div>
-
   </section>
 
   <!-- ══════════════ MISSION BOARD ══════════════ -->
   <!-- 🧭 -->
   <section class="section mission-section">
-
     <div class="glass-card mission-card">
-
-      <div class="mission-icon">
-        🧭
-      </div>
-
-      <h2 class="mission-title">
-        Our Mission
-      </h2>
-
+      <div class="mission-icon">🧭</div>
+      <h2 class="mission-title">Our Mission</h2>
       <p class="mission-text">
-
         To provide Bhutan's telecom ecosystem with a clear, data-driven compass helping every individual user navigate toward a more connected, reliable, and prosperous digital future in harmony with the values of Gross National Happiness.
-
       </p>
-
     </div>
-
   </section>
 
   <!-- ══════════════ REPORT SECTION ══════════════ -->
-<section class="section mission-section" style="padding-top:0;">
-  <div class="glass-card" style="text-align:center; padding:2.5rem;">
-    
-    <div style="font-size:2.5rem; margin-bottom:1rem;">📄</div>
-    
-    <h2 style="font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--cream); margin-bottom:0.75rem;">
-      Research Report
-    </h2>
-    
-    <p style="max-width:580px; margin:0 auto 1.75rem auto; color:var(--text-light); line-height:1.75; font-size:1rem;">
-      Download the project report on telecommunication service usage patterns in Bhutan.
-    </p>
-
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <!-- Download button -->
-      <a href="report.pdf" download class="btn btn-gold" style="text-decoration:none;">
-        ⬇️ Download Report (PDF)
-      </a>
-      <!-- View in browser button -->
-      <a href="report.pdf" target="_blank" class="btn btn-outline" style="text-decoration:none;">
-        👁️ View Report
-      </a>
+  <section class="section report-section">
+    <div class="glass-card report-card">
+      <div class="report-icon">📄</div>
+      <h2 class="report-title">Research Report</h2>
+      <p class="report-text">
+        Download the full internship research report on telecommunication service usage patterns in Bhutan, covering survey findings, data analysis, and connectivity recommendations across all 20 dzongkhags.
+      </p>
+      <div class="report-buttons">
+        <!-- Download button -->
+        <a href="report.pdf" download class="btn btn-gold">⬇️ Download Report (PDF)</a>
+        <!-- View in browser button -->
+        <a href="report.pdf" target="_blank" class="btn btn-outline">👁️ View Report</a>
+      </div>
+      <p class="report-info">Telecommunication Service Usage in Bhutan · Internship Project 2026</p>
     </div>
-
-    <p style="color:rgba(255,255,255,0.35); font-size:0.75rem; margin-top:1.25rem;">
-      Telecommunication Service Usage in Bhutan · Internship Project 2026
-    </p>
-
-  </div>
-</section>
+  </section>
 
 </div>
+
 <!-- ========================================================================================================================================= -->
       <!-- ══════════════ DASHBOARD PAGE ══════════════ -->
       <div class="page" id="page-dashboard">
         <div class="page-hero">
           <span class="badge">📊 Data Analytics</span>
-          <h1 class="section-title" style="color:rgb(183, 231, 239);margin-top:0.75rem;">Connectivity Insight Dashboard</h1>
-          <p style="color:var(--cream);margin-bottom:0.5rem;font-weight:400;letter-spacing:0.12rem;">Explore Bhutan's data package and Wi-Fi usage patterns across different regions and purposes, along with demographic trends and user satisfaction, through our interactive Tableau visualisation.</p>
+          <h1 class="section-title dashboard-title">Connectivity Insight Dashboard</h1>
+          <p class="dashboard-subtitle">Explore Bhutan's data package and Wi-Fi usage patterns across different regions and purposes, along with demographic trends and user satisfaction, through our interactive Tableau visualisation.</p>
           <div class="divider"></div>
         </div>
 
-        <section class="section" style="padding-top:0; max-width:1300px;">
+        <section class="section section-dashboard">
           <div class="viz-grid">
             <div class="viz-card">
               <div class="vnum">94%</div>
-            <div class="vlbl">Mobile Internet Penetration</div>
-          </div>
+              <div class="vlbl">Mobile Internet Penetration</div>
+            </div>
             <div class="viz-card"><div class="vnum">3.8★</div><div class="vlbl">Avg. Customer Satisfaction</div></div>
             <div class="viz-card"><div class="vnum">3</div><div class="vlbl">Active Telecom Providers</div></div>
             <div class="viz-card"><div class="vnum">Data Package</div><div class="vlbl">Most used service</div></div>
             <div class="viz-card"><div class="vnum">Students</div><div class="vlbl">Majority of the respondent</div></div>
-                    
           </div>
 
-          <div class="glass-card" style="padding:1.5rem;margin-bottom:2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+          <div class="glass-card tableau-card">
+            <div class="tableau-header">
               <div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);">📡 Bhutan Connectivity — Interactive View</h2>
-                <p style="color:var(--text-light);font-size:0.88rem;margin-top:0.2rem;">Powered by Tableau Public · Use filters to drill down by region, type of service, or purpose</p>
+                <h2 class="tableau-title">📡 Bhutan Connectivity — Interactive View</h2>
+                <p class="tableau-subtitle">Powered by Tableau Public · Use filters to drill down by region, type of service, or purpose</p>
               </div>
             </div>
             <div class="tableau-wrapper">
-
               <iframe
                 src="https://public.tableau.com/views/internetservicedashboard2/Telecomserviceusagepatterns?:showVizHome=no"
                 title="Bhutan Connectivity Dashboard"
                 allowfullscreen>
               </iframe>
             </div>
-            <p style="color:rgba(255,255,255,0.4);font-size:0.76rem;margin-top:0.75rem;text-align:right;">ⓘ public.tableau.com - internship project</p>
+            <p class="tableau-credit">ⓘ public.tableau.com - internship project</p>
           </div>
 
-          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1.5rem;">Key Findings</h2>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;padding-bottom:4rem;">
+          <h2 class="section-title findings-title">Key Findings</h2>
+          <div class="findings-grid">
             <div class="white-card">
-              <div style="font-size:1.75rem;margin-bottom:0.75rem;">📱</div>
-              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Mobile Dominance</h3>
-              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Bhutanese access the internet primarily via mobile devices, with 4G/LTE being the most used standard and introduction of 5G service in urban central.</p>
+              <div class="finding-icon">📱</div>
+              <h3 class="finding-heading">Mobile Dominance</h3>
+              <p class="finding-text">Bhutanese access the internet primarily via mobile devices, with 4G/LTE being the most used standard and introduction of 5G service in urban central.</p>
             </div>
             <div class="white-card">
-              <div style="font-size:1.75rem;margin-bottom:0.75rem;">🌄</div>
-              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Rural Gap</h3>
-              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">A significant issue regarding network connectivity and realibility shows a potential for Starlink's satellite service to help bridge in remote dzongkhags and curb the gap.</p>
+              <div class="finding-icon">🌄</div>
+              <h3 class="finding-heading">Rural Gap</h3>
+              <p class="finding-text">A significant issue regarding network connectivity and realibility shows a potential for Starlink's satellite service to help bridge in remote dzongkhags and curb the gap.</p>
             </div>
             <div class="white-card">
-              <div style="font-size:1.75rem;margin-bottom:0.75rem;">⭐</div>
-              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Satisfaction Trends</h3>
-              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Average satisfaction scores hover around 3/5, with network reliability and affordable pricing cited as the top improvement priorities.</p>
+              <div class="finding-icon">⭐</div>
+              <h3 class="finding-heading">Satisfaction Trends</h3>
+              <p class="finding-text">Average satisfaction scores hover around 3/5, with network reliability and affordable pricing cited as the top improvement priorities.</p>
             </div>
             <div class="white-card">
-              <div style="font-size:1.75rem;margin-bottom:0.75rem;">🚀</div>
-              <h3 style="font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:0.5rem;">Growth Opportunity</h3>
-              <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.6;">Bhutan is strengthening digital infrastructure through the Digital Drukyul initiative, expanding fibre networks and improving rural connectivity.</p>
+              <div class="finding-icon">🚀</div>
+              <h3 class="finding-heading">Growth Opportunity</h3>
+              <p class="finding-text">Bhutan is strengthening digital infrastructure through the Digital Drukyul initiative, expanding fibre networks and improving rural connectivity.</p>
             </div>
           </div>
         </section>
@@ -582,9 +480,8 @@
       <div class="page" id="page-company">
         <div class="page-hero">
           <span class="badge">🏢 Telecom Providers</span>
-          
-          <h1 class="section-title" style="margin-top:0.75rem;">Telecom Companies in Bhutan</h1>
-          <p style="color:var(--text-light);margin-bottom:0.5rem;">Three key players bridging connectivity across the Kingdom of Bhutan.</p>
+          <h1 class="section-title company-page-title">Telecom Companies in Bhutan</h1>
+          <p class="company-page-subtitle">Three key players bridging connectivity across the Kingdom of Bhutan.</p>
           <div class="divider"></div>
         </div>
 
@@ -608,23 +505,19 @@
     <!-- QUESTION 1 -->
     <div class="quiz-group">
       <h3>Your Location</h3>
-
       <div class="radio-group">
         <label>
           <input type="radio" name="location" value="urban">
           Urban area (Thimphu, Phuentsholing, Gelephu.)
         </label>
-
         <label>
           <input type="radio" name="location" value="semi">
           Semi-urban (Dzongkhag town)
         </label>
-
         <label>
           <input type="radio" name="location" value="rural">
           Rural / Remote
         </label>
-
         <label>
           <input type="radio" name="location" value="high-altitude">
           High altitude area
@@ -635,23 +528,19 @@
     <!-- QUESTION 2 -->
     <div class="quiz-group">
       <h3>Primary Purpose</h3>
-
       <div class="radio-group">
         <label>
           <input type="radio" name="purpose" value="social">
           Social media &amp; browsing
         </label>
-
         <label>
           <input type="radio" name="purpose" value="work">
           Remote work / Video conferencing / Zoom meeting
         </label>
-
         <label>
           <input type="radio" name="purpose" value="business">
           Business / Enterprise
         </label>
-
         <label>
           <input type="radio" name="purpose" value="gaming">
           Streaming &amp; gaming
@@ -664,7 +553,6 @@
   <!-- OCCUPATION -->
   <div class="quiz-group occupation-box">
     <h3>Occupation</h3>
-
     <select id="occupation">
       <option value="" disabled selected>Select Your Occupation...</option>
       <option value="student">Student</option>
@@ -679,22 +567,9 @@
 
   <!-- BUTTONS -->
   <div class="quiz-buttons">
-
-    <button class="btn btn-gold" onclick="submitQuiz()">
-      🔍 Find My Provider
-    </button>
-
-    <button class="btn btn-outline"
-      onclick="resetQuiz()"
-      style="color:var(--teal-dark); border-color:var(--teal);">
-      ↩ Start Over
-    </button>
-
-    <button class="btn btn-outline" onclick="showPage('home')"
-      style="color:var(--teal-dark); border-color:var(--teal);">
-      🏠 Return Home
-    </button>
-
+    <button class="btn btn-gold" onclick="submitQuiz()">🔍 Find My Provider</button>
+    <button class="btn btn-outline quiz-reset" onclick="resetQuiz()">↩ Start Over</button>
+    <button class="btn btn-outline quiz-home" onclick="showPage('home')">🏠 Return Home</button>
   </div>
 
   <!-- RESULT -->
@@ -707,18 +582,17 @@
           <h2>Recommended Providers For You</h2>
           <p>Click any provider card or the provider to explore plans, coverage and services.</p>
         </div>
-        <section class="section" style="padding-top:0;">  
+        <section class="section section-companies">  
           <div class="company-grid">
 
             <!-- "article" - card -->
             <article class="company-card">
-              <!-- <div class="co-icon">📡</div> -->
                <a href="https://www.bt.bt/" target="BT">
                <div class="co-icon">
                 <img src="https://img.favpng.com/20/6/24/bhutan-telecom-telecommunication-internet-service-provider-postpaid-mobile-phone-png-favpng-0Wmtn1JRZaWkk7gkUpe3C7G4C.jpg" alt="Bhutan Telecom">
               </div></a>
               <h3>Bhutan Telecom Limited</h3>
-              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">State-Owned · Est. 2000</span>
+              <span class="badge badge-card">State-Owned · Est. 2000</span>
               <p>The B-Mobile network, now has a comprehensive reach, covering all 205 gewogs across the country, ensuring connectivity even in remote areas.</p>
               <div class="tag-row">
                 <span class="badge">4G LTE / 5G</span>
@@ -728,31 +602,28 @@
             </article>
 
             <article class="company-card">
-              <!-- <div class="co-icon">📡</div> -->
               <a href="https://www.tashicell.com/" target="TCell">
               <div class="co-icon"> 
                 <img src="https://hrms.tashicell.bt/assets/img/tashicell.png">
                </div></a> 
               <h3>Tashi InfoComm Pvt Ltd</h3>
-              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">Private · Est. 2008</span>
+              <span class="badge badge-card">Private · Est. 2008</span>
               <p>Offers mobile services across urban and growing semi-urban areas. Known for its competitive pricing and customer-focused plan</p>
               <div class="tag-row">
                 <span class="badge">4G LTE / 5G</span>
                 <span class="badge">Mobile Network</span>
                 <span class="badge">Urban Coverage</span>
               </div>
-
             </article>
 
             <article class="company-card">
-              <!-- <div class="co-icon">🛸</div> -->
               <a href="https://www.bicma.gov.bt/?page_id=8623" target="starlink"> 
               <div class="co-icon">
                 <img src="https://crystalpng.com/wp-content/uploads/2025/01/starlink-logo-01.png">
                </div></a>
               <h3>Starlink</h3>
-              <span class="badge" style="margin-bottom:0.75rem;display:inline-block;">Global · SpaceX LEO Satellite</span>
-              <p> A satellite-based internet service, increasingly available in Bhutan as an alternative for remote and high-altitude areas. Better connectivity ideal for Bhutan's mountainous terrain. </p>
+              <span class="badge badge-card">Global · SpaceX LEO Satellite</span>
+              <p>A satellite-based internet service, increasingly available in Bhutan as an alternative for remote and high-altitude areas. Better connectivity ideal for Bhutan's mountainous terrain.</p>
               <div class="tag-row">
                 <span class="badge">Satellite Internet</span>
                 <span class="badge">Low Earth Orbit (LEO)</span>
@@ -764,37 +635,31 @@
 
           <!-- Comparison Table -->
           <!-- (overflow) - If content is too wide, (-x) - show a horizontal (:auto)- scroll bar ONLY when needed. -->
-          <div class="glass-card" style="overflow-x:auto;margin-bottom:2.5rem;">
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.25rem;">Quick Comparison</h2>
+          <div class="glass-card comp-table-card">
+            <h2 class="comp-table-heading">Quick Comparison</h2>
             <table class="comp-table">
               <thead><tr>
                 <th>Provider</th><th>Type</th><th>Coverage</th><th>Strength</th>
               </tr></thead>
               <tbody>
                 <tr>
-                  <td><strong>
-                    <a href="https://www.bt.bt/mobile/prepaid/" target = "_blank">Bhutan Telecom</a>
-                  </strong></td>
+                  <td><strong><a href="https://www.bt.bt/mobile/prepaid/" target="_blank">Bhutan Telecom</a></strong></td>
                   <td>State / Mobile / Fixed</td>
                   <td>Nationwide</td>
                   <td>Widest infrastructure</td>
                 </tr>
                 <tr>
-                  <td><strong>
-                    <a href="https://www.tashicell.com/mobile-services/prepaid-data-plans" target="_blank">Tashi InfoComm</a>
-                  </strong></td>
+                  <td><strong><a href="https://www.tashicell.com/mobile-services/prepaid-data-plans" target="_blank">Tashi InfoComm</a></strong></td>
                   <td>Private / Mobile</td>
                   <td>Urban + growing rural</td>
                   <td>Competitive pricing</td>
                 </tr>
                 <tr>
-                  <td><strong>
-                  <a href="https://starlink.com/service-plans/business" target = "_blank">Starlink</a>
-                </strong></td>
-                <td>Satellite</td>
-                <td>Remote / High-altitude</td>
-                <td>Low-latency satellite</td>
-              </tr>
+                  <td><strong><a href="https://starlink.com/service-plans/business" target="_blank">Starlink</a></strong></td>
+                  <td>Satellite</td>
+                  <td>Remote / High-altitude</td>
+                  <td>Low-latency satellite</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -806,30 +671,24 @@
 
   <div class="page-hero">
     <span class="badge">📬 Share Your Feedback</span>
-    <h1 class="section-title" style="margin-top:0.75rem;">Contact Us</h1>
-    <p style="color:#e5e7eb;font-weight:500;margin-bottom:0.5rem;">
+    <h1 class="section-title contact-page-title">Contact Us</h1>
+    <p class="contact-page-subtitle">
       Have questions about the project or insights? Share your feedback to help us improve and better understand connectivity needs.
     </p>
     <div class="divider"></div>
   </div>
 
-  <section class="section" style="padding-top:0; padding-bottom:4rem;">
+  <section class="section section-contact">
 
     <div class="two-col">
 
       <!-- Contact Form -->
       <div class="white-card">
 
-        <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--teal-dark);margin-bottom:0.25rem;">
-          Send a Message
-        </h2>
-
-        <p style="color:var(--text-mid);font-size:0.88rem;margin-bottom:1.75rem;">
-          Fill in the form and we'll respond within 2 business days.
-        </p>
+        <h2 class="contact-form-title">Send a Message</h2>
+        <p class="contact-form-subtitle">Fill in the form and we'll respond within 2 business days.</p>
 
         <!-- form spree -->
-
         <form id="contactForm">
           <div class="form-group">
             <!-- for="cname" - connects label to input -->
@@ -864,64 +723,46 @@
           <input type="hidden" name="_subject" value="New TeleCompass Feedback">
 
           <!-- Submit Button -->
-          <button type="button" onclick="handleContact()" class="btn btn-gold" style="width:100%;justify-content:center;">
+          <button type="button" onclick="handleContact()" class="btn btn-gold btn-full">
             Send Message ✈️
           </button>
 
-
-        <button type="button" onclick="clearForm()" class="clearForm">
-          Clear Answers 🧹
-        </button>
-        <p id="contactSuccess" style="display:none; color:green; margin-top:10px;">
-          ✅ Message sent successfully!
-        </p>
+          <button type="button" onclick="clearForm()" class="clearForm">
+            Clear Answers 🧹
+          </button>
+          <p id="contactSuccess" class="contact-success-msg">
+            ✅ Message sent successfully!
+          </p>
         </form>
-        
         <!-- FORM END -->
       </div>
 
       
       <!-- Sidebar -->
-      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div class="contact-sidebar">
 
         <div class="glass-card">
-          <div style="font-size:1.5rem;margin-bottom:0.75rem;">📍</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:0.4rem;">
-            Location
-          </h3>
-          <p style="color:var(--text-light);font-size:0.9rem;line-height:1.6;">
+          <div class="sidebar-icon">📍</div>
+          <h3 class="sidebar-heading">Location</h3>
+          <p class="sidebar-text">
             Chhukha Dzongkhag<br/>Bhutan 🇧🇹
           </p>
         </div>
 
         <div class="glass-card">
-          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🕐</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--white); margin-bottom:0.4rem;">
-            Response Time
-          </h3>
-          <p style="color:var(--text-light); font-size:0.9rem; line-height:1.6;">
-            We aim to reply within 2 business days.
-          </p>
+          <div class="sidebar-icon">🕐</div>
+          <h3 class="sidebar-heading">Response Time</h3>
+          <p class="sidebar-text">We aim to reply within 2 business days.</p>
         </div>
 
         <div class="glass-card">
-          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🔗</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--white); margin-bottom:0.75rem;">
-            Quick Links
-          </h3>
-
-          <div style="display:flex; flex-direction:column; gap:0.5rem;">
-            <button class="btn btn-outline" onclick="showPage('dashboard')" style="font-size:0.88rem;padding:0.55rem 1rem;">
-              📊 View Dashboard
-            </button>
-            <button class="btn btn-outline" onclick="showPage('company')" style="font-size:0.88rem;padding:0.55rem 1rem;">
-              🏢 Telecom Companies Info
-            </button>
-            <button class="btn btn-outline" onclick="showPage('about')" style="font-size:0.88rem;padding:0.55rem 1rem;">
-              👤 About the Project
-            </button>
+          <div class="sidebar-icon">🔗</div>
+          <h3 class="sidebar-heading sidebar-heading-links">Quick Links</h3>
+          <div class="sidebar-links">
+            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('dashboard')">📊 View Dashboard</button>
+            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('company')">🏢 Telecom Companies Info</button>
+            <button class="btn btn-outline sidebar-link-btn" onclick="showPage('about')">👤 About the Project</button>
           </div>
-
         </div>
 
       </div>
@@ -936,7 +777,7 @@
  <footer>
   © 2026 <strong>TeleCompass</strong> · Built for telecom data exploration in Bhutan
   <br>
-  <small style="opacity:0.9;">
+  <small class="footer-note">
     This project is for self-learning and intern project only.
   </small>
 </footer>
