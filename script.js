@@ -1,7 +1,7 @@
 /* ==========================================
    1. GLOBAL SYSTEM SETUP & ROUTING
    ========================================== */
-const pages = ['home', 'about', 'dashboard', 'company', 'contact'];
+const pages = ['home', 'about', 'dashboard', 'company', 'insight', 'contact'];
 const navToggle = document.getElementById('navToggle');
 const navLinks  = document.getElementById('navLinks');
 

@@ -1883,3 +1883,170 @@
           font-size: 0.85rem;
         }
       }
+
+      /* ══════════════ INSIGHTS HUB PAGE ══════════════ */
+.insight-title {
+  margin-top: 0.75rem;
+}
+
+.insight-subtitle {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  max-width: 720px;
+}
+
+.insight-section {
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+
+/* responsive grid: 1 col mobile → 2 col tablet → 2 col desktop */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── FLIP CARD WRAPPER ── */
+/* perspective gives depth to the 3D flip */
+.ih-card-wrap {
+  perspective: 1000px;
+  height: 300px;
+  cursor: pointer;
+}
+
+/* ── INNER CARD (does the flipping) ── */
+.ih-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* lets child faces render in 3D space */
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* flip on hover (desktop) and when .flipped class is toggled (mobile tap) */
+.ih-card-wrap:hover .ih-card,
+.ih-card-wrap.flipped .ih-card {
+  transform: rotateY(180deg);
+}
+
+/* ── SHARED FACE STYLES ── */
+.ih-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  /* hides the face when it's rotated away */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── FRONT FACE ── */
+.ih-front {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(13, 79, 92, 0.15);
+  border-top: 4px solid var(--teal);
+  color: var(--text-dark);
+}
+
+/* ── BACK FACE ── */
+/* rotated 180deg by default so it starts hidden */
+.ih-back {
+  background: var(--teal-dark);
+  border: 1px solid var(--glass-border);
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  color: var(--text-light);
+}
+
+/* insight number label e.g. "Insight #1" */
+.ih-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 0.6rem;
+}
+
+/* emoji icon circle on front */
+.ih-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(13, 79, 92, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.85rem;
+}
+
+/* card title on front face */
+.ih-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* subtle "tap to flip" hint at bottom of front */
+.ih-hint {
+  font-size: 0.72rem;
+  color: var(--text-mid);
+  margin: 0;
+  opacity: 0.6;
+}
+
+/* back face section label */
+.ih-back-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin: 0 0 0.6rem 0;
+}
+
+/* back face body text */
+.ih-back-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+/* gold-teal gradient accent bar on back face */
+.ih-accent-bar {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--teal-light), var(--gold));
+  margin-bottom: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* source citation at bottom of back face */
+.ih-source {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0.85rem 0 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* on mobile: make cards slightly taller so back text fits */
+@media (max-width: 576px) {
+  .ih-card-wrap {
+    height: 340px;
+  }
+}
