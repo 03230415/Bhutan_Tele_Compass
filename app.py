@@ -4,6 +4,8 @@
 # request → gets data from user (like form input)
 # redirect → sends user to another page
 from flask import Flask, request, jsonify, send_from_directory, session, redirect
+# flask_cors - allows other websites to send requests to this backend
+from flask_cors import CORS
 # os - works with files and folders
 import os
 # for timestamp
@@ -19,6 +21,9 @@ load_dotenv()
 # {app = Flask(_name_)} === Flask, use this file as the starting point of the project.
 app = Flask(__name__, static_folder=".")
 app.secret_key = "telecompass_bhutan_2026"
+
+# Allow requests from the org's website (datascientists.bt)
+CORS(app, origins=["https://datascientists.bt", "http://datascientists.bt"])
 
 # password and username for admin login
 ADMIN_USERNAME = "yang"
